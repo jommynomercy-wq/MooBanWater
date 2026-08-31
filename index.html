@@ -1144,6 +1144,86 @@ textarea:focus{
    JPG CANVAS
 ===================================================== */
 
+/* =====================================================
+   IPHONE PHOTO SAVE PREVIEW
+===================================================== */
+
+#photo-save-modal{
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  display:none;
+  background:rgba(0,0,0,.82);
+  padding:calc(18px + env(safe-area-inset-top)) 14px calc(18px + env(safe-area-inset-bottom));
+  overflow:auto;
+}
+
+#photo-save-modal.show{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.photo-save-card{
+  width:min(100%, 720px);
+  background:white;
+  border-radius:20px;
+  padding:14px;
+  box-shadow:0 20px 60px rgba(0,0,0,.35);
+}
+
+.photo-save-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:10px;
+}
+
+.photo-save-title{
+  font-weight:800;
+  font-size:18px;
+}
+
+.photo-save-close{
+  width:42px;
+  height:42px;
+  border:none;
+  border-radius:50%;
+  background:#eef2f7;
+  font-size:22px;
+}
+
+#photo-save-image{
+  display:block;
+  width:100%;
+  height:auto;
+  max-height:70vh;
+  object-fit:contain;
+  border-radius:10px;
+  background:#f5f5f5;
+  -webkit-user-select:none;
+  user-select:none;
+  -webkit-touch-callout:default;
+}
+
+.photo-save-help{
+  margin:12px 2px 0;
+  padding:12px;
+  border-radius:12px;
+  background:#eff6ff;
+  color:#1e3a8a;
+  font-size:14px;
+  line-height:1.55;
+}
+
+.photo-save-filename{
+  margin-top:8px;
+  color:#667085;
+  font-size:12px;
+  word-break:break-all;
+}
+
 #jpg-workspace{
 
   position:fixed;
@@ -2512,6 +2592,30 @@ textarea:focus{
 ===================================================== -->
 
 <div id="jpg-workspace"></div>
+
+<!-- =====================================================
+     IPHONE PHOTO SAVE MODAL
+     หมายเหตุ: HTML บน iPhone ไม่สามารถเขียนลง Photos
+     โดยตรงได้ จึงแสดง JPG จริงให้แตะค้างและบันทึกลงรูปภาพ
+===================================================== -->
+<div id="photo-save-modal" aria-hidden="true">
+  <div class="photo-save-card">
+    <div class="photo-save-head">
+      <div class="photo-save-title">🖼️ JPG พร้อมบันทึกลงรูปภาพ</div>
+      <button class="photo-save-close" type="button" onclick="closePhotoSaveModal()" aria-label="ปิด">×</button>
+    </div>
+
+    <img id="photo-save-image" alt="ใบแจ้งหนี้ JPG">
+
+    <div class="photo-save-help">
+      <strong>บน iPhone:</strong><br>
+      แตะค้างที่รูปด้านบน → เลือก <strong>“บันทึกในรูปภาพ”</strong><br>
+      วิธีนี้จะบันทึกเข้าแอป <strong>รูปภาพ (Photos)</strong> โดยไม่ส่งไป Files หรือ Drive
+    </div>
+
+    <div id="photo-save-filename" class="photo-save-filename"></div>
+  </div>
+</div>
 
 
 <script>
@@ -6112,115 +6216,67 @@ async function saveBillAsJPG(id){
 
   let house = null;
 
+  if(bill.house_id){
+    const result = await db
+      .from("houses")
+      .select("*")
+      .eq("id", bill.house_id)
+      .maybeSingle();
+
+    house = result.data || null;
+  }
+
   try{
-
-    if(bill.house_id){
-      const result = await db
-        .from("houses")
-        .select("*")
-        .eq("id", bill.house_id)
-        .maybeSingle();
-
-      if(result.error) throw result.error;
-      house = result.data || null;
-    }
-
     toast("กำลังสร้าง JPG...");
 
     const dataUrl = await createJpgInvoice(bill, house);
 
     if(!dataUrl || !dataUrl.startsWith("data:image/jpeg")){
-      throw new Error("ไม่สามารถสร้างไฟล์ JPG ได้");
+      throw new Error("สร้าง JPG ไม่สำเร็จ");
     }
 
-    const response = await fetch(dataUrl);
-    const blob = await response.blob();
-
-    if(!blob || blob.size === 0){
-      throw new Error("ไฟล์ JPG ว่างเปล่า");
-    }
-
-    const houseNumber = String(house?.house_number || "บ้าน")
-      .replace(/[\\/:*?"<>|]/g, "-");
-
-    const readingDate = String(
+    const filename = `ใบแจ้งหนี้_${
+      house?.house_number || "บ้าน"
+    }_${String(
       bill.reading_date || todayLocal()
-    ).replace(/-/g, "");
-
-    const filename = `ใบแจ้งหนี้_${houseNumber}_${readingDate}.jpg`;
-
-    const file = new File(
-      [blob],
-      filename,
-      { type:"image/jpeg", lastModified:Date.now() }
-    );
+    ).replaceAll("-", "")}.jpg`;
 
     /*
-      iPhone / iPad:
-      ใช้ Web Share API พร้อมไฟล์ JPG
-      เพื่อเปิด Share Sheet ของ iOS
-      จากนั้นผู้ใช้แตะ "บันทึกรูปภาพ"
-      ไฟล์จะเข้าแอป รูปภาพ (Photos)
+      สำคัญสำหรับ iPhone:
+      ไม่เรียก navigator.share() เป็นวิธีหลักอีกต่อไป
+      เพราะ Share Sheet อาจแสดงเพียง Files / Drive และไม่มี
+      ปุ่ม "บันทึกในรูปภาพ" ให้เลือก
+
+      เราแสดง JPG จริงบนหน้าจอแทน ผู้ใช้แตะค้างที่รูปแล้วเลือก
+      "บันทึกในรูปภาพ" ซึ่งเป็นวิธีที่ Safari/iPhone รองรับแน่นอน
+      โดย HTML ไม่สามารถเขียนไฟล์เข้า Photos โดยตรงได้
     */
-    if(
-      typeof navigator !== "undefined" &&
-      typeof navigator.share === "function"
-    ){
+    const modal = document.getElementById("photo-save-modal");
+    const image = document.getElementById("photo-save-image");
+    const name = document.getElementById("photo-save-filename");
 
-      let canShareFile = true;
-
-      if(typeof navigator.canShare === "function"){
-        canShareFile = navigator.canShare({files:[file]});
-      }
-
-      if(canShareFile){
-        try{
-          await navigator.share({
-            files:[file],
-            title:"ใบแจ้งหนี้ค่าน้ำ",
-            text:"ใบแจ้งหนี้ค่าน้ำ"
-          });
-
-          toast("บันทึก JPG เรียบร้อยแล้ว");
-          return;
-
-        }catch(error){
-
-          /* ผู้ใช้กดปิด Share Sheet = ไม่ใช่ข้อผิดพลาด */
-          if(error?.name === "AbortError") return;
-
-          console.warn("Share Sheet error:", error);
-        }
-      }
+    if(!modal || !image){
+      throw new Error("ไม่พบหน้าบันทึกรูปภาพ");
     }
 
-    /*
-      Fallback สำหรับ browser ที่ไม่รองรับการแชร์ไฟล์
-      เปิดไฟล์ JPG ในแท็บใหม่ให้ผู้ใช้กด Share
-      แล้วเลือก "บันทึกรูปภาพ"
-    */
-    const url = URL.createObjectURL(blob);
+    image.src = dataUrl;
+    image.alt = filename;
 
-    const opened = window.open(url, "_blank");
-
-    if(!opened){
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = filename;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
+    if(name){
+      name.textContent = "ชื่อไฟล์: " + filename;
     }
 
-    setTimeout(() => URL.revokeObjectURL(url), 60000);
+    modal.classList.add("show");
+    modal.setAttribute("aria-hidden", "false");
 
-    toast("เปิด JPG แล้ว กดแชร์ → บันทึกรูปภาพ");
+    toast("JPG พร้อมแล้ว — แตะค้างที่รูป แล้วเลือก ‘บันทึกในรูปภาพ’");
 
   }catch(error){
-
     console.error("JPG ERROR:", error);
 
-    if(error?.name === "AbortError") return;
+    if(error && error.name === "AbortError"){
+      return;
+    }
 
     toast(
       "สร้าง JPG ไม่สำเร็จ: " +
@@ -6228,6 +6284,29 @@ async function saveBillAsJPG(id){
     );
   }
 }
+
+function closePhotoSaveModal(){
+  const modal = document.getElementById("photo-save-modal");
+  const image = document.getElementById("photo-save-image");
+
+  if(image){
+    image.removeAttribute("src");
+  }
+
+  if(modal){
+    modal.classList.remove("show");
+    modal.setAttribute("aria-hidden", "true");
+  }
+}
+
+/* แตะพื้นหลังเพื่อปิด แต่ไม่ปิดเมื่อแตะรูป/กล่อง */
+document.addEventListener("click", function(event){
+  const modal = document.getElementById("photo-save-modal");
+  if(event.target === modal){
+    closePhotoSaveModal();
+  }
+});
+
 
 /* =====================================================
    DASHBOARD
