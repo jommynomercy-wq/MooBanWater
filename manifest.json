@@ -1,0 +1,9 @@
+{
+  "name":"ค่าน้ำหมู่บ้าน",
+  "short_name":"ค่าน้ำหมู่บ้าน",
+  "start_url":"./",
+  "display":"standalone",
+  "background_color":"#f4f7fb",
+  "theme_color":"#1677ff",
+  "lang":"th"
+}

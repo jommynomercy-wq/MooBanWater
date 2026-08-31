@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#1677ff">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="ค่าน้ำหมู่บ้าน">
+<link rel="manifest" href="./manifest.json">
+<title>ค่าน้ำหมู่บ้าน</title>
+<style>
+:root{--blue:#1677ff;--bg:#f4f7fb;--card:#fff;--text:#182230;--muted:#667085;--line:#e5e7eb;--red:#d92d20;--green:#16834b}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans Thai",sans-serif}
+button,input,select{font:inherit}button{border:0;border-radius:12px;padding:12px 14px;font-weight:700;cursor:pointer}
+.primary{background:var(--blue);color:#fff}.soft{background:#eaf2ff;color:#145dcc}.danger{background:#fff0f0;color:var(--red)}.ghost{background:#fff;border:1px solid var(--line)}
+header{background:var(--blue);color:#fff;padding:20px 16px 18px;position:sticky;top:0;z-index:5}
+header h1{margin:0;font-size:24px}header small{opacity:.86}
+main{max-width:780px;margin:auto;padding:14px 14px 92px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.card{background:var(--card);border-radius:16px;padding:15px;box-shadow:0 4px 18px #1822300d}.label{font-size:12px;color:var(--muted)}.big{font-size:24px;font-weight:800;margin-top:4px}
+.section{margin-top:16px}.section h2{font-size:18px;margin:0 0 10px}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+input,select{width:100%;padding:12px;border:1px solid #d7dce5;border-radius:11px;background:#fff;outline:none}input:focus,select:focus{border-color:var(--blue)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.muted{color:var(--muted);font-size:13px}
+.item{background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px;margin:8px 0;display:flex;justify-content:space-between;gap:10px;align-items:center}
+.pill{display:inline-block;font-size:12px;padding:5px 8px;border-radius:999px;background:#eaf7ef;color:var(--green);margin-top:5px}.pill.unpaid{background:#fff0f0;color:var(--red)}
+.right{text-align:right}.hidden{display:none!important}
+nav{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);display:flex;justify-content:center;gap:3px;padding:7px 8px calc(7px + env(safe-area-inset-bottom));z-index:10}
+nav button{background:#fff;color:var(--muted);padding:9px 10px;min-width:70px}nav button.active{color:var(--blue);background:#eef5ff}
+.modal{position:fixed;inset:0;background:#0008;z-index:30;display:flex;align-items:flex-end}.sheet{background:#fff;width:100%;max-height:92vh;overflow:auto;border-radius:22px 22px 0 0;padding:20px;max-width:780px;margin:auto}
+.actions{display:flex;gap:8px}.actions>*{flex:1}table{width:100%;border-collapse:collapse}td{padding:9px 0;border-bottom:1px solid #eee}
+.logo{width:90px;max-height:70px;object-fit:contain;display:block;margin:0 auto 8px}.center{text-align:center}
+.notice{padding:11px;border-radius:12px;background:#eef5ff;color:#145dcc;font-size:13px}
+@media(min-width:650px){.modal{align-items:center}.sheet{border-radius:20px}}
+</style>
+</head>
+<body>
+<header><h1>💧 ค่าน้ำหมู่บ้าน</h1><small id="headerSub">6 บาท/หน่วย + ค่ารักษามาตร 5 บาท/เดือน</small></header>
+<main>
+<section id="tab-dashboard">
+<div class="grid">
+<div class="card"><div class="label">บ้านทั้งหมด</div><div class="big" id="sHouses">0</div></div>
+<div class="card"><div class="label">บันทึกเดือนนี้</div><div class="big" id="sRecords">0</div></div>
+<div class="card"><div class="label">ยอดเดือนนี้</div><div class="big" id="sMonth">0 ฿</div></div>
+<div class="card"><div class="label">ยอดค้างชำระ</div><div class="big" id="sUnpaid">0 ฿</div></div>
+</div>
+<div class="toolbar"><button class="primary" onclick="openReading()">💧 บันทึกมิเตอร์</button><button class="soft" onclick="openHouse()">🏠 เพิ่มบ้าน</button></div>
+<div class="card section"><h2>อัตราค่าบริการ</h2><div class="muted">ค่าน้ำ = หน่วยที่ใช้ × 6 บาท<br>ค่ารักษามาตร = 5 บาท/บ้าน/เดือน</div></div>
+<div class="card section"><h2>สถานะ Cloud</h2><div id="cloudStatus" class="notice">ยังไม่ได้ตั้งค่า Cloud — ระบบจะเก็บข้อมูลในเครื่องก่อน</div></div>
+</section>
+
+<section id="tab-houses" class="hidden">
+<div class="toolbar"><input id="search" placeholder="ค้นหาเลขที่บ้าน / ชื่อ" oninput="renderHouses()"><button class="primary" onclick="openHouse()">+ เพิ่มบ้าน</button></div>
+<div id="housesList"></div>
+</section>
+
+<section id="tab-bills" class="hidden">
+<div class="toolbar"><select id="monthFilter" onchange="renderBills()"></select></div>
+<div id="billsList"></div>
+</section>
+
+<section id="tab-stats" class="hidden">
+<div class="grid">
+<div class="card"><div class="label">ยอดเรียกเก็บทั้งหมด</div><div class="big" id="stTotal">0 ฿</div></div>
+<div class="card"><div class="label">ชำระแล้ว</div><div class="big" id="stPaid">0 ฿</div></div>
+<div class="card"><div class="label">ค้างชำระ</div><div class="big" id="stDue">0 ฿</div></div>
+<div class="card"><div class="label">ใช้น้ำทั้งหมด</div><div class="big" id="stUnits">0</div></div>
+</div>
+<div class="card section"><h2>สรุปรายเดือน</h2><div id="monthly"></div></div>
+<div class="toolbar"><button class="soft" onclick="backup()">⬇️ สำรองข้อมูล</button><button class="soft" onclick="document.getElementById('restore').click()">⬆️ นำเข้าข้อมูล</button><input id="restore" class="hidden" type="file" accept=".json" onchange="restore(event)"></div>
+</section>
+
+<section id="tab-settings" class="hidden">
+<div class="card">
+<h2>ตั้งค่าใบแจ้งค่าน้ำ</h2>
+<div class="section"><label>ชื่อหมู่บ้าน</label><input id="setVillage"></div>
+<div class="section"><label>ที่อยู่</label><input id="setAddress"></div>
+<div class="row section"><div><label>โทรศัพท์</label><input id="setPhone"></div><div><label>ธนาคาร</label><input id="setBank"></div></div>
+<div class="row section"><div><label>เลขบัญชี</label><input id="setAccount"></div><div><label>ชื่อบัญชี</label><input id="setAccountName"></div></div>
+<div class="section"><label>LINE ID</label><input id="setLine"></div>
+<div class="section"><label>ข้อความช่องทางชำระเงิน</label><input id="setPaymentNote"></div>
+<div class="toolbar"><button class="primary" onclick="saveSettings()">บันทึกตั้งค่า</button></div>
+</div>
+<div class="card section"><h2>Cloud</h2><div class="muted">สำหรับเชื่อม Supabase ให้ตั้งค่า URL และ Anon Key ในไฟล์ <b>config.js</b> จากนั้นเปิดใหม่</div><div class="toolbar"><button class="danger" onclick="resetLocal()">ล้างข้อมูลในเครื่อง</button></div></div>
+</section>
+</main>
+
+<nav>
+<button id="n-dashboard" onclick="showTab('dashboard')">🏠<br>หน้าหลัก</button>
+<button id="n-houses" onclick="showTab('houses')">🏘️<br>บ้าน</button>
+<button id="n-bills" onclick="showTab('bills')">🧾<br>ใบแจ้ง</button>
+<button id="n-stats" onclick="showTab('stats')">📊<br>สถิติ</button>
+<button id="n-settings" onclick="showTab('settings')">⚙️<br>ตั้งค่า</button>
+</nav>
+
+<div id="modal" class="modal hidden"><div class="sheet" id="sheet"></div></div>
+
+<script>
+const KEY="moobanwater.cloudready.v2", RATE=6, FEE=5;
+let data=JSON.parse(localStorage.getItem(KEY)||'{"houses":[],"bills":[],"settings":{"village":"ปุณย์ศิริ","address":"","phone":"","bank":"","account":"","accountName":"","line":"","paymentNote":"โอนเงินแล้วกรุณาส่งหลักฐานมาทาง LINE"}}');
+const month=()=>{let d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")};
+const money=n=>new Intl.NumberFormat("th-TH",{minimumFractionDigits:2,maximumFractionDigits:2}).format(n)+" บาท";
+function save(){localStorage.setItem(KEY,JSON.stringify(data));render()}
+function showTab(t){["dashboard","houses","bills","stats","settings"].forEach(x=>document.getElementById("tab-"+x).classList.toggle("hidden",x!==t));document.querySelectorAll("nav button").forEach(x=>x.classList.remove("active"));document.getElementById("n-"+t).classList.add("active");render()}
+function render(){
+const cur=data.bills.filter(b=>b.month===month()); document.getElementById("sHouses").textContent=data.houses.length;
+document.getElementById("sRecords").textContent=cur.length; document.getElementById("sMonth").textContent=money(cur.reduce((a,b)=>a+b.total,0));
+document.getElementById("sUnpaid").textContent=money(data.bills.filter(b=>!b.paid).reduce((a,b)=>a+b.total,0));
+document.getElementById("headerSub").textContent=(data.settings.village||"ค่าน้ำหมู่บ้าน")+" • 6 บาท/หน่วย + 5 บาท/เดือน";
+renderHouses();renderBills();renderStats();fillSettings()
+}
+function openModal(){modal.classList.remove("hidden")}function closeModal(){modal.classList.add("hidden")}
+function openHouse(id){
+let h=data.houses.find(x=>x.id===id)||{number:"",owner:"",address:"",phone:"",meter:0};
+document.getElementById("sheet").innerHTML=`<h2>${id?"แก้ไขบ้าน":"เพิ่มบ้าน"}</h2>
+<div class=section><label>เลขที่บ้าน</label><input id=hn value="${esc(h.number)}"></div>
+<div class=section><label>ชื่อผู้ใช้น้ำ</label><input id=ho value="${esc(h.owner)}"></div>
+<div class=section><label>ที่อยู่เพิ่มเติม</label><input id=ha value="${esc(h.address||"")}"></div>
+<div class=section><label>โทรศัพท์</label><input id=hp value="${esc(h.phone||"")}"></div>
+<div class=section><label>เลขมิเตอร์ล่าสุด</label><input id=hm type=number inputmode=decimal value="${h.meter}"></div>
+<div class=toolbar actions><button class=ghost onclick=closeModal()>ยกเลิก</button><button class=primary onclick="saveHouse('${id||""}')">บันทึก</button></div>`;openModal()
+}
+function saveHouse(id){let number=hn.value.trim(),owner=ho.value.trim(),meter=Number(hm.value);if(!number||!Number.isFinite(meter)||meter<0)return alert("กรอกข้อมูลบ้านและเลขมิเตอร์ให้ถูกต้อง");let h=id?data.houses.find(x=>x.id===id):{id:crypto.randomUUID(),createdAt:new Date().toISOString()};Object.assign(h,{number,owner,address:ha.value.trim(),phone:hp.value.trim(),meter,updatedAt:new Date().toISOString()});if(!id)data.houses.push(h);closeModal();save()}
+function renderHouses(){let q=(document.getElementById("search")?.value||"").toLowerCase();let a=data.houses.filter(h=>(h.number+" "+h.owner).toLowerCase().includes(q));document.getElementById("housesList").innerHTML=a.map(h=>`<div class=item><div><b>บ้าน ${esc(h.number)}</b><div class=muted>${esc(h.owner||"-")} • มิเตอร์ ${h.meter}</div></div><div class=right><button class=primary onclick="openReading('${h.id}')">บันทึก</button><br><button class=ghost onclick="openHouse('${h.id}')">แก้ไข</button></div></div>`).join("")||'<div class=card>ยังไม่มีบ้าน</div>'}
+function openReading(id){
+if(!data.houses.length)return alert("กรุณาเพิ่มบ้านก่อน");
+let opts=data.houses.map(h=>`<option value="${h.id}" ${h.id===id?"selected":""}>บ้าน ${esc(h.number)} — ${esc(h.owner||"-")} (มิเตอร์ ${h.meter})</option>`).join("");
+document.getElementById("sheet").innerHTML=`<h2>บันทึกมิเตอร์</h2><div class=section><label>บ้าน</label><select id=rh onchange=readingChanged()>${opts}</select></div>
+<div class=section><label>เลขมิเตอร์เดิม</label><input id=rp disabled></div><div class=section><label>เลขมิเตอร์ปัจจุบัน</label><input id=rc type=number inputmode=decimal oninput=previewReading></div>
+<div id=readPreview class="card section"></div><div class="toolbar actions"><button class=ghost onclick=closeModal()>ยกเลิก</button><button class=primary onclick=saveReading()>บันทึก</button></div>`;openModal();readingChanged()
+}
+function selectedHouse(){return data.houses.find(h=>h.id===rh.value)}
+function readingChanged(){rp.value=selectedHouse()?.meter??"";rc.value="";previewReading()}
+function previewReading(){let h=selectedHouse(),c=Number(rc.value);if(!h||!Number.isFinite(c)||c<h.meter){readPreview.innerHTML='<span class=muted>กรอกเลขมิเตอร์ปัจจุบันที่ไม่น้อยกว่ามิเตอร์เดิม</span>';return}let u=c-h.meter;readPreview.innerHTML=`ใช้ <b>${u}</b> หน่วย<br>ค่าน้ำ ${money(u*RATE)} + ค่ารักษามาตร ${money(FEE)}<br><b>รวม ${money(u*RATE+FEE)}</b>`}
+function saveReading(){let h=selectedHouse(),c=Number(rc.value);if(!h||!Number.isFinite(c)||c<h.meter)return alert("เลขมิเตอร์ไม่ถูกต้อง");let old=data.bills.find(b=>b.houseId===h.id&&b.month===month());if(old&&!confirm("บ้านนี้มีใบแจ้งเดือนนี้แล้ว ต้องการแทนที่ข้อมูลเดิมหรือไม่?"))return;let b={id:old?.id||crypto.randomUUID(),houseId:h.id,month:month(),previous:h.meter,current:c,units:c-h.meter,waterCharge:(c-h.meter)*RATE,meterMaintenance:FEE,total:(c-h.meter)*RATE+FEE,paid:old?.paid||false,paidDate:old?.paidDate||null,createdAt:old?.createdAt||new Date().toISOString(),updatedAt:new Date().toISOString()};data.bills=data.bills.filter(x=>x.id!==b.id);data.bills.push(b);h.meter=c;closeModal();save();openBill(b.id)}
+function renderBills(){let mf=document.getElementById("monthFilter"),months=[...new Set(data.bills.map(b=>b.month))];if(!months.includes(month()))months.push(month());months.sort().reverse();mf.innerHTML=months.map(m=>`<option>${m}</option>`).join("");let m=mf.value||month(),a=data.bills.filter(b=>b.month===m);document.getElementById("billsList").innerHTML=a.map(b=>{let h=data.houses.find(x=>x.id===b.houseId);return `<div class=item><div><b>บ้าน ${esc(h?.number||"-")}</b><div class=muted>${esc(h?.owner||"-")} • ${b.units} หน่วย</div><span class="pill ${b.paid?"":"unpaid"}">${b.paid?"ชำระแล้ว":"ค้างชำระ"}</span></div><div class=right><div><b>${money(b.total)}</b></div><button class=soft onclick="openBill('${b.id}')">ดูใบแจ้ง</button></div></div>`}).join("")||'<div class=card>ยังไม่มีใบแจ้ง</div>'}
+function openBill(id){let b=data.bills.find(x=>x.id===id),h=data.houses.find(x=>x.id===b.houseId),s=data.settings;document.getElementById("sheet").innerHTML=`<div class=center><img class=logo src="./assets/logo.png"><h2>${esc(s.village||"ปุณย์ศิริ")}</h2><b>ใบเสร็จค่าน้ำหมู่บ้าน${esc(s.village||"")}</b></div>
+<p>เลขที่ ${esc(h.number)}<br>${esc(h.owner||"-")}<br>${esc(h.address||s.address||"")}<br>${esc(h.phone||s.phone||"")}</p>
+<table><tr><td>จดครั้งก่อนวันที่</td><td class=right>${formatDate(b.createdAt)}</td></tr><tr><td>มิเตอร์ครั้งก่อน</td><td class=right>${b.previous}</td></tr><tr><td>จดครั้งหลัง</td><td class=right>${formatDate(b.updatedAt)}</td></tr><tr><td>มิเตอร์ครั้งหลัง</td><td class=right>${b.current}</td></tr><tr><td>ค่าน้ำประปาหน่วยละ 6 บาท (${b.units} หน่วย)</td><td class=right>${money(b.waterCharge)}</td></tr><tr><td>ค่ารักษามาตร 5 บาท</td><td class=right>${money(b.meterMaintenance)}</td></tr><tr><td><b>รวมเป็นเงิน</b></td><td class=right><b>${money(b.total)}</b></td></tr></table>
+<div class=section><b>ช่องทางการชำระเงิน</b><div class=muted>${esc(s.paymentNote||"โอนเงินแล้วกรุณาส่งหลักฐานมาทาง LINE")}<br>ธนาคาร: ${esc(s.bank||"-")}<br>เลขบัญชี: ${esc(s.account||"-")}<br>ชื่อบัญชี: ${esc(s.accountName||"-")}<br>LINE ID: ${esc(s.line||"-")}</div></div>
+<div class=toolbar actions><button class=soft onclick="printBill('${id}')">📄 PDF</button><button class=soft onclick="pngBill('${id}')">🖼️ PNG</button><button class="${b.paid?"soft":"primary"}" onclick="togglePaid('${id}')">${b.paid?"ชำระแล้ว":"บันทึกชำระ"}</button></div>`;openModal()}
+function togglePaid(id){let b=data.bills.find(x=>x.id===id);b.paid=!b.paid;b.paidDate=b.paid?new Date().toISOString():null;b.updatedAt=new Date().toISOString();save();openBill(id)}
+function printBill(id){let b=data.bills.find(x=>x.id===id),h=data.houses.find(x=>x.id===b.houseId),s=data.settings,w=window.open("","_blank");w.document.write(`<html lang=th><head><meta charset=utf-8><title>ใบแจ้งค่าน้ำ บ้าน ${h.number}</title><style>body{font-family:Arial,"Noto Sans Thai",sans-serif;max-width:760px;margin:auto;padding:36px;color:#222}.logo{width:110px;display:block;margin:auto}h1,h2{text-align:center}table{width:100%;border-collapse:collapse}td{padding:10px;border-bottom:1px solid #ddd}.r{text-align:right}.pay{margin-top:22px}</style></head><body><img class=logo src="./assets/logo.png"><h2>${esc(s.village||"ปุณย์ศิริ")}</h2><h1>ใบเสร็จค่าน้ำหมู่บ้าน${esc(s.village||"")}</h1><p>เลขที่ ${esc(h.number)}<br>${esc(h.owner||"-")}<br>${esc(h.address||s.address||"")}<br>${esc(h.phone||s.phone||"")}</p><table><tr><td>มิเตอร์ครั้งก่อน</td><td class=r>${b.previous}</td></tr><tr><td>มิเตอร์ครั้งหลัง</td><td class=r>${b.current}</td></tr><tr><td>จำนวนหน่วยที่ใช้</td><td class=r>${b.units}</td></tr><tr><td>ค่าน้ำ 6 บาท/หน่วย</td><td class=r>${b.waterCharge.toFixed(2)} บาท</td></tr><tr><td>ค่ารักษามาตร</td><td class=r>5.00 บาท</td></tr><tr><td><b>รวมเป็นเงิน</b></td><td class=r><b>${b.total.toFixed(2)} บาท</b></td></tr></table><div class=pay><b>ช่องทางการชำระเงิน</b><p>${esc(s.paymentNote||"")}<br>ธนาคาร: ${esc(s.bank||"-")}<br>เลขบัญชี: ${esc(s.account||"-")}<br>ชื่อบัญชี: ${esc(s.accountName||"-")}<br>LINE ID: ${esc(s.line||"-")}</p></div><script>window.onload=()=>window.print()<\/script></body></html>`);w.document.close()}
+function pngBill(id){let b=data.bills.find(x=>x.id===id),h=data.houses.find(x=>x.id===b.houseId),s=data.settings,c=document.createElement("canvas");c.width=1400;c.height=1800;let x=c.getContext("2d");x.fillStyle="#fff";x.fillRect(0,0,c.width,c.height);x.fillStyle="#172033";x.textAlign="center";x.font="bold 54px Arial";x.fillText(s.village||"ปุณย์ศิริ",700,150);x.font="bold 40px Arial";x.fillText("ใบเสร็จค่าน้ำหมู่บ้าน",700,215);x.textAlign="left";x.font="30px Arial";let y=320;[["บ้าน",h.number],["ผู้ใช้น้ำ",h.owner||"-"],["รอบเดือน",b.month],["มิเตอร์ครั้งก่อน",b.previous],["มิเตอร์ครั้งหลัง",b.current],["หน่วยที่ใช้",b.units+" หน่วย"],["ค่าน้ำ",b.waterCharge.toFixed(2)+" บาท"],["ค่ารักษามาตร",b.meterMaintenance.toFixed(2)+" บาท"],["รวมเป็นเงิน",b.total.toFixed(2)+" บาท"]].forEach(r=>{x.fillText(r[0],120,y);x.fillText(String(r[1]),700,y);y+=105});x.font="bold 32px Arial";x.fillText("ช่องทางการชำระเงิน",120,y+30);x.font="28px Arial";y+=90;[s.bank?"ธนาคาร: "+s.bank:"ธนาคาร: -",s.account?"เลขบัญชี: "+s.account:"เลขบัญชี: -",s.accountName?"ชื่อบัญชี: "+s.accountName:"ชื่อบัญชี: -",s.line?"LINE ID: "+s.line:"LINE ID: -"].forEach(t=>{x.fillText(t,120,y);y+=55});let a=document.createElement("a");a.download=`ใบแจ้งค่าน้ำ_บ้าน${h.number}_${b.month}.png`;a.href=c.toDataURL("image/png");a.click()}
+function renderStats(){let total=data.bills.reduce((a,b)=>a+b.total,0),paid=data.bills.filter(b=>b.paid).reduce((a,b)=>a+b.total,0),units=data.bills.reduce((a,b)=>a+b.units,0);document.getElementById("stTotal").textContent=money(total);document.getElementById("stPaid").textContent=money(paid);document.getElementById("stDue").textContent=money(total-paid);document.getElementById("stUnits").textContent=units;let ms={};data.bills.forEach(b=>{ms[b.month]??={total:0,units:0,paid:0};ms[b.month].total+=b.total;ms[b.month].units+=b.units;if(b.paid)ms[b.month].paid+=b.total});document.getElementById("monthly").innerHTML=Object.keys(ms).sort().reverse().map(m=>`<div class=item><div><b>${m}</b><div class=muted>${ms[m].units} หน่วย • ชำระ ${money(ms[m].paid)}</div></div><b>${money(ms[m].total)}</b></div>`).join("")||'<div class=muted>ยังไม่มีข้อมูล</div>'}
+function fillSettings(){let s=data.settings;setVillage.value=s.village||"";setAddress.value=s.address||"";setPhone.value=s.phone||"";setBank.value=s.bank||"";setAccount.value=s.account||"";setAccountName.value=s.accountName||"";setLine.value=s.line||"";setPaymentNote.value=s.paymentNote||""}
+function saveSettings(){Object.assign(data.settings,{village:setVillage.value.trim(),address:setAddress.value.trim(),phone:setPhone.value.trim(),bank:setBank.value.trim(),account:setAccount.value.trim(),accountName:setAccountName.value.trim(),line:setLine.value.trim(),paymentNote:setPaymentNote.value.trim()});save();alert("บันทึกตั้งค่าแล้ว")}
+function backup(){let a=document.createElement("a");a.download="moobanwater-backup.json";a.href=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:"application/json"}));a.click()}
+function restore(e){let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{data=JSON.parse(r.result);save();alert("นำเข้าข้อมูลแล้ว")}catch{alert("ไฟล์ไม่ถูกต้อง")}};r.readAsText(f)}
+function resetLocal(){if(confirm("ล้างข้อมูลทั้งหมดในเครื่อง? ไม่สามารถย้อนกลับได้")){localStorage.removeItem(KEY);location.reload()}}
+function formatDate(v){try{return new Date(v).toLocaleDateString("th-TH",{day:"2-digit",month:"2-digit",year:"numeric"})}catch{return "-"}}
+function esc(v){return String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[m]))}
+if("serviceWorker"in navigator)navigator.serviceWorker.register("./sw.js");
+showTab("dashboard");render();
+</script>
+</body></html>
