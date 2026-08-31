@@ -1,3 +1,4 @@
-// Supabase configuration — fill these after creating your Supabase project.
-window.SUPABASE_URL = "";
-window.SUPABASE_ANON_KEY = "";
+window.SUPABASE_CONFIG = {
+  url: "https://dqeruknurralwkurcqrp.supabase.co",
+  anonKey: "sb_publishable_zxnDkRxVDPg2J4FzUGGZOA_7ncSvA0l"
+};
