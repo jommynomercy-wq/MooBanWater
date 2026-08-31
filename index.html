@@ -368,31 +368,221 @@ async function togglePaid(id){
 }
 
 async function loadDashboard(){
- try{
-  const {count:hc}=await supabaseClient.from("houses").select("*",{count:"exact",head:true});
-  const {count:rc}=await supabaseClient.from("water_readings").select("*",{count:"exact",head:true});
-  const {data:bd,error}=await supabaseClient.from("bills").select(`*,houses(house_number,owner_name)`).order("reading_date",{ascending:false});
-  if(error)throw error;
-  const all=bd||[],paid=all.filter(b=>b.paid),unpaid=all.filter(b=>!b.paid),unpaidTotal=unpaid.reduce((s,b)=>s+Number(b.total||0),0);
-  document.getElementById("dash-houses").textContent=hc||0;document.getElementById("dash-readings").textContent=rc||0;document.getElementById("dash-bills").textContent=all.length;document.getElementById("dash-paid").textContent=paid.length;document.getElementById("dash-unpaid").textContent=unpaid.length;document.getElementById("dash-unpaid-total").textContent=money(unpaidTotal);
-  renderDashboardRecentBills(all);await loadDashboardRecentReadings();
- }catch(e){console.error(e);showToast("โหลด Dashboard ไม่สำเร็จ");}
+  const recentReadingsEl = document.getElementById("dash-recent-readings");
+  const recentBillsEl = document.getElementById("dash-recent-bills");
+
+  try {
+    /* โหลดแต่ละตารางแยกกัน เพื่อไม่ให้ foreign-key relationship
+       ของ Supabase ทำให้ Dashboard ทั้งหน้าล้ม */
+    const housesResult = await supabaseClient
+      .from("houses")
+      .select("id", { count: "exact", head: true });
+
+    if (housesResult.error) throw new Error("houses: " + housesResult.error.message);
+
+    const readingsResult = await supabaseClient
+      .from("water_readings")
+      .select("id", { count: "exact", head: true });
+
+    if (readingsResult.error) throw new Error("water_readings: " + readingsResult.error.message);
+
+    const billsResult = await supabaseClient
+      .from("bills")
+      .select("*")
+      .order("reading_date", { ascending: false });
+
+    if (billsResult.error) throw new Error("bills: " + billsResult.error.message);
+
+    const houseCount = housesResult.count || 0;
+    const readingCount = readingsResult.count || 0;
+    const allBills = billsResult.data || [];
+
+    const paidBills = allBills.filter(b => b.paid === true);
+    const unpaidBills = allBills.filter(b => b.paid !== true);
+
+    const unpaidTotal = unpaidBills.reduce(
+      (sum, b) => sum + Number(b.total || 0),
+      0
+    );
+
+    document.getElementById("dash-houses").textContent = houseCount;
+    document.getElementById("dash-readings").textContent = readingCount;
+    document.getElementById("dash-bills").textContent = allBills.length;
+    document.getElementById("dash-paid").textContent = paidBills.length;
+    document.getElementById("dash-unpaid").textContent = unpaidBills.length;
+    document.getElementById("dash-unpaid-total").textContent = money(unpaidTotal);
+
+    /* โหลดชื่อบ้านสำหรับรายการล่าสุดแยกต่างหาก */
+    const houseIds = [
+      ...new Set([
+        ...allBills.map(b => b.house_id).filter(Boolean)
+      ])
+    ];
+
+    const recentReadingsResult = await supabaseClient
+      .from("water_readings")
+      .select("*")
+      .order("reading_date", { ascending: false })
+      .limit(5);
+
+    if (recentReadingsResult.error) {
+      console.error(recentReadingsResult.error);
+      recentReadingsEl.innerHTML =
+        '<div class="empty">โหลดประวัติการจดล่าสุดไม่สำเร็จ</div>';
+    } else {
+      const recentReadings = recentReadingsResult.data || [];
+
+      const readingHouseIds = [
+        ...new Set(recentReadings.map(r => r.house_id).filter(Boolean))
+      ];
+
+      const ids = [...new Set([...houseIds, ...readingHouseIds])];
+
+      let houseMap = {};
+
+      if (ids.length) {
+        const houseResult = await supabaseClient
+          .from("houses")
+          .select("id,house_number,owner_name")
+          .in("id", ids);
+
+        if (!houseResult.error) {
+          (houseResult.data || []).forEach(h => {
+            houseMap[h.id] = h;
+          });
+        }
+      }
+
+      if (!recentReadings.length) {
+        recentReadingsEl.innerHTML =
+          '<div class="empty">ยังไม่มีการจดมิเตอร์</div>';
+      } else {
+        recentReadingsEl.innerHTML = recentReadings.map(r => {
+          const h = houseMap[r.house_id] || {};
+          return `
+            <div class="recent-item">
+              <div class="recent-top">
+                <div class="recent-title">
+                  บ้าน ${escapeHtml(h.house_number || "-")}
+                </div>
+                <div class="recent-date">
+                  ${escapeHtml(r.reading_date || "-")}
+                </div>
+              </div>
+              <div class="recent-detail">
+                ${escapeHtml(h.owner_name || "-")}<br>
+                มิเตอร์:
+                <strong>${Number(r.previous_meter || 0)}</strong>
+                →
+                <strong>${Number(r.current_meter || 0)}</strong>
+                |
+                ใช้ <strong>${Number(r.units || 0)}</strong> หน่วย
+              </div>
+            </div>
+          `;
+        }).join("");
+      }
+
+      /* ใส่ชื่อบ้านในใบแจ้งหนี้ล่าสุด */
+      allBills.slice(0, 5).forEach(b => {
+        if (!b.house_id || houseMap[b.house_id]) return;
+      });
+
+      renderDashboardRecentBills(allBills, houseMap);
+    }
+
+  } catch (e) {
+    console.error("Dashboard error:", e);
+
+    document.getElementById("dash-houses").textContent = "—";
+    document.getElementById("dash-readings").textContent = "—";
+    document.getElementById("dash-bills").textContent = "—";
+    document.getElementById("dash-paid").textContent = "—";
+    document.getElementById("dash-unpaid").textContent = "—";
+    document.getElementById("dash-unpaid-total").textContent = "—";
+
+    recentReadingsEl.innerHTML =
+      '<div class="empty">โหลดข้อมูล Dashboard ไม่สำเร็จ</div>';
+
+    recentBillsEl.innerHTML =
+      '<div class="empty">โหลดข้อมูล Dashboard ไม่สำเร็จ</div>';
+
+    showToast("Dashboard: " + (e.message || "เชื่อมต่อฐานข้อมูลไม่สำเร็จ"));
+  }
 }
-async function loadDashboardRecentReadings(){
- const c=document.getElementById("dash-recent-readings");
- const {data,error}=await supabaseClient.from("water_readings").select(`*,houses(house_number,owner_name)`).order("reading_date",{ascending:false}).limit(5);
- if(error){console.error(error);c.innerHTML='<div class="empty">โหลดข้อมูลไม่สำเร็จ</div>';return}
- if(!data?.length){c.innerHTML='<div class="empty">ยังไม่มีการจดมิเตอร์</div>';return}
- c.innerHTML=data.map(r=>`<div class="recent-item"><div class="recent-top"><div class="recent-title">บ้าน ${escapeHtml(r.houses?.house_number||"-")}</div><div class="recent-date">${escapeHtml(r.reading_date||"-")}</div></div><div class="recent-detail">${escapeHtml(r.houses?.owner_name||"-")}<br>มิเตอร์: <strong>${r.previous_meter}</strong> → <strong>${r.current_meter}</strong> | ใช้ <strong>${r.units}</strong> หน่วย</div></div>`).join("");
+
+function renderDashboardRecentBills(data, houseMap = {}){
+  const c = document.getElementById("dash-recent-bills");
+
+  if (!data || !data.length) {
+    c.innerHTML = '<div class="empty">ยังไม่มีใบแจ้งหนี้</div>';
+    return;
+  }
+
+  c.innerHTML = data.slice(0, 5).map(b => {
+    const h = houseMap[b.house_id] || {};
+    const houseNumber = h.house_number || b.house_number || "-";
+
+    return `
+      <div class="recent-item">
+        <div class="recent-top">
+          <div class="recent-title">
+            บ้าน ${escapeHtml(houseNumber)}
+          </div>
+          ${
+            b.paid
+              ? '<span class="status status-paid">ชำระแล้ว</span>'
+              : '<span class="status status-unpaid">ค้างชำระ</span>'
+          }
+        </div>
+
+        <div class="recent-detail">
+          ${escapeHtml(b.reading_date || "-")}
+          |
+          ${Number(b.units || 0)} หน่วย
+          |
+          <strong>${money(b.total)} บาท</strong>
+        </div>
+
+        <button
+          class="dashboard-link"
+          onclick="openDashboardBill('${b.id}')"
+        >
+          ดูใบแจ้งหนี้ →
+        </button>
+      </div>
+    `;
+  }).join("");
 }
-function renderDashboardRecentBills(data){
- const c=document.getElementById("dash-recent-bills");if(!data?.length){c.innerHTML='<div class="empty">ยังไม่มีใบแจ้งหนี้</div>';return}
- c.innerHTML=data.slice(0,5).map(b=>`<div class="recent-item"><div class="recent-top"><div class="recent-title">บ้าน ${escapeHtml(b.houses?.house_number||"-")}</div>${b.paid?'<span class="status status-paid">ชำระแล้ว</span>':'<span class="status status-unpaid">ค้างชำระ</span>'}</div><div class="recent-detail">${escapeHtml(b.reading_date||"-")} | ${b.units} หน่วย | <strong>${money(b.total)} บาท</strong></div><button class="dashboard-link" onclick="openDashboardBill('${b.id}')">ดูใบแจ้งหนี้ →</button></div>`).join("");
-}
+
 async function openDashboardBill(id){
- const {data,error}=await supabaseClient.from("bills").select(`*,houses(house_number,owner_name)`).eq("id",id).maybeSingle();
- if(error||!data){showToast("ไม่พบใบแจ้งหนี้");return}
- bills=[data];viewBill(id);
+  const { data, error } = await supabaseClient
+    .from("bills")
+    .select("*")
+    .eq("id", id)
+    .maybeSingle();
+
+  if (error || !data) {
+    console.error(error);
+    showToast("ไม่พบใบแจ้งหนี้");
+    return;
+  }
+
+  /* โหลดบ้านแยก ไม่พึ่ง foreign-key relationship */
+  if (data.house_id) {
+    const houseResult = await supabaseClient
+      .from("houses")
+      .select("id,house_number,owner_name")
+      .eq("id", data.house_id)
+      .maybeSingle();
+
+    if (!houseResult.error) {
+      data.houses = houseResult.data;
+    }
+  }
+
+  bills = [data];
+  viewBill(id);
 }
 
 async function initialize(){
