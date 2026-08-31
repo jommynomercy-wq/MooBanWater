@@ -2,10 +2,16 @@
 <html lang="th">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
-  <meta name="theme-color" content="#0f172a">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  >
+
+  <meta
+    name="theme-color"
+    content="#0f172a"
+  >
 
   <title>ระบบค่าน้ำหมู่บ้านปุณย์ศิริ</title>
 
@@ -16,6 +22,7 @@
   <script src="./config.js"></script>
 
   <style>
+
     * {
       box-sizing: border-box;
       -webkit-tap-highlight-color: transparent;
@@ -29,6 +36,7 @@
         "Segoe UI",
         "Noto Sans Thai",
         sans-serif;
+
       background: #f5f7fa;
       color: #172033;
     }
@@ -48,6 +56,7 @@
       padding-bottom: 40px;
     }
 
+
     /* =========================
        HEADER
     ========================= */
@@ -55,16 +64,20 @@
     header {
       background: #0f172a;
       color: white;
+
       padding:
         calc(18px + env(safe-area-inset-top))
         18px
         18px;
-      box-shadow: 0 3px 12px rgba(0,0,0,.15);
+
+      box-shadow:
+        0 3px 12px rgba(0,0,0,.15);
     }
 
     .header-inner {
       max-width: 900px;
       margin: auto;
+
       display: flex;
       align-items: center;
       gap: 14px;
@@ -73,7 +86,9 @@
     .logo {
       width: 58px;
       height: 58px;
+
       object-fit: contain;
+
       border-radius: 12px;
       background: white;
       padding: 4px;
@@ -94,6 +109,7 @@
       font-size: 14px;
     }
 
+
     /* =========================
        MAIN
     ========================= */
@@ -101,6 +117,7 @@
     main {
       width: 100%;
       max-width: 900px;
+
       margin: auto;
       padding: 18px;
     }
@@ -113,16 +130,21 @@
       display: block;
     }
 
+
     /* =========================
        CARDS
     ========================= */
 
     .card {
       background: white;
+
       border-radius: 18px;
+
       padding: 18px;
       margin-bottom: 16px;
-      box-shadow: 0 3px 14px rgba(0,0,0,.07);
+
+      box-shadow:
+        0 3px 14px rgba(0,0,0,.07);
     }
 
     .card h2 {
@@ -134,6 +156,7 @@
       margin: 0 0 10px;
       font-size: 17px;
     }
+
 
     /* =========================
        DASHBOARD
@@ -152,19 +175,88 @@
       color: #667085;
     }
 
+    .dashboard-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      gap: 12px;
+
+      margin-bottom: 18px;
+    }
+
+    .dashboard-card {
+      background: white;
+
+      border-radius: 18px;
+
+      padding: 18px;
+
+      min-height: 145px;
+
+      box-shadow:
+        0 3px 14px rgba(0,0,0,.07);
+    }
+
+    .dashboard-label {
+      color: #667085;
+
+      font-size: 15px;
+      font-weight: 700;
+
+      margin-bottom: 12px;
+    }
+
+    .dashboard-value {
+      font-size: 30px;
+      font-weight: 800;
+
+      color: #172033;
+
+      line-height: 1.15;
+    }
+
+    .dashboard-sub {
+      margin-top: 7px;
+
+      color: #98a2b3;
+
+      font-size: 13px;
+    }
+
+    .dashboard-danger .dashboard-value {
+      color: #dc2626;
+    }
+
+
+    /* =========================
+       MENU
+    ========================= */
+
     .menu-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
       gap: 12px;
     }
 
     .menu-btn {
       border: none;
+
       background: white;
+
       border-radius: 18px;
+
       padding: 22px 12px;
+
       min-height: 125px;
-      box-shadow: 0 3px 14px rgba(0,0,0,.07);
+
+      box-shadow:
+        0 3px 14px rgba(0,0,0,.07);
+
       color: #172033;
     }
 
@@ -184,9 +276,12 @@
 
     .menu-desc {
       margin-top: 4px;
+
       font-size: 12px;
+
       color: #667085;
     }
+
 
     /* =========================
        FORMS
@@ -198,7 +293,9 @@
 
     .form-group label {
       display: block;
+
       margin-bottom: 6px;
+
       font-weight: 700;
       font-size: 14px;
     }
@@ -206,25 +303,36 @@
     input,
     select {
       width: 100%;
+
       border: 1px solid #d0d5dd;
+
       border-radius: 12px;
+
       padding: 13px 14px;
+
       background: white;
       color: #172033;
+
       outline: none;
     }
 
     input:focus,
     select:focus {
       border-color: #2563eb;
-      box-shadow: 0 0 0 3px rgba(37,99,235,.12);
+
+      box-shadow:
+        0 0 0 3px rgba(37,99,235,.12);
     }
 
     .form-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+
+      grid-template-columns:
+        1fr 1fr;
+
       gap: 12px;
     }
+
 
     /* =========================
        BUTTONS
@@ -232,9 +340,13 @@
 
     .btn {
       border: none;
+
       border-radius: 12px;
+
       padding: 13px 16px;
+
       font-weight: 700;
+
       min-height: 46px;
     }
 
@@ -273,37 +385,53 @@
       flex-wrap: wrap;
     }
 
+
     /* =========================
-       BACK BUTTON
+       BACK
     ========================= */
 
     .back-btn {
       display: inline-flex;
+
       align-items: center;
+
       gap: 7px;
+
       border: none;
+
       background: transparent;
+
       color: #2563eb;
+
       font-weight: 700;
+
       padding: 8px 0;
+
       margin-bottom: 10px;
     }
 
+
     /* =========================
-       HOUSE LIST
+       HOUSE
     ========================= */
 
     .house-item {
       border: 1px solid #e4e7ec;
+
       border-radius: 14px;
+
       padding: 14px;
+
       margin-bottom: 10px;
     }
 
     .house-top {
       display: flex;
+
       justify-content: space-between;
+
       align-items: center;
+
       gap: 10px;
     }
 
@@ -319,25 +447,38 @@
 
     .house-meter {
       margin-top: 10px;
+
       background: #f2f4f7;
+
       border-radius: 10px;
+
       padding: 10px;
+
       font-size: 14px;
     }
 
     .house-actions {
       display: flex;
+
       gap: 7px;
+
       margin-top: 10px;
+
+      flex-wrap: wrap;
     }
 
     .small-btn {
       border: none;
+
       border-radius: 9px;
+
       padding: 8px 11px;
+
       font-size: 13px;
+
       font-weight: 700;
     }
+
 
     /* =========================
        BILL
@@ -345,22 +486,31 @@
 
     .bill {
       background: white;
+
       border: 1px solid #d9dee8;
+
       border-radius: 16px;
+
       padding: 20px;
     }
 
     .bill-header {
       text-align: center;
-      border-bottom: 1px dashed #b8bec9;
+
+      border-bottom:
+        1px dashed #b8bec9;
+
       padding-bottom: 15px;
+
       margin-bottom: 15px;
     }
 
     .bill-logo {
       width: 72px;
       height: 72px;
+
       object-fit: contain;
+
       margin-bottom: 8px;
     }
 
@@ -376,10 +526,15 @@
 
     .bill-row {
       display: flex;
+
       justify-content: space-between;
+
       gap: 15px;
+
       padding: 8px 0;
-      border-bottom: 1px solid #f0f1f3;
+
+      border-bottom:
+        1px solid #f0f1f3;
     }
 
     .bill-row:last-child {
@@ -388,14 +543,19 @@
 
     .bill-total {
       font-size: 21px;
+
       font-weight: 800;
+
       padding-top: 12px;
     }
 
     .payment-box {
       background: #f4f7fb;
+
       border-radius: 14px;
+
       padding: 14px;
+
       margin-top: 15px;
     }
 
@@ -407,33 +567,43 @@
       padding: 4px 0;
     }
 
+
     /* =========================
        TABLE
     ========================= */
 
     .table-wrap {
       overflow-x: auto;
+
       -webkit-overflow-scrolling: touch;
     }
 
     table {
       width: 100%;
+
       border-collapse: collapse;
+
       min-width: 650px;
     }
 
     th,
     td {
       padding: 10px 8px;
-      border-bottom: 1px solid #eaecf0;
+
+      border-bottom:
+        1px solid #eaecf0;
+
       text-align: left;
+
       font-size: 13px;
     }
 
     th {
       background: #f9fafb;
+
       font-weight: 800;
     }
+
 
     /* =========================
        STATUS
@@ -441,9 +611,13 @@
 
     .status {
       display: inline-block;
+
       border-radius: 999px;
+
       padding: 5px 9px;
+
       font-size: 12px;
+
       font-weight: 700;
     }
 
@@ -457,39 +631,55 @@
       color: #991b1b;
     }
 
+
     /* =========================
        INFO
     ========================= */
 
     .info {
       background: #eff6ff;
+
       color: #1e40af;
+
       border-radius: 12px;
+
       padding: 12px;
+
       margin-bottom: 14px;
+
       font-size: 13px;
     }
 
     .warning {
       background: #fff7ed;
+
       color: #9a3412;
+
       border-radius: 12px;
+
       padding: 12px;
+
       margin-bottom: 14px;
+
       font-size: 13px;
     }
 
     .empty {
       text-align: center;
+
       padding: 30px 15px;
+
       color: #667085;
     }
 
     .loading {
       text-align: center;
+
       padding: 30px;
+
       color: #667085;
     }
+
 
     /* =========================
        TOAST
@@ -497,18 +687,34 @@
 
     #toast {
       position: fixed;
+
       left: 18px;
       right: 18px;
-      bottom: calc(20px + env(safe-area-inset-bottom));
+
+      bottom:
+        calc(
+          20px +
+          env(safe-area-inset-bottom)
+        );
+
       z-index: 9999;
+
       display: none;
+
       background: #111827;
+
       color: white;
+
       border-radius: 12px;
+
       padding: 14px;
+
       text-align: center;
-      box-shadow: 0 8px 25px rgba(0,0,0,.25);
+
+      box-shadow:
+        0 8px 25px rgba(0,0,0,.25);
     }
+
 
     /* =========================
        MOBILE
@@ -522,6 +728,19 @@
 
       .form-grid {
         grid-template-columns: 1fr;
+      }
+
+      .dashboard-grid {
+        gap: 10px;
+      }
+
+      .dashboard-card {
+        min-height: 135px;
+        padding: 16px;
+      }
+
+      .dashboard-value {
+        font-size: 25px;
       }
 
       .menu-grid {
@@ -539,7 +758,9 @@
       .bill {
         padding: 15px;
       }
+
     }
+
 
     /* =========================
        PRINT
@@ -570,16 +791,25 @@
       .bill {
         border: none;
       }
+
     }
+
   </style>
+
 </head>
+
 
 <body>
 
 <div class="app">
 
-  <!-- HEADER -->
+
+  <!-- ==================================================
+       HEADER
+  ================================================== -->
+
   <header>
+
     <div class="header-inner">
 
       <img
@@ -590,58 +820,239 @@
       >
 
       <div class="header-title">
-        <h1>ระบบค่าน้ำหมู่บ้านปุณย์ศิริ</h1>
-        <p>ระบบจัดการมิเตอร์และใบแจ้งหนี้</p>
+
+        <h1>
+          ระบบค่าน้ำหมู่บ้านปุณย์ศิริ
+        </h1>
+
+        <p>
+          ระบบจัดการมิเตอร์และใบแจ้งหนี้
+        </p>
+
       </div>
 
     </div>
+
   </header>
 
 
   <main>
 
+
     <!-- ==================================================
          HOME
-    =================================================== -->
+    ================================================== -->
 
-    <section id="page-home" class="page active">
+    <section
+      id="page-home"
+      class="page active"
+    >
 
       <div class="welcome">
-        <h2>หน้าหลัก</h2>
-        <p>เลือกเมนูที่ต้องการ</p>
+
+        <h2>
+          หน้าหลัก
+        </h2>
+
+        <p>
+          ภาพรวมระบบค่าน้ำ
+        </p>
+
       </div>
+
+
+      <!-- DASHBOARD -->
+
+      <div class="dashboard-grid">
+
+
+        <div class="dashboard-card">
+
+          <div class="dashboard-label">
+            🏠 บ้านทั้งหมด
+          </div>
+
+          <div
+            class="dashboard-value"
+            id="dashboard-houses"
+          >
+            0
+          </div>
+
+          <div class="dashboard-sub">
+            หลัง
+          </div>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+          <div class="dashboard-label">
+            📋 บันทึกเดือนนี้
+          </div>
+
+          <div
+            class="dashboard-value"
+            id="dashboard-readings"
+          >
+            0
+          </div>
+
+          <div class="dashboard-sub">
+            รายการ
+          </div>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+          <div class="dashboard-label">
+            💧 ยอดเดือนนี้
+          </div>
+
+          <div
+            class="dashboard-value"
+            id="dashboard-total"
+          >
+            0.00 บาท
+          </div>
+
+          <div class="dashboard-sub">
+            ใบแจ้งหนี้ทั้งหมด
+          </div>
+
+        </div>
+
+
+        <div class="dashboard-card dashboard-danger">
+
+          <div class="dashboard-label">
+            💰 ค้างชำระ
+          </div>
+
+          <div
+            class="dashboard-value"
+            id="dashboard-unpaid"
+          >
+            0.00 บาท
+          </div>
+
+          <div class="dashboard-sub">
+            ใบแจ้งหนี้ที่ยังไม่ชำระ
+          </div>
+
+        </div>
+
+
+      </div>
+
+
+      <!-- MENU -->
 
       <div class="menu-grid">
 
-        <button class="menu-btn" onclick="showPage('reading')">
-          <div class="menu-icon">💧</div>
-          <div class="menu-label">จดมิเตอร์</div>
-          <div class="menu-desc">บันทึกเลขมิเตอร์</div>
+
+        <button
+          class="menu-btn"
+          onclick="showPage('reading')"
+        >
+
+          <div class="menu-icon">
+            💧
+          </div>
+
+          <div class="menu-label">
+            จดมิเตอร์
+          </div>
+
+          <div class="menu-desc">
+            บันทึกเลขมิเตอร์
+          </div>
+
         </button>
 
-        <button class="menu-btn" onclick="showPage('houses')">
-          <div class="menu-icon">🏠</div>
-          <div class="menu-label">ข้อมูลบ้าน</div>
-          <div class="menu-desc">เพิ่ม / แก้ไขบ้าน</div>
+
+        <button
+          class="menu-btn"
+          onclick="showPage('houses')"
+        >
+
+          <div class="menu-icon">
+            🏠
+          </div>
+
+          <div class="menu-label">
+            ข้อมูลบ้าน
+          </div>
+
+          <div class="menu-desc">
+            เพิ่ม / แก้ไขบ้าน
+          </div>
+
         </button>
 
-        <button class="menu-btn" onclick="showPage('bills')">
-          <div class="menu-icon">🧾</div>
-          <div class="menu-label">ใบแจ้งหนี้</div>
-          <div class="menu-desc">ดู / แก้ไขใบแจ้งหนี้</div>
+
+        <button
+          class="menu-btn"
+          onclick="showPage('bills')"
+        >
+
+          <div class="menu-icon">
+            🧾
+          </div>
+
+          <div class="menu-label">
+            ใบแจ้งหนี้
+          </div>
+
+          <div class="menu-desc">
+            ดู / แก้ไขใบแจ้งหนี้
+          </div>
+
         </button>
 
-        <button class="menu-btn" onclick="showPage('history')">
-          <div class="menu-icon">📋</div>
-          <div class="menu-label">ประวัติการจด</div>
-          <div class="menu-desc">ดูและแก้ไขรายการ</div>
+
+        <button
+          class="menu-btn"
+          onclick="showPage('history')"
+        >
+
+          <div class="menu-icon">
+            📋
+          </div>
+
+          <div class="menu-label">
+            ประวัติการจด
+          </div>
+
+          <div class="menu-desc">
+            ดูและแก้ไขรายการ
+          </div>
+
         </button>
 
-        <button class="menu-btn" onclick="showPage('settings')">
-          <div class="menu-icon">⚙️</div>
-          <div class="menu-label">ตั้งค่า</div>
-          <div class="menu-desc">ข้อมูลการชำระเงิน</div>
+
+        <button
+          class="menu-btn"
+          onclick="showPage('settings')"
+        >
+
+          <div class="menu-icon">
+            ⚙️
+          </div>
+
+          <div class="menu-label">
+            ตั้งค่า
+          </div>
+
+          <div class="menu-desc">
+            ข้อมูลการชำระเงิน
+          </div>
+
         </button>
+
 
       </div>
 
@@ -650,60 +1061,97 @@
 
     <!-- ==================================================
          READING
-    =================================================== -->
+    ================================================== -->
 
-    <section id="page-reading" class="page">
+    <section
+      id="page-reading"
+      class="page"
+    >
 
-      <button class="back-btn" onclick="showPage('home')">
+      <button
+        class="back-btn"
+        onclick="showPage('home')"
+      >
         ← กลับหน้าแรก
       </button>
 
+
       <div class="card">
 
-        <h2>💧 จดมิเตอร์น้ำ</h2>
+        <h2>
+          💧 จดมิเตอร์น้ำ
+        </h2>
+
 
         <div class="info">
-          วันที่เริ่มต้นจะเป็นวันที่จริง ณ ตอนที่เปิดหน้านี้
+
+          วันที่เริ่มต้นจะเป็นวันที่จริง
+          ณ ตอนที่เปิดหน้านี้
           แต่สามารถเปลี่ยนเป็นวันที่ต้องการได้
+
         </div>
+
 
         <div class="form-group">
-          <label>บ้าน</label>
 
-          <select id="reading-house"
-                  onchange="updatePreviousMeter()">
+          <label>
+            บ้าน
+          </label>
 
-            <option value="">-- เลือกบ้าน --</option>
+          <select
+            id="reading-house"
+            onchange="updatePreviousMeter()"
+          >
+
+            <option value="">
+              -- เลือกบ้าน --
+            </option>
 
           </select>
+
         </div>
+
 
         <div class="form-grid">
 
+
           <div class="form-group">
-            <label>วันที่จด</label>
+
+            <label>
+              วันที่จด
+            </label>
 
             <input
               type="date"
               id="reading-date"
             >
+
           </div>
 
+
           <div class="form-group">
-            <label>มิเตอร์ครั้งก่อน</label>
+
+            <label>
+              มิเตอร์ครั้งก่อน
+            </label>
 
             <input
               type="number"
               id="previous-meter"
               readonly
             >
+
           </div>
+
 
         </div>
 
+
         <div class="form-group">
 
-          <label>มิเตอร์ครั้งปัจจุบัน</label>
+          <label>
+            มิเตอร์ครั้งปัจจุบัน
+          </label>
 
           <input
             type="number"
@@ -717,30 +1165,70 @@
 
         </div>
 
-        <div class="card"
-             style="background:#f8fafc;margin-top:10px;">
+
+        <div
+          class="card"
+          style="
+            background:#f8fafc;
+            margin-top:10px;
+          "
+        >
+
 
           <div class="bill-row">
-            <span>หน่วยที่ใช้</span>
-            <strong id="calculated-units">0 หน่วย</strong>
+
+            <span>
+              หน่วยที่ใช้
+            </span>
+
+            <strong id="calculated-units">
+              0 หน่วย
+            </strong>
+
           </div>
 
-          <div class="bill-row">
-            <span>ค่าน้ำ</span>
-            <strong id="calculated-water">0.00 บาท</strong>
-          </div>
 
           <div class="bill-row">
-            <span>ค่าบำรุงมิเตอร์</span>
-            <strong id="calculated-maintenance">5.00 บาท</strong>
+
+            <span>
+              ค่าน้ำ
+            </span>
+
+            <strong id="calculated-water">
+              0.00 บาท
+            </strong>
+
           </div>
+
+
+          <div class="bill-row">
+
+            <span>
+              ค่าบำรุงมิเตอร์
+            </span>
+
+            <strong id="calculated-maintenance">
+              5.00 บาท
+            </strong>
+
+          </div>
+
 
           <div class="bill-row bill-total">
-            <span>รวม</span>
-            <strong id="calculated-total">5.00 บาท</strong>
+
+            <span>
+              รวม
+            </span>
+
+            <strong id="calculated-total">
+              5.00 บาท
+            </strong>
+
           </div>
 
+
         </div>
+
 
         <button
           class="btn btn-primary btn-block"
@@ -749,6 +1237,7 @@
           💾 บันทึกการจดมิเตอร์
         </button>
 
+
       </div>
 
     </section>
@@ -756,63 +1245,102 @@
 
     <!-- ==================================================
          HOUSES
-    =================================================== -->
+    ================================================== -->
 
-    <section id="page-houses" class="page">
+    <section
+      id="page-houses"
+      class="page"
+    >
 
-      <button class="back-btn" onclick="showPage('home')">
+      <button
+        class="back-btn"
+        onclick="showPage('home')"
+      >
         ← กลับหน้าแรก
       </button>
 
+
       <div class="card">
 
-        <h2 id="house-form-title">🏠 เพิ่มข้อมูลบ้าน</h2>
+        <h2 id="house-form-title">
+          🏠 เพิ่มข้อมูลบ้าน
+        </h2>
 
-        <input type="hidden" id="house-id">
+
+        <input
+          type="hidden"
+          id="house-id"
+        >
+
 
         <div class="form-grid">
 
+
           <div class="form-group">
-            <label>เลขที่บ้าน *</label>
+
+            <label>
+              เลขที่บ้าน *
+            </label>
 
             <input
               id="house-number"
               placeholder="เช่น 99/1"
             >
+
           </div>
 
+
           <div class="form-group">
-            <label>ชื่อเจ้าของบ้าน</label>
+
+            <label>
+              ชื่อเจ้าของบ้าน
+            </label>
 
             <input
               id="owner-name"
               placeholder="ชื่อ-นามสกุล"
             >
+
           </div>
+
 
         </div>
 
+
         <div class="form-group">
-          <label>ที่อยู่</label>
+
+          <label>
+            ที่อยู่
+          </label>
 
           <input
             id="house-address"
             placeholder="ที่อยู่"
           >
+
         </div>
 
+
         <div class="form-group">
-          <label>เบอร์โทรศัพท์</label>
+
+          <label>
+            เบอร์โทรศัพท์
+          </label>
 
           <input
             id="house-phone"
             inputmode="tel"
             placeholder="เบอร์โทร"
           >
+
         </div>
 
+
         <div class="form-group">
-          <label>เลขมิเตอร์ปัจจุบัน</label>
+
+          <label>
+            เลขมิเตอร์ปัจจุบัน
+          </label>
 
           <input
             id="house-current-meter"
@@ -821,7 +1349,9 @@
             max="9999"
             value="0"
           >
+
         </div>
+
 
         <div class="button-row">
 
@@ -841,157 +1371,290 @@
 
         </div>
 
+
       </div>
+
 
       <div class="card">
 
-        <h2>รายชื่อบ้าน</h2>
+        <h2>
+          รายชื่อบ้าน
+        </h2>
 
         <div id="house-list">
-          <div class="loading">กำลังโหลด...</div>
+
+          <div class="loading">
+            กำลังโหลด...
+          </div>
+
         </div>
 
       </div>
+
 
     </section>
 
 
     <!-- ==================================================
          HISTORY
-    =================================================== -->
+    ================================================== -->
 
-    <section id="page-history" class="page">
+    <section
+      id="page-history"
+      class="page"
+    >
 
-      <button class="back-btn" onclick="showPage('home')">
+      <button
+        class="back-btn"
+        onclick="showPage('home')"
+      >
         ← กลับหน้าแรก
       </button>
 
+
       <div class="card">
 
-        <h2>📋 ประวัติการจดมิเตอร์</h2>
+        <h2>
+          📋 ประวัติการจดมิเตอร์
+        </h2>
 
         <div id="history-list">
-          <div class="loading">กำลังโหลด...</div>
+
+          <div class="loading">
+            กำลังโหลด...
+          </div>
+
         </div>
 
       </div>
+
 
     </section>
 
 
     <!-- ==================================================
          BILLS
-    =================================================== -->
+    ================================================== -->
 
-    <section id="page-bills" class="page">
+    <section
+      id="page-bills"
+      class="page"
+    >
 
-      <button class="back-btn" onclick="showPage('home')">
+      <button
+        class="back-btn"
+        onclick="showPage('home')"
+      >
         ← กลับหน้าแรก
       </button>
 
+
       <div class="card">
 
-        <h2>🧾 ใบแจ้งหนี้</h2>
+        <h2>
+          🧾 ใบแจ้งหนี้
+        </h2>
 
         <div id="bill-list">
-          <div class="loading">กำลังโหลด...</div>
+
+          <div class="loading">
+            กำลังโหลด...
+          </div>
+
         </div>
 
       </div>
+
 
     </section>
 
 
     <!-- ==================================================
          BILL VIEW
-    =================================================== -->
+    ================================================== -->
 
-    <section id="page-bill-view" class="page">
+    <section
+      id="page-bill-view"
+      class="page"
+    >
 
-      <button class="back-btn" onclick="showPage('bills')">
+      <button
+        class="back-btn"
+        onclick="showPage('bills')"
+      >
         ← กลับใบแจ้งหนี้
       </button>
 
+
       <div id="bill-view-container"></div>
+
 
     </section>
 
 
     <!-- ==================================================
          SETTINGS
-    =================================================== -->
+    ================================================== -->
 
-    <section id="page-settings" class="page">
+    <section
+      id="page-settings"
+      class="page"
+    >
 
-      <button class="back-btn" onclick="showPage('home')">
+      <button
+        class="back-btn"
+        onclick="showPage('home')"
+      >
         ← กลับหน้าแรก
       </button>
 
+
       <div class="card">
 
-        <h2>⚙️ ตั้งค่าระบบ</h2>
+        <h2>
+          ⚙️ ตั้งค่าระบบ
+        </h2>
+
 
         <div class="form-group">
-          <label>ชื่อหมู่บ้าน</label>
-          <input id="setting-village">
+
+          <label>
+            ชื่อหมู่บ้าน
+          </label>
+
+          <input
+            id="setting-village"
+          >
+
         </div>
 
-        <div class="form-group">
-          <label>ที่อยู่</label>
-          <input id="setting-address">
-        </div>
 
         <div class="form-group">
-          <label>เบอร์โทร</label>
-          <input id="setting-phone">
+
+          <label>
+            ที่อยู่
+          </label>
+
+          <input
+            id="setting-address"
+          >
+
         </div>
 
-        <div class="form-group">
-          <label>ธนาคาร</label>
-          <input id="setting-bank">
-        </div>
 
         <div class="form-group">
-          <label>เลขบัญชี</label>
-          <input id="setting-account">
+
+          <label>
+            เบอร์โทร
+          </label>
+
+          <input
+            id="setting-phone"
+          >
+
         </div>
 
-        <div class="form-group">
-          <label>ชื่อบัญชี</label>
-          <input id="setting-account-name">
-        </div>
 
         <div class="form-group">
-          <label>LINE ID</label>
-          <input id="setting-line">
+
+          <label>
+            ธนาคาร
+          </label>
+
+          <input
+            id="setting-bank"
+          >
+
         </div>
 
+
         <div class="form-group">
-          <label>ข้อความการชำระเงิน</label>
-          <input id="setting-payment-note">
+
+          <label>
+            เลขบัญชี
+          </label>
+
+          <input
+            id="setting-account"
+          >
+
         </div>
+
+
+        <div class="form-group">
+
+          <label>
+            ชื่อบัญชี
+          </label>
+
+          <input
+            id="setting-account-name"
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            LINE ID
+          </label>
+
+          <input
+            id="setting-line"
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            ข้อความการชำระเงิน
+          </label>
+
+          <input
+            id="setting-payment-note"
+          >
+
+        </div>
+
 
         <div class="form-grid">
 
+
           <div class="form-group">
-            <label>ค่าน้ำ / หน่วย</label>
+
+            <label>
+              ค่าน้ำ / หน่วย
+            </label>
+
             <input
               type="number"
               id="setting-water-rate"
               step="0.01"
             >
+
           </div>
 
+
           <div class="form-group">
-            <label>ค่าบำรุงมิเตอร์</label>
+
+            <label>
+              ค่าบำรุงมิเตอร์
+            </label>
+
             <input
               type="number"
               id="setting-maintenance"
               step="0.01"
             >
+
           </div>
 
+
         </div>
+
 
         <button
           class="btn btn-primary btn-block"
@@ -1000,359 +1663,805 @@
           💾 บันทึกการตั้งค่า
         </button>
 
+
       </div>
 
+
     </section>
+
 
   </main>
 
 </div>
+
 
 <div id="toast"></div>
 
 
 <script>
 
-  /* =====================================================
-     SUPABASE
-  ====================================================== */
 
-  if (!window.SUPABASE_CONFIG) {
-    alert("ไม่พบ config.js");
+/* =====================================================
+   SUPABASE
+===================================================== */
+
+if (!window.SUPABASE_CONFIG) {
+
+  alert("ไม่พบ config.js");
+
+}
+
+
+const supabaseClient =
+  window.supabase.createClient(
+    window.SUPABASE_CONFIG.url,
+    window.SUPABASE_CONFIG.anonKey
+  );
+
+
+/* =====================================================
+   GLOBAL DATA
+===================================================== */
+
+let houses = [];
+let readings = [];
+let bills = [];
+
+
+let settings = {
+
+  village_name: "ปุณย์ศิริ",
+
+  water_rate: 6,
+
+  meter_maintenance: 5
+
+};
+
+
+/* =====================================================
+   HELPERS
+===================================================== */
+
+function todayLocal() {
+
+  const d = new Date();
+
+  const year =
+    d.getFullYear();
+
+  const month =
+    String(
+      d.getMonth() + 1
+    ).padStart(2, "0");
+
+  const day =
+    String(
+      d.getDate()
+    ).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
+
+}
+
+
+function money(value) {
+
+  return Number(value || 0)
+    .toLocaleString(
+      "th-TH",
+      {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      }
+    );
+
+}
+
+
+function showToast(message) {
+
+  const toast =
+    document.getElementById("toast");
+
+  toast.textContent =
+    message;
+
+  toast.style.display =
+    "block";
+
+  clearTimeout(
+    window.toastTimer
+  );
+
+  window.toastTimer =
+    setTimeout(
+      () => {
+        toast.style.display =
+          "none";
+      },
+      2500
+    );
+
+}
+
+
+function escapeHtml(value) {
+
+  if (
+    value === null ||
+    value === undefined
+  ) {
+    return "";
   }
 
-  const supabaseClient =
-    window.supabase.createClient(
-      window.SUPABASE_CONFIG.url,
-      window.SUPABASE_CONFIG.anonKey
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+
+}
+
+
+/* =====================================================
+   PAGE
+===================================================== */
+
+function showPage(page) {
+
+  document
+    .querySelectorAll(".page")
+    .forEach(
+      el => {
+        el.classList.remove("active");
+      }
     );
 
 
-  /* =====================================================
-     GLOBAL DATA
-  ====================================================== */
+  const target =
+    document.getElementById(
+      "page-" + page
+    );
 
-  let houses = [];
-  let readings = [];
-  let bills = [];
 
-  let settings = {
-    village_name: "ปุณย์ศิริ",
-    water_rate: 6,
-    meter_maintenance: 5
+  if (target) {
+
+    target.classList.add("active");
+
+  }
+
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+
+  if (page === "home") {
+
+    loadDashboard();
+
+  }
+
+
+  if (page === "houses") {
+
+    loadHouses();
+
+  }
+
+
+  if (page === "reading") {
+
+    prepareReadingPage();
+
+  }
+
+
+  if (page === "history") {
+
+    loadHistory();
+
+  }
+
+
+  if (page === "bills") {
+
+    loadBills();
+
+  }
+
+
+  if (page === "settings") {
+
+    loadSettings();
+
+  }
+
+}
+
+
+/* =====================================================
+   DASHBOARD
+===================================================== */
+
+async function loadDashboard() {
+
+  try {
+
+
+    /* -----------------------------------------
+       จำนวนบ้านทั้งหมด
+    ------------------------------------------ */
+
+    const {
+      count: houseCount,
+      error: houseError
+    } =
+      await supabaseClient
+        .from("houses")
+        .select(
+          "*",
+          {
+            count: "exact",
+            head: true
+          }
+        );
+
+
+    if (houseError) {
+
+      console.error(
+        "Dashboard houses:",
+        houseError
+      );
+
+    }
+
+
+    const houseElement =
+      document.getElementById(
+        "dashboard-houses"
+      );
+
+
+    if (houseElement) {
+
+      houseElement.textContent =
+        houseCount || 0;
+
+    }
+
+
+    /* -----------------------------------------
+       ช่วงเดือนปัจจุบัน
+    ------------------------------------------ */
+
+    const now =
+      new Date();
+
+
+    const year =
+      now.getFullYear();
+
+
+    const month =
+      String(
+        now.getMonth() + 1
+      ).padStart(2, "0");
+
+
+    const firstDay =
+      `${year}-${month}-01`;
+
+
+    const nextMonthDate =
+      new Date(
+        year,
+        now.getMonth() + 1,
+        1
+      );
+
+
+    const nextYear =
+      nextMonthDate.getFullYear();
+
+
+    const nextMonth =
+      String(
+        nextMonthDate.getMonth() + 1
+      ).padStart(2, "0");
+
+
+    const nextMonthFirstDay =
+      `${nextYear}-${nextMonth}-01`;
+
+
+    /* -----------------------------------------
+       จำนวนการจดเดือนนี้
+    ------------------------------------------ */
+
+    const {
+      count: readingCount,
+      error: readingError
+    } =
+      await supabaseClient
+        .from("water_readings")
+        .select(
+          "*",
+          {
+            count: "exact",
+            head: true
+          }
+        )
+        .gte(
+          "reading_date",
+          firstDay
+        )
+        .lt(
+          "reading_date",
+          nextMonthFirstDay
+        );
+
+
+    if (readingError) {
+
+      console.error(
+        "Dashboard readings:",
+        readingError
+      );
+
+    }
+
+
+    const readingElement =
+      document.getElementById(
+        "dashboard-readings"
+      );
+
+
+    if (readingElement) {
+
+      readingElement.textContent =
+        readingCount || 0;
+
+    }
+
+
+    /* -----------------------------------------
+       ใบแจ้งหนี้เดือนนี้
+    ------------------------------------------ */
+
+    const {
+      data: monthBills,
+      error: billError
+    } =
+      await supabaseClient
+        .from("bills")
+        .select(
+          "total, paid"
+        )
+        .gte(
+          "reading_date",
+          firstDay
+        )
+        .lt(
+          "reading_date",
+          nextMonthFirstDay
+        );
+
+
+    if (billError) {
+
+      console.error(
+        "Dashboard bills:",
+        billError
+      );
+
+      return;
+
+    }
+
+
+    const billsThisMonth =
+      monthBills || [];
+
+
+    /* -----------------------------------------
+       ยอดรวมเดือนนี้
+    ------------------------------------------ */
+
+    const monthlyTotal =
+      billsThisMonth.reduce(
+        (
+          sum,
+          bill
+        ) =>
+          sum +
+          Number(
+            bill.total || 0
+          ),
+        0
+      );
+
+
+    /* -----------------------------------------
+       ยอดค้างชำระ
+    ------------------------------------------ */
+
+    const unpaidTotal =
+      billsThisMonth
+        .filter(
+          bill =>
+            !bill.paid
+        )
+        .reduce(
+          (
+            sum,
+            bill
+          ) =>
+            sum +
+            Number(
+              bill.total || 0
+            ),
+          0
+        );
+
+
+    const totalElement =
+      document.getElementById(
+        "dashboard-total"
+      );
+
+
+    if (totalElement) {
+
+      totalElement.textContent =
+        `${money(monthlyTotal)} บาท`;
+
+    }
+
+
+    const unpaidElement =
+      document.getElementById(
+        "dashboard-unpaid"
+      );
+
+
+    if (unpaidElement) {
+
+      unpaidElement.textContent =
+        `${money(unpaidTotal)} บาท`;
+
+    }
+
+
+  }
+  catch (error) {
+
+    console.error(
+      "Dashboard error:",
+      error
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   LOAD SETTINGS
+===================================================== */
+
+async function loadSettings() {
+
+  const {
+    data,
+    error
+  } =
+    await supabaseClient
+      .from("settings")
+      .select("*")
+      .eq("id", 1)
+      .maybeSingle();
+
+
+  if (error) {
+
+    console.error(error);
+
+    showToast(
+      "โหลดการตั้งค่าไม่สำเร็จ"
+    );
+
+    return;
+
+  }
+
+
+  if (data) {
+
+    settings = data;
+
+
+    document.getElementById(
+      "setting-village"
+    ).value =
+      data.village_name || "";
+
+
+    document.getElementById(
+      "setting-address"
+    ).value =
+      data.address || "";
+
+
+    document.getElementById(
+      "setting-phone"
+    ).value =
+      data.phone || "";
+
+
+    document.getElementById(
+      "setting-bank"
+    ).value =
+      data.bank || "";
+
+
+    document.getElementById(
+      "setting-account"
+    ).value =
+      data.account_number || "";
+
+
+    document.getElementById(
+      "setting-account-name"
+    ).value =
+      data.account_name || "";
+
+
+    document.getElementById(
+      "setting-line"
+    ).value =
+      data.line_id || "";
+
+
+    document.getElementById(
+      "setting-payment-note"
+    ).value =
+      data.payment_note || "";
+
+
+    document.getElementById(
+      "setting-water-rate"
+    ).value =
+      data.water_rate ?? 6;
+
+
+    document.getElementById(
+      "setting-maintenance"
+    ).value =
+      data.meter_maintenance ?? 5;
+
+  }
+
+}
+
+
+/* =====================================================
+   SAVE SETTINGS
+===================================================== */
+
+async function saveSettings() {
+
+  const payload = {
+
+    village_name:
+      document.getElementById(
+        "setting-village"
+      ).value.trim(),
+
+    address:
+      document.getElementById(
+        "setting-address"
+      ).value.trim(),
+
+    phone:
+      document.getElementById(
+        "setting-phone"
+      ).value.trim(),
+
+    bank:
+      document.getElementById(
+        "setting-bank"
+      ).value.trim(),
+
+    account_number:
+      document.getElementById(
+        "setting-account"
+      ).value.trim(),
+
+    account_name:
+      document.getElementById(
+        "setting-account-name"
+      ).value.trim(),
+
+    line_id:
+      document.getElementById(
+        "setting-line"
+      ).value.trim(),
+
+    payment_note:
+      document.getElementById(
+        "setting-payment-note"
+      ).value.trim(),
+
+    water_rate:
+      Number(
+        document.getElementById(
+          "setting-water-rate"
+        ).value
+      ) || 0,
+
+    meter_maintenance:
+      Number(
+        document.getElementById(
+          "setting-maintenance"
+        ).value
+      ) || 0,
+
+    updated_at:
+      new Date().toISOString()
+
   };
 
 
-  /* =====================================================
-     HELPERS
-  ====================================================== */
-
-  function todayLocal() {
-
-    const d = new Date();
-
-    const year = d.getFullYear();
-
-    const month =
-      String(d.getMonth() + 1).padStart(2, "0");
-
-    const day =
-      String(d.getDate()).padStart(2, "0");
-
-    return `${year}-${month}-${day}`;
-  }
+  const {
+    error
+  } =
+    await supabaseClient
+      .from("settings")
+      .update(payload)
+      .eq("id", 1);
 
 
-  function money(value) {
+  if (error) {
 
-    return Number(value || 0)
-      .toLocaleString("th-TH", {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-      });
+    console.error(error);
+
+    showToast(
+      "บันทึกไม่สำเร็จ"
+    );
+
+    return;
 
   }
 
 
-  function showToast(message) {
+  settings = {
+    ...settings,
+    ...payload
+  };
 
-    const toast =
-      document.getElementById("toast");
 
-    toast.textContent = message;
+  showToast(
+    "บันทึกการตั้งค่าแล้ว"
+  );
 
-    toast.style.display = "block";
 
-    clearTimeout(window.toastTimer);
+  calculateReading();
 
-    window.toastTimer =
-      setTimeout(() => {
-        toast.style.display = "none";
-      }, 2500);
-  }
+}
 
 
-  function escapeHtml(value) {
+/* =====================================================
+   LOAD HOUSES
+===================================================== */
 
-    if (value === null || value === undefined) {
-      return "";
-    }
+async function loadHouses() {
 
-    return String(value)
-      .replaceAll("&", "&amp;")
-      .replaceAll("<", "&lt;")
-      .replaceAll(">", "&gt;")
-      .replaceAll('"', "&quot;")
-      .replaceAll("'", "&#039;");
-  }
+  const container =
+    document.getElementById(
+      "house-list"
+    );
 
 
-  /* =====================================================
-     PAGE
-  ====================================================== */
+  if (!container) return;
 
-  function showPage(page) {
 
-    document
-      .querySelectorAll(".page")
-      .forEach(el => {
-        el.classList.remove("active");
-      });
+  container.innerHTML =
+    `
+      <div class="loading">
+        กำลังโหลด...
+      </div>
+    `;
 
-    const target =
-      document.getElementById("page-" + page);
 
-    if (target) {
-      target.classList.add("active");
-    }
+  const {
+    data,
+    error
+  } =
+    await supabaseClient
+      .from("houses")
+      .select("*")
+      .order("house_number");
 
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
 
-    if (page === "houses") {
-      loadHouses();
-    }
+  if (error) {
 
-    if (page === "reading") {
-      prepareReadingPage();
-    }
-
-    if (page === "history") {
-      loadHistory();
-    }
-
-    if (page === "bills") {
-      loadBills();
-    }
-
-    if (page === "settings") {
-      loadSettings();
-    }
-
-  }
-
-
-  /* =====================================================
-     LOAD SETTINGS
-  ====================================================== */
-
-  async function loadSettings() {
-
-    const { data, error } =
-      await supabaseClient
-        .from("settings")
-        .select("*")
-        .eq("id", 1)
-        .maybeSingle();
-
-    if (error) {
-
-      console.error(error);
-
-      showToast("โหลดการตั้งค่าไม่สำเร็จ");
-
-      return;
-    }
-
-    if (data) {
-
-      settings = data;
-
-      document.getElementById("setting-village").value =
-        data.village_name || "";
-
-      document.getElementById("setting-address").value =
-        data.address || "";
-
-      document.getElementById("setting-phone").value =
-        data.phone || "";
-
-      document.getElementById("setting-bank").value =
-        data.bank || "";
-
-      document.getElementById("setting-account").value =
-        data.account_number || "";
-
-      document.getElementById("setting-account-name").value =
-        data.account_name || "";
-
-      document.getElementById("setting-line").value =
-        data.line_id || "";
-
-      document.getElementById("setting-payment-note").value =
-        data.payment_note || "";
-
-      document.getElementById("setting-water-rate").value =
-        data.water_rate ?? 6;
-
-      document.getElementById("setting-maintenance").value =
-        data.meter_maintenance ?? 5;
-
-    }
-
-  }
-
-
-  async function saveSettings() {
-
-    const payload = {
-
-      village_name:
-        document.getElementById("setting-village").value.trim(),
-
-      address:
-        document.getElementById("setting-address").value.trim(),
-
-      phone:
-        document.getElementById("setting-phone").value.trim(),
-
-      bank:
-        document.getElementById("setting-bank").value.trim(),
-
-      account_number:
-        document.getElementById("setting-account").value.trim(),
-
-      account_name:
-        document.getElementById("setting-account-name").value.trim(),
-
-      line_id:
-        document.getElementById("setting-line").value.trim(),
-
-      payment_note:
-        document.getElementById("setting-payment-note").value.trim(),
-
-      water_rate:
-        Number(document.getElementById("setting-water-rate").value) || 0,
-
-      meter_maintenance:
-        Number(document.getElementById("setting-maintenance").value) || 0,
-
-      updated_at:
-        new Date().toISOString()
-
-    };
-
-
-    const { error } =
-      await supabaseClient
-        .from("settings")
-        .update(payload)
-        .eq("id", 1);
-
-
-    if (error) {
-
-      console.error(error);
-
-      showToast("บันทึกไม่สำเร็จ");
-
-      return;
-    }
-
-
-    settings = {
-      ...settings,
-      ...payload
-    };
-
-
-    showToast("บันทึกการตั้งค่าแล้ว");
-
-  }
-
-
-  /* =====================================================
-     LOAD HOUSES
-  ====================================================== */
-
-  async function loadHouses() {
-
-    const container =
-      document.getElementById("house-list");
+    console.error(error);
 
     container.innerHTML =
-      `<div class="loading">กำลังโหลด...</div>`;
+      `
+        <div class="empty">
+          โหลดข้อมูลไม่สำเร็จ
+        </div>
+      `;
+
+    return;
+
+  }
 
 
-    const { data, error } =
-      await supabaseClient
-        .from("houses")
-        .select("*")
-        .order("house_number");
+  houses = data || [];
 
 
-    if (error) {
+  if (!houses.length) {
 
-      console.error(error);
-
-      container.innerHTML =
-        `<div class="empty">โหลดข้อมูลไม่สำเร็จ</div>`;
-
-      return;
-    }
-
-
-    houses = data || [];
-
-
-    if (!houses.length) {
-
-      container.innerHTML =
-        `<div class="empty">
+    container.innerHTML =
+      `
+        <div class="empty">
           ยังไม่มีข้อมูลบ้าน
-        </div>`;
+        </div>
+      `;
 
-      return;
-    }
+    return;
+
+  }
 
 
-    container.innerHTML =
-      houses.map(house => `
+  container.innerHTML =
+    houses
+      .map(
+        house => `
 
         <div class="house-item">
 
           <div class="house-top">
 
             <div>
+
               <div class="house-number">
-                บ้าน ${escapeHtml(house.house_number)}
+                บ้าน ${escapeHtml(
+                  house.house_number
+                )}
               </div>
 
               <div class="house-owner">
-                ${escapeHtml(house.owner_name || "-")}
+                ${escapeHtml(
+                  house.owner_name || "-"
+                )}
               </div>
+
             </div>
 
           </div>
 
+
           <div class="house-meter">
+
             เลขมิเตอร์ล่าสุด:
+
             <strong>
-              ${Number(house.current_meter || 0)}
+              ${Number(
+                house.current_meter || 0
+              )}
             </strong>
+
           </div>
+
 
           <div class="house-actions">
 
@@ -1363,6 +2472,7 @@
               แก้ไข
             </button>
 
+
             <button
               class="small-btn btn-danger"
               onclick="deleteHouse('${house.id}')"
@@ -1372,1452 +2482,707 @@
 
           </div>
 
+
         </div>
 
-      `).join("");
+      `
+      )
+      .join("");
+
+}
+
+
+/* =====================================================
+   SAVE HOUSE
+===================================================== */
+
+async function saveHouse() {
+
+  const id =
+    document.getElementById(
+      "house-id"
+    ).value;
+
+
+  const houseNumber =
+    document.getElementById(
+      "house-number"
+    ).value.trim();
+
+
+  if (!houseNumber) {
+
+    showToast(
+      "กรุณาใส่เลขที่บ้าน"
+    );
+
+    return;
 
   }
 
 
-  /* =====================================================
-     SAVE HOUSE
-  ====================================================== */
+  const payload = {
 
-  async function saveHouse() {
+    house_number:
+      houseNumber,
 
-    const id =
-      document.getElementById("house-id").value;
+    owner_name:
+      document.getElementById(
+        "owner-name"
+      ).value.trim(),
 
+    address:
+      document.getElementById(
+        "house-address"
+      ).value.trim(),
 
-    const houseNumber =
-      document.getElementById("house-number").value.trim();
+    phone:
+      document.getElementById(
+        "house-phone"
+      ).value.trim(),
 
+    current_meter:
+      Number(
+        document.getElementById(
+          "house-current-meter"
+        ).value
+      ) || 0,
 
-    if (!houseNumber) {
+    updated_at:
+      new Date().toISOString()
 
-      showToast("กรุณาใส่เลขที่บ้าน");
-
-      return;
-    }
-
-
-    const payload = {
-
-      house_number: houseNumber,
-
-      owner_name:
-        document.getElementById("owner-name").value.trim(),
-
-      address:
-        document.getElementById("house-address").value.trim(),
-
-      phone:
-        document.getElementById("house-phone").value.trim(),
-
-      current_meter:
-        Number(
-          document.getElementById("house-current-meter").value
-        ) || 0,
-
-      updated_at:
-        new Date().toISOString()
-
-    };
+  };
 
 
-    let result;
+  let result;
 
 
-    if (id) {
+  if (id) {
 
-      result =
-        await supabaseClient
-          .from("houses")
-          .update(payload)
-          .eq("id", id);
+    result =
+      await supabaseClient
+        .from("houses")
+        .update(payload)
+        .eq("id", id);
 
-    } else {
+  }
+  else {
 
-      result =
-        await supabaseClient
-          .from("houses")
-          .insert(payload);
+    result =
+      await supabaseClient
+        .from("houses")
+        .insert(payload);
 
-    }
+  }
 
 
-    if (result.error) {
+  if (result.error) {
 
-      console.error(result.error);
-
-      showToast("บันทึกข้อมูลบ้านไม่สำเร็จ");
-
-      return;
-    }
-
+    console.error(result.error);
 
     showToast(
-      id
-        ? "แก้ไขข้อมูลบ้านแล้ว"
-        : "เพิ่มข้อมูลบ้านแล้ว"
+      "บันทึกข้อมูลบ้านไม่สำเร็จ"
+    );
+
+    return;
+
+  }
+
+
+  showToast(
+    id
+      ? "แก้ไขข้อมูลบ้านแล้ว"
+      : "เพิ่มข้อมูลบ้านแล้ว"
+  );
+
+
+  clearHouseForm();
+
+
+  await loadHouses();
+
+  await loadDashboard();
+
+}
+
+
+/* =====================================================
+   EDIT HOUSE
+===================================================== */
+
+function editHouse(id) {
+
+  const house =
+    houses.find(
+      h => h.id === id
     );
 
 
-    clearHouseForm();
-
-    loadHouses();
-
-  }
+  if (!house) return;
 
 
-  /* =====================================================
-     EDIT HOUSE
-  ====================================================== */
-
-  function editHouse(id) {
-
-    const house =
-      houses.find(h => h.id === id);
-
-    if (!house) return;
+  document.getElementById(
+    "house-id"
+  ).value =
+    house.id;
 
 
-    document.getElementById("house-id").value =
-      house.id;
-
-    document.getElementById("house-number").value =
-      house.house_number || "";
-
-    document.getElementById("owner-name").value =
-      house.owner_name || "";
-
-    document.getElementById("house-address").value =
-      house.address || "";
-
-    document.getElementById("house-phone").value =
-      house.phone || "";
-
-    document.getElementById("house-current-meter").value =
-      house.current_meter || 0;
+  document.getElementById(
+    "house-number"
+  ).value =
+    house.house_number || "";
 
 
-    document.getElementById("house-form-title").textContent =
-      "✏️ แก้ไขข้อมูลบ้าน";
+  document.getElementById(
+    "owner-name"
+  ).value =
+    house.owner_name || "";
 
 
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-
-  }
+  document.getElementById(
+    "house-address"
+  ).value =
+    house.address || "";
 
 
-  function clearHouseForm() {
-
-    document.getElementById("house-id").value = "";
-
-    document.getElementById("house-number").value = "";
-
-    document.getElementById("owner-name").value = "";
-
-    document.getElementById("house-address").value = "";
-
-    document.getElementById("house-phone").value = "";
-
-    document.getElementById("house-current-meter").value = 0;
-
-    document.getElementById("house-form-title").textContent =
-      "🏠 เพิ่มข้อมูลบ้าน";
-
-  }
+  document.getElementById(
+    "house-phone"
+  ).value =
+    house.phone || "";
 
 
-  /* =====================================================
-     DELETE HOUSE
-  ====================================================== */
-
-  async function deleteHouse(id) {
-
-    const house =
-      houses.find(h => h.id === id);
-
-    if (!house) return;
+  document.getElementById(
+    "house-current-meter"
+  ).value =
+    house.current_meter || 0;
 
 
-    if (!confirm(
+  document.getElementById(
+    "house-form-title"
+  ).textContent =
+    "✏️ แก้ไขข้อมูลบ้าน";
+
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+}
+
+
+/* =====================================================
+   CLEAR HOUSE
+===================================================== */
+
+function clearHouseForm() {
+
+  document.getElementById(
+    "house-id"
+  ).value = "";
+
+
+  document.getElementById(
+    "house-number"
+  ).value = "";
+
+
+  document.getElementById(
+    "owner-name"
+  ).value = "";
+
+
+  document.getElementById(
+    "house-address"
+  ).value = "";
+
+
+  document.getElementById(
+    "house-phone"
+  ).value = "";
+
+
+  document.getElementById(
+    "house-current-meter"
+  ).value = 0;
+
+
+  document.getElementById(
+    "house-form-title"
+  ).textContent =
+    "🏠 เพิ่มข้อมูลบ้าน";
+
+}
+
+
+/* =====================================================
+   DELETE HOUSE
+===================================================== */
+
+async function deleteHouse(id) {
+
+  const house =
+    houses.find(
+      h => h.id === id
+    );
+
+
+  if (!house) return;
+
+
+  if (
+    !confirm(
       `ต้องการลบบ้าน ${house.house_number} หรือไม่?`
-    )) {
-      return;
-    }
+    )
+  ) {
 
-
-    const { error } =
-      await supabaseClient
-        .from("houses")
-        .delete()
-        .eq("id", id);
-
-
-    if (error) {
-
-      console.error(error);
-
-      showToast("ลบข้อมูลไม่สำเร็จ");
-
-      return;
-    }
-
-
-    showToast("ลบข้อมูลแล้ว");
-
-    loadHouses();
+    return;
 
   }
 
 
-  /* =====================================================
-     READING PAGE
-  ====================================================== */
+  const {
+    error
+  } =
+    await supabaseClient
+      .from("houses")
+      .delete()
+      .eq("id", id);
 
-  async function prepareReadingPage() {
 
-    document.getElementById("reading-date").value =
-      todayLocal();
+  if (error) {
 
+    console.error(error);
 
-    await loadHousesForReading();
+    showToast(
+      "ลบข้อมูลไม่สำเร็จ"
+    );
 
-    calculateReading();
+    return;
 
   }
 
 
-  async function loadHousesForReading() {
-
-    const select =
-      document.getElementById("reading-house");
-
-
-    const { data, error } =
-      await supabaseClient
-        .from("houses")
-        .select("*")
-        .order("house_number");
+  showToast(
+    "ลบข้อมูลแล้ว"
+  );
 
 
-    if (error) {
+  await loadHouses();
 
-      console.error(error);
+  await loadDashboard();
 
-      showToast("โหลดข้อมูลบ้านไม่สำเร็จ");
-
-      return;
-    }
+}
 
 
-    houses = data || [];
+/* =====================================================
+   READING PAGE
+===================================================== */
+
+async function prepareReadingPage() {
+
+  document.getElementById(
+    "reading-date"
+  ).value =
+    todayLocal();
 
 
-    select.innerHTML =
-      `<option value="">-- เลือกบ้าน --</option>`;
+  await loadHousesForReading();
 
 
-    houses.forEach(house => {
+  calculateReading();
+
+}
+
+
+/* =====================================================
+   LOAD HOUSES FOR READING
+===================================================== */
+
+async function loadHousesForReading() {
+
+  const select =
+    document.getElementById(
+      "reading-house"
+    );
+
+
+  const {
+    data,
+    error
+  } =
+    await supabaseClient
+      .from("houses")
+      .select("*")
+      .order("house_number");
+
+
+  if (error) {
+
+    console.error(error);
+
+    showToast(
+      "โหลดข้อมูลบ้านไม่สำเร็จ"
+    );
+
+    return;
+
+  }
+
+
+  houses = data || [];
+
+
+  select.innerHTML =
+    `
+      <option value="">
+        -- เลือกบ้าน --
+      </option>
+    `;
+
+
+  houses.forEach(
+    house => {
 
       const option =
-        document.createElement("option");
+        document.createElement(
+          "option"
+        );
 
-      option.value = house.id;
+
+      option.value =
+        house.id;
+
 
       option.textContent =
-        `บ้าน ${house.house_number} - ${house.owner_name || ""}`;
+        `บ้าน ${house.house_number} - ${
+          house.owner_name || ""
+        }`;
 
-      select.appendChild(option);
 
-    });
+      select.appendChild(
+        option
+      );
+
+    }
+  );
+
+}
+
+
+/* =====================================================
+   PREVIOUS METER
+===================================================== */
+
+function updatePreviousMeter() {
+
+  const houseId =
+    document.getElementById(
+      "reading-house"
+    ).value;
+
+
+  const house =
+    houses.find(
+      h => h.id === houseId
+    );
+
+
+  const previous =
+    house
+      ? Number(
+          house.current_meter || 0
+        )
+      : 0;
+
+
+  document.getElementById(
+    "previous-meter"
+  ).value =
+    previous;
+
+
+  document.getElementById(
+    "current-meter"
+  ).value =
+    "";
+
+
+  calculateReading();
+
+}
+
+
+/* =====================================================
+   METER CALCULATION
+===================================================== */
+
+function calculateUnits(
+  previous,
+  current
+) {
+
+  previous =
+    Number(previous) || 0;
+
+  current =
+    Number(current) || 0;
+
+
+  if (
+    current >= previous
+  ) {
+
+    return current - previous;
 
   }
 
 
-  function updatePreviousMeter() {
+  return (
+    9999 -
+    previous +
+    1
+  ) + current;
 
-    const houseId =
-      document.getElementById("reading-house").value;
-
-
-    const house =
-      houses.find(h => h.id === houseId);
-
-
-    const previous =
-      house
-        ? Number(house.current_meter || 0)
-        : 0;
+}
 
 
-    document.getElementById("previous-meter").value =
-      previous;
+/* =====================================================
+   CALCULATE READING
+===================================================== */
+
+function calculateReading() {
+
+  const previous =
+    Number(
+      document.getElementById(
+        "previous-meter"
+      ).value
+    ) || 0;
 
 
-    document.getElementById("current-meter").value =
-      "";
+  const current =
+    Number(
+      document.getElementById(
+        "current-meter"
+      ).value
+    ) || 0;
 
 
-    calculateReading();
+  const units =
+    calculateUnits(
+      previous,
+      current
+    );
+
+
+  const rate =
+    Number(
+      settings.water_rate ?? 6
+    );
+
+
+  const maintenance =
+    Number(
+      settings.meter_maintenance ?? 5
+    );
+
+
+  const water =
+    units * rate;
+
+
+  const total =
+    water + maintenance;
+
+
+  document.getElementById(
+    "calculated-units"
+  ).textContent =
+    `${units} หน่วย`;
+
+
+  document.getElementById(
+    "calculated-water"
+  ).textContent =
+    `${money(water)} บาท`;
+
+
+  document.getElementById(
+    "calculated-maintenance"
+  ).textContent =
+    `${money(maintenance)} บาท`;
+
+
+  document.getElementById(
+    "calculated-total"
+  ).textContent =
+    `${money(total)} บาท`;
+
+}
+
+
+/* =====================================================
+   SAVE READING + BILL
+===================================================== */
+
+async function saveReading() {
+
+  const houseId =
+    document.getElementById(
+      "reading-house"
+    ).value;
+
+
+  const readingDate =
+    document.getElementById(
+      "reading-date"
+    ).value;
+
+
+  const previous =
+    Number(
+      document.getElementById(
+        "previous-meter"
+      ).value
+    ) || 0;
+
+
+  const current =
+    Number(
+      document.getElementById(
+        "current-meter"
+      ).value
+    );
+
+
+  if (!houseId) {
+
+    showToast(
+      "กรุณาเลือกบ้าน"
+    );
+
+    return;
 
   }
 
 
-  /* =====================================================
-     METER CALCULATION
-  ====================================================== */
+  if (!readingDate) {
 
-  function calculateUnits(previous, current) {
+    showToast(
+      "กรุณาเลือกวันที่จด"
+    );
 
-    previous = Number(previous) || 0;
-
-    current = Number(current) || 0;
-
-
-    /*
-      มิเตอร์ปกติ:
-
-      100 → 150
-      = 50 หน่วย
-
-      มิเตอร์ครบ 9999 แล้ววนกลับ 0:
-
-      9998 → 2
-      = 4 หน่วย
-    */
-
-
-    if (current >= previous) {
-
-      return current - previous;
-
-    }
-
-
-    return (9999 - previous + 1) + current;
+    return;
 
   }
 
 
-  function calculateReading() {
+  if (
+    Number.isNaN(current) ||
+    current < 0 ||
+    current > 9999
+  ) {
 
-    const previous =
-      Number(
-        document.getElementById("previous-meter").value
-      ) || 0;
+    showToast(
+      "เลขมิเตอร์ต้องอยู่ระหว่าง 0 - 9999"
+    );
 
-
-    const current =
-      Number(
-        document.getElementById("current-meter").value
-      ) || 0;
-
-
-    const units =
-      calculateUnits(previous, current);
-
-
-    const rate =
-      Number(settings.water_rate ?? 6);
-
-
-    const maintenance =
-      Number(settings.meter_maintenance ?? 5);
-
-
-    const water =
-      units * rate;
-
-
-    const total =
-      water + maintenance;
-
-
-    document.getElementById("calculated-units").textContent =
-      `${units} หน่วย`;
-
-
-    document.getElementById("calculated-water").textContent =
-      `${money(water)} บาท`;
-
-
-    document.getElementById("calculated-maintenance").textContent =
-      `${money(maintenance)} บาท`;
-
-
-    document.getElementById("calculated-total").textContent =
-      `${money(total)} บาท`;
+    return;
 
   }
 
 
-  /* =====================================================
-     SAVE READING + BILL
-  ====================================================== */
+  const units =
+    calculateUnits(
+      previous,
+      current
+    );
 
-  async function saveReading() {
 
-    const houseId =
-      document.getElementById("reading-house").value;
+  const rate =
+    Number(
+      settings.water_rate ?? 6
+    );
 
 
-    const readingDate =
-      document.getElementById("reading-date").value;
+  const maintenance =
+    Number(
+      settings.meter_maintenance ?? 5
+    );
 
 
-    const previous =
-      Number(
-        document.getElementById("previous-meter").value
-      ) || 0;
+  const waterCharge =
+    units * rate;
 
 
-    const current =
-      Number(
-        document.getElementById("current-meter").value
-      );
+  const total =
+    waterCharge +
+    maintenance;
 
 
-    if (!houseId) {
+  /* -----------------------------------------
+     SAVE READING
+  ------------------------------------------ */
 
-      showToast("กรุณาเลือกบ้าน");
+  const readingPayload = {
 
-      return;
-    }
+    house_id:
+      houseId,
 
+    reading_date:
+      readingDate,
 
-    if (!readingDate) {
+    previous_meter:
+      previous,
 
-      showToast("กรุณาเลือกวันที่จด");
+    current_meter:
+      current,
 
-      return;
-    }
+    units:
+      units,
 
+    updated_at:
+      new Date().toISOString()
 
-    if (
-      Number.isNaN(current) ||
-      current < 0 ||
-      current > 9999
-    ) {
+  };
 
-      showToast("เลขมิเตอร์ต้องอยู่ระหว่าง 0 - 9999");
 
-      return;
-    }
+  const {
+    data: readingData,
+    error: readingError
+  } =
+    await supabaseClient
+      .from("water_readings")
+      .insert(
+        readingPayload
+      )
+      .select()
+      .single();
 
 
-    const units =
-      calculateUnits(previous, current);
+  if (readingError) {
 
+    console.error(
+      readingError
+    );
 
-    const rate =
-      Number(settings.water_rate ?? 6);
+    showToast(
+      "บันทึกการจดมิเตอร์ไม่สำเร็จ"
+    );
 
-
-    const maintenance =
-      Number(settings.meter_maintenance ?? 5);
-
-
-    const waterCharge =
-      units * rate;
-
-
-    const total =
-      waterCharge + maintenance;
-
-
-    /* -----------------------------------------
-       1. SAVE READING
-    ------------------------------------------ */
-
-    const readingPayload = {
-
-      house_id: houseId,
-
-      reading_date: readingDate,
-
-      previous_meter: previous,
-
-      current_meter: current,
-
-      units: units,
-
-      updated_at:
-        new Date().toISOString()
-
-    };
-
-
-    const {
-      data: readingData,
-      error: readingError
-    } =
-      await supabaseClient
-        .from("water_readings")
-        .insert(readingPayload)
-        .select()
-        .single();
-
-
-    if (readingError) {
-
-      console.error(readingError);
-
-      showToast("บันทึกการจดมิเตอร์ไม่สำเร็จ");
-
-      return;
-    }
-
-
-    /* -----------------------------------------
-       2. UPDATE HOUSE METER
-    ------------------------------------------ */
-
-    const {
-      error: houseError
-    } =
-      await supabaseClient
-        .from("houses")
-        .update({
-          current_meter: current,
-          updated_at: new Date().toISOString()
-        })
-        .eq("id", houseId);
-
-
-    if (houseError) {
-
-      console.error(houseError);
-
-      showToast("บันทึกมิเตอร์แล้ว แต่แก้เลขบ้านไม่สำเร็จ");
-
-      return;
-    }
-
-
-    /* -----------------------------------------
-       3. CREATE BILL
-    ------------------------------------------ */
-
-    const month =
-      readingDate.substring(0, 7);
-
-
-    const billPayload = {
-
-      house_id: houseId,
-
-      reading_id: readingData.id,
-
-      billing_month: month,
-
-      reading_date: readingDate,
-
-      previous_meter: previous,
-
-      current_meter: current,
-
-      units: units,
-
-      water_rate: rate,
-
-      water_charge: waterCharge,
-
-      meter_maintenance: maintenance,
-
-      total: total,
-
-      paid: false
-
-    };
-
-
-    const {
-      error: billError
-    } =
-      await supabaseClient
-        .from("bills")
-        .insert(billPayload);
-
-
-    if (billError) {
-
-      console.error(billError);
-
-      showToast(
-        "บันทึกมิเตอร์แล้ว แต่สร้างใบแจ้งหนี้ไม่สำเร็จ"
-      );
-
-      return;
-    }
-
-
-    showToast("บันทึกมิเตอร์และสร้างใบแจ้งหนี้แล้ว");
-
-
-    document.getElementById("current-meter").value =
-      "";
-
-
-    calculateReading();
+    return;
 
   }
 
 
-  /* =====================================================
-     HISTORY
-  ====================================================== */
-
-  async function loadHistory() {
-
-    const container =
-      document.getElementById("history-list");
-
-
-    container.innerHTML =
-      `<div class="loading">กำลังโหลด...</div>`;
-
-
-    const { data, error } =
-      await supabaseClient
-        .from("water_readings")
-        .select(`
-          *,
-          houses (
-            house_number,
-            owner_name
-          )
-        `)
-        .order("reading_date", {
-          ascending: false
-        });
-
-
-    if (error) {
-
-      console.error(error);
-
-      container.innerHTML =
-        `<div class="empty">โหลดข้อมูลไม่สำเร็จ</div>`;
-
-      return;
-    }
-
-
-    readings = data || [];
-
-
-    if (!readings.length) {
-
-      container.innerHTML =
-        `<div class="empty">
-          ยังไม่มีประวัติการจด
-        </div>`;
-
-      return;
-    }
-
-
-    container.innerHTML = `
-
-      <div class="table-wrap">
-
-        <table>
-
-          <thead>
-            <tr>
-              <th>วันที่</th>
-              <th>บ้าน</th>
-              <th>ก่อน</th>
-              <th>ปัจจุบัน</th>
-              <th>หน่วย</th>
-              <th>แก้ไข</th>
-            </tr>
-          </thead>
-
-          <tbody>
-
-            ${readings.map(r => `
-
-              <tr>
-
-                <td>${escapeHtml(r.reading_date)}</td>
-
-                <td>
-                  ${escapeHtml(
-                    r.houses?.house_number || "-"
-                  )}
-                </td>
-
-                <td>${r.previous_meter}</td>
-
-                <td>${r.current_meter}</td>
-
-                <td>${r.units}</td>
-
-                <td>
-                  <button
-                    class="small-btn btn-primary"
-                    onclick="editReading('${r.id}')"
-                  >
-                    แก้ไข
-                  </button>
-                </td>
-
-              </tr>
-
-            `).join("")}
-
-          </tbody>
-
-        </table>
-
-      </div>
-
-    `;
-
-  }
-
-
-  /* =====================================================
-     EDIT READING
-  ====================================================== */
-
-  async function editReading(id) {
-
-    const reading =
-      readings.find(r => r.id === id);
-
-
-    if (!reading) return;
-
-
-    const newDate =
-      prompt(
-        "วันที่จด (YYYY-MM-DD)",
-        reading.reading_date
-      );
-
-
-    if (newDate === null) return;
-
-
-    const newCurrent =
-      prompt(
-        "เลขมิเตอร์ปัจจุบัน",
-        reading.current_meter
-      );
-
-
-    if (newCurrent === null) return;
-
-
-    const current =
-      Number(newCurrent);
-
-
-    if (
-      Number.isNaN(current) ||
-      current < 0 ||
-      current > 9999
-    ) {
-
-      showToast("เลขมิเตอร์ไม่ถูกต้อง");
-
-      return;
-    }
-
-
-    const previous =
-      Number(reading.previous_meter);
-
-
-    const units =
-      calculateUnits(previous, current);
-
-
-    const rate =
-      Number(settings.water_rate ?? 6);
-
-
-    const maintenance =
-      Number(settings.meter_maintenance ?? 5);
-
-
-    const waterCharge =
-      units * rate;
-
-
-    const total =
-      waterCharge + maintenance;
-
-
-    /* UPDATE READING */
-
-    const {
-      error: readingError
-    } =
-      await supabaseClient
-        .from("water_readings")
-        .update({
-
-          reading_date: newDate,
-
-          current_meter: current,
-
-          units: units,
-
-          updated_at:
-            new Date().toISOString()
-
-        })
-        .eq("id", id);
-
-
-    if (readingError) {
-
-      console.error(readingError);
-
-      showToast("แก้ไขการจดไม่สำเร็จ");
-
-      return;
-    }
-
-
-    /* UPDATE HOUSE */
-
-    const {
-      error: houseError
-    } =
-      await supabaseClient
-        .from("houses")
-        .update({
-
-          current_meter: current,
-
-          updated_at:
-            new Date().toISOString()
-
-        })
-        .eq("id", reading.house_id);
-
-
-    if (houseError) {
-
-      console.error(houseError);
-
-      showToast("แก้ไขรายการแล้ว แต่แก้เลขบ้านไม่สำเร็จ");
-
-      return;
-    }
-
-
-    /* UPDATE RELATED BILL */
-
-    const {
-      error: billError
-    } =
-      await supabaseClient
-        .from("bills")
-        .update({
-
-          billing_month:
-            newDate.substring(0, 7),
-
-          reading_date:
-            newDate,
-
-          current_meter:
-            current,
-
-          units:
-            units,
-
-          water_charge:
-            waterCharge,
-
-          total:
-            total,
-
-          updated_at:
-            new Date().toISOString()
-
-        })
-        .eq("reading_id", id);
-
-
-    if (billError) {
-
-      console.error(billError);
-
-      showToast(
-        "แก้ไขการจดแล้ว แต่แก้ใบแจ้งหนี้ไม่สำเร็จ"
-      );
-
-      return;
-    }
-
-
-    showToast("แก้ไขข้อมูลเรียบร้อยแล้ว");
-
-    loadHistory();
-
-  }
-
-
-  /* =====================================================
-     BILLS
-  ====================================================== */
-
-  async function loadBills() {
-
-    const container =
-      document.getElementById("bill-list");
-
-
-    container.innerHTML =
-      `<div class="loading">กำลังโหลด...</div>`;
-
-
-    const { data, error } =
-      await supabaseClient
-        .from("bills")
-        .select(`
-          *,
-          houses (
-            house_number,
-            owner_name
-          )
-        `)
-        .order("reading_date", {
-          ascending: false
-        });
-
-
-    if (error) {
-
-      console.error(error);
-
-      container.innerHTML =
-        `<div class="empty">
-          โหลดใบแจ้งหนี้ไม่สำเร็จ
-        </div>`;
-
-      return;
-    }
-
-
-    bills = data || [];
-
-
-    if (!bills.length) {
-
-      container.innerHTML =
-        `<div class="empty">
-          ยังไม่มีใบแจ้งหนี้
-        </div>`;
-
-      return;
-    }
-
-
-    container.innerHTML = `
-
-      ${bills.map(bill => `
-
-        <div class="house-item">
-
-          <div class="house-top">
-
-            <div>
-
-              <div class="house-number">
-                ใบแจ้งหนี้ค่าน้ำปุณย์ศิริ
-              </div>
-
-              <div class="house-owner">
-                บ้าน ${escapeHtml(
-                  bill.houses?.house_number || "-"
-                )}
-                —
-                ${escapeHtml(
-                  bill.houses?.owner_name || "-"
-                )}
-              </div>
-
-            </div>
-
-            <div>
-              ${
-                bill.paid
-                ?
-                `<span class="status status-paid">
-                  ชำระแล้ว
-                </span>`
-                :
-                `<span class="status status-unpaid">
-                  ยังไม่ชำระ
-                </span>`
-              }
-            </div>
-
-          </div>
-
-          <div class="house-meter">
-
-            วันที่:
-            <strong>
-              ${escapeHtml(bill.reading_date)}
-            </strong>
-
-            <br>
-
-            ใช้:
-            <strong>
-              ${bill.units}
-            </strong>
-            หน่วย
-
-            <br>
-
-            รวม:
-            <strong>
-              ${money(bill.total)}
-            </strong>
-            บาท
-
-          </div>
-
-          <div class="house-actions">
-
-            <button
-              class="small-btn btn-primary"
-              onclick="viewBill('${bill.id}')"
-            >
-              ดูใบแจ้งหนี้
-            </button>
-
-            <button
-              class="small-btn btn-secondary"
-              onclick="editBill('${bill.id}')"
-            >
-              แก้ไข
-            </button>
-
-            <button
-              class="small-btn ${
-                bill.paid
-                ? "btn-secondary"
-                : "btn-success"
-              }"
-              onclick="togglePaid('${bill.id}')"
-            >
-              ${
-                bill.paid
-                ? "ยกเลิกชำระ"
-                : "ทำเครื่องหมายว่าชำระแล้ว"
-              }
-            </button>
-
-          </div>
-
-        </div>
-
-      `).join("")}
-
-    `;
-
-  }
-
-
-  /* =====================================================
-     VIEW BILL
-  ====================================================== */
-
-  async function viewBill(id) {
-
-    const bill =
-      bills.find(b => b.id === id);
-
-
-    if (!bill) return;
-
-
-    await loadSettings();
-
-
-    const html = `
-
-      <div class="card">
-
-        <div class="bill">
-
-          <div class="bill-header">
-
-            <img
-              src="./logo.PNG"
-              class="bill-logo"
-              alt="Logo"
-              onerror="this.style.display='none'"
-            >
-
-            <div class="bill-title">
-              ใบแจ้งหนี้ค่าน้ำปุณย์ศิริ
-            </div>
-
-            <div class="bill-subtitle">
-              ${escapeHtml(
-                settings.address || ""
-              )}
-            </div>
-
-          </div>
-
-
-          <div class="bill-row">
-            <span>บ้าน</span>
-            <strong>
-              ${escapeHtml(
-                bill.houses?.house_number || "-"
-              )}
-            </strong>
-          </div>
-
-
-          <div class="bill-row">
-            <span>ผู้ใช้น้ำ</span>
-            <strong>
-              ${escapeHtml(
-                bill.houses?.owner_name || "-"
-              )}
-            </strong>
-          </div>
-
-
-          <div class="bill-row">
-            <span>วันที่จด</span>
-            <strong>
-              ${escapeHtml(bill.reading_date)}
-            </strong>
-          </div>
-
-
-          <div class="bill-row">
-            <span>เลขมิเตอร์ครั้งก่อน</span>
-            <strong>
-              ${bill.previous_meter}
-            </strong>
-          </div>
-
-
-          <div class="bill-row">
-            <span>เลขมิเตอร์ครั้งนี้</span>
-            <strong>
-              ${bill.current_meter}
-            </strong>
-          </div>
-
-
-          <div class="bill-row">
-            <span>จำนวนหน่วย</span>
-            <strong>
-              ${bill.units} หน่วย
-            </strong>
-          </div>
-
-
-          <div class="bill-row">
-            <span>
-              ค่าน้ำ
-              (${money(bill.water_rate)} บาท/หน่วย)
-            </span>
-
-            <strong>
-              ${money(bill.water_charge)} บาท
-            </strong>
-          </div>
-
-
-          <div class="bill-row">
-
-            <span>
-              ค่าบำรุงมิเตอร์
-            </span>
-
-            <strong>
-              ${money(bill.meter_maintenance)} บาท
-            </strong>
-
-          </div>
-
-
-          <div class="bill-row bill-total">
-
-            <span>
-              รวมทั้งสิ้น
-            </span>
-
-            <strong>
-              ${money(bill.total)} บาท
-            </strong>
-
-          </div>
-
-
-          <div class="payment-box">
-
-            <h3>💳 ช่องทางการชำระเงิน</h3>
-
-            <div class="payment-line">
-              <strong>ธนาคาร:</strong>
-              ${escapeHtml(settings.bank || "-")}
-            </div>
-
-            <div class="payment-line">
-              <strong>เลขบัญชี:</strong>
-              ${escapeHtml(settings.account_number || "-")}
-            </div>
-
-            <div class="payment-line">
-              <strong>ชื่อบัญชี:</strong>
-              ${escapeHtml(settings.account_name || "-")}
-            </div>
-
-            <div class="payment-line">
-              <strong>LINE ID:</strong>
-              ${escapeHtml(settings.line_id || "-")}
-            </div>
-
-            <div class="payment-line"
-                 style="margin-top:8px;">
-              ${escapeHtml(settings.payment_note || "")}
-            </div>
-
-          </div>
-
-
-          <div style="text-align:center;margin-top:18px;">
-
-            ${
-              bill.paid
-              ?
-              `<span class="status status-paid">
-                ชำระเงินแล้ว
-              </span>`
-              :
-              `<span class="status status-unpaid">
-                ยังไม่ได้ชำระเงิน
-              </span>`
-            }
-
-          </div>
-
-
-        </div>
-
-
-        <div class="button-row no-print"
-             style="margin-top:15px;">
-
-          <button
-            class="btn btn-primary"
-            onclick="window.print()"
-          >
-            🖨️ พิมพ์ / บันทึก PDF
-          </button>
-
-          <button
-            class="btn btn-secondary"
-            onclick="editBill('${bill.id}')"
-          >
-            ✏️ แก้ไขใบแจ้งหนี้
-          </button>
-
-        </div>
-
-      </div>
-
-    `;
-
-
-    document.getElementById("bill-view-container")
-      .innerHTML = html;
-
-
-    showPage("bill-view");
-
-  }
-
-
-  /* =====================================================
-     EDIT BILL
-  ====================================================== */
-
-  async function editBill(id) {
-
-    const bill =
-      bills.find(b => b.id === id);
-
-
-    if (!bill) return;
-
-
-    const newDate =
-      prompt(
-        "วันที่จด (YYYY-MM-DD)",
-        bill.reading_date
-      );
-
-
-    if (newDate === null) return;
-
-
-    const newPrevious =
-      prompt(
-        "เลขมิเตอร์ครั้งก่อน",
-        bill.previous_meter
-      );
-
-
-    if (newPrevious === null) return;
-
-
-    const newCurrent =
-      prompt(
-        "เลขมิเตอร์ครั้งนี้",
-        bill.current_meter
-      );
-
-
-    if (newCurrent === null) return;
-
-
-    const previous =
-      Number(newPrevious);
-
-
-    const current =
-      Number(newCurrent);
-
-
-    if (
-      Number.isNaN(previous) ||
-      Number.isNaN(current) ||
-      previous < 0 ||
-      previous > 9999 ||
-      current < 0 ||
-      current > 9999
-    ) {
-
-      showToast("เลขมิเตอร์ไม่ถูกต้อง");
-
-      return;
-    }
-
-
-    const units =
-      calculateUnits(previous, current);
-
-
-    const rate =
-      Number(bill.water_rate ?? settings.water_rate ?? 6);
-
-
-    const maintenance =
-      Number(
-        bill.meter_maintenance ??
-        settings.meter_maintenance ??
-        5
-      );
-
-
-    const waterCharge =
-      units * rate;
-
-
-    const total =
-      waterCharge + maintenance;
-
-
-    const { error } =
-      await supabaseClient
-        .from("bills")
-        .update({
-
-          billing_month:
-            newDate.substring(0, 7),
-
-          reading_date:
-            newDate,
-
-          previous_meter:
-            previous,
-
-          current_meter:
-            current,
-
-          units:
-            units,
-
-          water_charge:
-            waterCharge,
-
-          total:
-            total,
-
-          updated_at:
-            new Date().toISOString()
-
-        })
-        .eq("id", id);
-
-
-    if (error) {
-
-      console.error(error);
-
-      showToast("แก้ไขใบแจ้งหนี้ไม่สำเร็จ");
-
-      return;
-    }
-
-
-    /* UPDATE RELATED READING */
-
-    if (bill.reading_id) {
-
-      await supabaseClient
-        .from("water_readings")
-        .update({
-
-          reading_date:
-            newDate,
-
-          previous_meter:
-            previous,
-
-          current_meter:
-            current,
-
-          units:
-            units,
-
-          updated_at:
-            new Date().toISOString()
-
-        })
-        .eq("id", bill.reading_id);
-
-    }
-
-
-    /* UPDATE HOUSE CURRENT METER */
-
+  /* -----------------------------------------
+     UPDATE HOUSE
+  ------------------------------------------ */
+
+  const {
+    error: houseError
+  } =
     await supabaseClient
       .from("houses")
       .update({
@@ -2829,93 +3194,1271 @@
           new Date().toISOString()
 
       })
-      .eq("id", bill.house_id);
+      .eq(
+        "id",
+        houseId
+      );
 
 
-    showToast("แก้ไขใบแจ้งหนี้แล้ว");
+  if (houseError) {
 
-    loadBills();
+    console.error(
+      houseError
+    );
+
+    showToast(
+      "บันทึกมิเตอร์แล้ว แต่แก้เลขบ้านไม่สำเร็จ"
+    );
+
+    return;
 
   }
 
 
-  /* =====================================================
-     PAID / UNPAID
-  ====================================================== */
+  /* -----------------------------------------
+     CREATE BILL
+  ------------------------------------------ */
 
-  async function togglePaid(id) {
-
-    const bill =
-      bills.find(b => b.id === id);
-
-
-    if (!bill) return;
+  const billingMonth =
+    readingDate.substring(
+      0,
+      7
+    );
 
 
-    const newPaid =
-      !bill.paid;
+  const billPayload = {
+
+    house_id:
+      houseId,
+
+    reading_id:
+      readingData.id,
+
+    billing_month:
+      billingMonth,
+
+    reading_date:
+      readingDate,
+
+    previous_meter:
+      previous,
+
+    current_meter:
+      current,
+
+    units:
+      units,
+
+    water_rate:
+      rate,
+
+    water_charge:
+      waterCharge,
+
+    meter_maintenance:
+      maintenance,
+
+    total:
+      total,
+
+    paid:
+      false
+
+  };
 
 
-    const { error } =
+  const {
+    error: billError
+  } =
+    await supabaseClient
+      .from("bills")
+      .insert(
+        billPayload
+      );
+
+
+  if (billError) {
+
+    console.error(
+      billError
+    );
+
+    showToast(
+      "บันทึกมิเตอร์แล้ว แต่สร้างใบแจ้งหนี้ไม่สำเร็จ"
+    );
+
+    return;
+
+  }
+
+
+  showToast(
+    "บันทึกมิเตอร์และสร้างใบแจ้งหนี้แล้ว"
+  );
+
+
+  document.getElementById(
+    "current-meter"
+  ).value =
+    "";
+
+
+  calculateReading();
+
+
+  await loadDashboard();
+
+}
+
+
+/* =====================================================
+   HISTORY
+===================================================== */
+
+async function loadHistory() {
+
+  const container =
+    document.getElementById(
+      "history-list"
+    );
+
+
+  container.innerHTML =
+    `
+      <div class="loading">
+        กำลังโหลด...
+      </div>
+    `;
+
+
+  const {
+    data,
+    error
+  } =
+    await supabaseClient
+      .from("water_readings")
+      .select(`
+        *,
+        houses (
+          house_number,
+          owner_name
+        )
+      `)
+      .order(
+        "reading_date",
+        {
+          ascending: false
+        }
+      );
+
+
+  if (error) {
+
+    console.error(error);
+
+    container.innerHTML =
+      `
+        <div class="empty">
+          โหลดข้อมูลไม่สำเร็จ
+        </div>
+      `;
+
+    return;
+
+  }
+
+
+  readings =
+    data || [];
+
+
+  if (!readings.length) {
+
+    container.innerHTML =
+      `
+        <div class="empty">
+          ยังไม่มีประวัติการจด
+        </div>
+      `;
+
+    return;
+
+  }
+
+
+  container.innerHTML = `
+
+    <div class="table-wrap">
+
+      <table>
+
+        <thead>
+
+          <tr>
+
+            <th>วันที่</th>
+            <th>บ้าน</th>
+            <th>ก่อน</th>
+            <th>ปัจจุบัน</th>
+            <th>หน่วย</th>
+            <th>แก้ไข</th>
+
+          </tr>
+
+        </thead>
+
+
+        <tbody>
+
+          ${readings
+            .map(
+              r => `
+
+              <tr>
+
+                <td>
+                  ${escapeHtml(
+                    r.reading_date
+                  )}
+                </td>
+
+                <td>
+                  ${escapeHtml(
+                    r.houses?.house_number || "-"
+                  )}
+                </td>
+
+                <td>
+                  ${r.previous_meter}
+                </td>
+
+                <td>
+                  ${r.current_meter}
+                </td>
+
+                <td>
+                  ${r.units}
+                </td>
+
+                <td>
+
+                  <button
+                    class="small-btn btn-primary"
+                    onclick="editReading('${r.id}')"
+                  >
+                    แก้ไข
+                  </button>
+
+                </td>
+
+              </tr>
+
+            `
+            )
+            .join("")}
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =====================================================
+   EDIT READING
+===================================================== */
+
+async function editReading(id) {
+
+  const reading =
+    readings.find(
+      r => r.id === id
+    );
+
+
+  if (!reading) return;
+
+
+  const newDate =
+    prompt(
+      "วันที่จด (YYYY-MM-DD)",
+      reading.reading_date
+    );
+
+
+  if (newDate === null) return;
+
+
+  const newCurrent =
+    prompt(
+      "เลขมิเตอร์ปัจจุบัน",
+      reading.current_meter
+    );
+
+
+  if (newCurrent === null) return;
+
+
+  const current =
+    Number(newCurrent);
+
+
+  if (
+    Number.isNaN(current) ||
+    current < 0 ||
+    current > 9999
+  ) {
+
+    showToast(
+      "เลขมิเตอร์ไม่ถูกต้อง"
+    );
+
+    return;
+
+  }
+
+
+  const previous =
+    Number(
+      reading.previous_meter
+    );
+
+
+  const units =
+    calculateUnits(
+      previous,
+      current
+    );
+
+
+  const rate =
+    Number(
+      settings.water_rate ?? 6
+    );
+
+
+  const maintenance =
+    Number(
+      settings.meter_maintenance ?? 5
+    );
+
+
+  const waterCharge =
+    units * rate;
+
+
+  const total =
+    waterCharge +
+    maintenance;
+
+
+  const {
+    error: readingError
+  } =
+    await supabaseClient
+      .from("water_readings")
+      .update({
+
+        reading_date:
+          newDate,
+
+        current_meter:
+          current,
+
+        units:
+          units,
+
+        updated_at:
+          new Date().toISOString()
+
+      })
+      .eq(
+        "id",
+        id
+      );
+
+
+  if (readingError) {
+
+    console.error(
+      readingError
+    );
+
+    showToast(
+      "แก้ไขการจดไม่สำเร็จ"
+    );
+
+    return;
+
+  }
+
+
+  const {
+    error: houseError
+  } =
+    await supabaseClient
+      .from("houses")
+      .update({
+
+        current_meter:
+          current,
+
+        updated_at:
+          new Date().toISOString()
+
+      })
+      .eq(
+        "id",
+        reading.house_id
+      );
+
+
+  if (houseError) {
+
+    console.error(
+      houseError
+    );
+
+    showToast(
+      "แก้ไขรายการแล้ว แต่แก้เลขบ้านไม่สำเร็จ"
+    );
+
+    return;
+
+  }
+
+
+  const {
+    error: billError
+  } =
+    await supabaseClient
+      .from("bills")
+      .update({
+
+        billing_month:
+          newDate.substring(
+            0,
+            7
+          ),
+
+        reading_date:
+          newDate,
+
+        current_meter:
+          current,
+
+        units:
+          units,
+
+        water_charge:
+          waterCharge,
+
+        total:
+          total,
+
+        updated_at:
+          new Date().toISOString()
+
+      })
+      .eq(
+        "reading_id",
+        id
+      );
+
+
+  if (billError) {
+
+    console.error(
+      billError
+    );
+
+    showToast(
+      "แก้ไขการจดแล้ว แต่แก้ใบแจ้งหนี้ไม่สำเร็จ"
+    );
+
+    return;
+
+  }
+
+
+  showToast(
+    "แก้ไขข้อมูลเรียบร้อยแล้ว"
+  );
+
+
+  await loadHistory();
+
+  await loadDashboard();
+
+}
+
+
+/* =====================================================
+   BILLS
+===================================================== */
+
+async function loadBills() {
+
+  const container =
+    document.getElementById(
+      "bill-list"
+    );
+
+
+  container.innerHTML =
+    `
+      <div class="loading">
+        กำลังโหลด...
+      </div>
+    `;
+
+
+  const {
+    data,
+    error
+  } =
+    await supabaseClient
+      .from("bills")
+      .select(`
+        *,
+        houses (
+          house_number,
+          owner_name
+        )
+      `)
+      .order(
+        "reading_date",
+        {
+          ascending: false
+        }
+      );
+
+
+  if (error) {
+
+    console.error(error);
+
+    container.innerHTML =
+      `
+        <div class="empty">
+          โหลดใบแจ้งหนี้ไม่สำเร็จ
+        </div>
+      `;
+
+    return;
+
+  }
+
+
+  bills =
+    data || [];
+
+
+  if (!bills.length) {
+
+    container.innerHTML =
+      `
+        <div class="empty">
+          ยังไม่มีใบแจ้งหนี้
+        </div>
+      `;
+
+    return;
+
+  }
+
+
+  container.innerHTML = `
+
+    ${bills
+      .map(
+        bill => `
+
+        <div class="house-item">
+
+
+          <div class="house-top">
+
+            <div>
+
+              <div class="house-number">
+                ใบแจ้งหนี้ค่าน้ำปุณย์ศิริ
+              </div>
+
+
+              <div class="house-owner">
+
+                บ้าน ${escapeHtml(
+                  bill.houses?.house_number || "-"
+                )}
+
+                —
+
+                ${escapeHtml(
+                  bill.houses?.owner_name || "-"
+                )}
+
+              </div>
+
+            </div>
+
+
+            <div>
+
+              ${
+                bill.paid
+
+                  ? `
+
+                    <span class="status status-paid">
+                      ชำระแล้ว
+                    </span>
+
+                  `
+
+                  : `
+
+                    <span class="status status-unpaid">
+                      ยังไม่ชำระ
+                    </span>
+
+                  `
+              }
+
+            </div>
+
+
+          </div>
+
+
+          <div class="house-meter">
+
+            วันที่:
+
+            <strong>
+              ${escapeHtml(
+                bill.reading_date
+              )}
+            </strong>
+
+
+            <br>
+
+
+            ใช้:
+
+            <strong>
+              ${bill.units}
+            </strong>
+
+            หน่วย
+
+
+            <br>
+
+
+            รวม:
+
+            <strong>
+              ${money(
+                bill.total
+              )}
+            </strong>
+
+            บาท
+
+          </div>
+
+
+          <div class="house-actions">
+
+
+            <button
+              class="small-btn btn-primary"
+              onclick="viewBill('${bill.id}')"
+            >
+              ดูใบแจ้งหนี้
+            </button>
+
+
+            <button
+              class="small-btn btn-secondary"
+              onclick="editBill('${bill.id}')"
+            >
+              แก้ไข
+            </button>
+
+
+            <button
+              class="
+                small-btn
+                ${
+                  bill.paid
+                    ? "btn-secondary"
+                    : "btn-success"
+                }
+              "
+              onclick="togglePaid('${bill.id}')"
+            >
+
+              ${
+                bill.paid
+                  ? "ยกเลิกชำระ"
+                  : "ทำเครื่องหมายว่าชำระแล้ว"
+              }
+
+            </button>
+
+
+          </div>
+
+
+        </div>
+
+      `
+      )
+      .join("")}
+
+  `;
+
+}
+
+
+/* =====================================================
+   VIEW BILL
+===================================================== */
+
+async function viewBill(id) {
+
+  const bill =
+    bills.find(
+      b => b.id === id
+    );
+
+
+  if (!bill) return;
+
+
+  await loadSettings();
+
+
+  const html = `
+
+    <div class="card">
+
+
+      <div class="bill">
+
+
+        <div class="bill-header">
+
+
+          <img
+            src="./logo.PNG"
+            class="bill-logo"
+            alt="Logo"
+            onerror="this.style.display='none'"
+          >
+
+
+          <div class="bill-title">
+            ใบแจ้งหนี้ค่าน้ำปุณย์ศิริ
+          </div>
+
+
+          <div class="bill-subtitle">
+
+            ${escapeHtml(
+              settings.address || ""
+            )}
+
+          </div>
+
+
+        </div>
+
+
+        <div class="bill-row">
+
+          <span>
+            บ้าน
+          </span>
+
+          <strong>
+            ${escapeHtml(
+              bill.houses?.house_number || "-"
+            )}
+          </strong>
+
+        </div>
+
+
+        <div class="bill-row">
+
+          <span>
+            ผู้ใช้น้ำ
+          </span>
+
+          <strong>
+            ${escapeHtml(
+              bill.houses?.owner_name || "-"
+            )}
+          </strong>
+
+        </div>
+
+
+        <div class="bill-row">
+
+          <span>
+            วันที่จด
+          </span>
+
+          <strong>
+            ${escapeHtml(
+              bill.reading_date
+            )}
+          </strong>
+
+        </div>
+
+
+        <div class="bill-row">
+
+          <span>
+            เลขมิเตอร์ครั้งก่อน
+          </span>
+
+          <strong>
+            ${bill.previous_meter}
+          </strong>
+
+        </div>
+
+
+        <div class="bill-row">
+
+          <span>
+            เลขมิเตอร์ครั้งนี้
+          </span>
+
+          <strong>
+            ${bill.current_meter}
+          </strong>
+
+        </div>
+
+
+        <div class="bill-row">
+
+          <span>
+            จำนวนหน่วย
+          </span>
+
+          <strong>
+            ${bill.units} หน่วย
+          </strong>
+
+        </div>
+
+
+        <div class="bill-row">
+
+          <span>
+            ค่าน้ำ
+            (${money(
+              bill.water_rate
+            )} บาท/หน่วย)
+          </span>
+
+          <strong>
+            ${money(
+              bill.water_charge
+            )} บาท
+          </strong>
+
+        </div>
+
+
+        <div class="bill-row">
+
+          <span>
+            ค่าบำรุงมิเตอร์
+          </span>
+
+          <strong>
+            ${money(
+              bill.meter_maintenance
+            )} บาท
+          </strong>
+
+        </div>
+
+
+        <div class="bill-row bill-total">
+
+          <span>
+            รวมทั้งสิ้น
+          </span>
+
+          <strong>
+            ${money(
+              bill.total
+            )} บาท
+          </strong>
+
+        </div>
+
+
+        <div class="payment-box">
+
+
+          <h3>
+            💳 ช่องทางการชำระเงิน
+          </h3>
+
+
+          <div class="payment-line">
+
+            <strong>
+              ธนาคาร:
+            </strong>
+
+            ${escapeHtml(
+              settings.bank || "-"
+            )}
+
+          </div>
+
+
+          <div class="payment-line">
+
+            <strong>
+              เลขบัญชี:
+            </strong>
+
+            ${escapeHtml(
+              settings.account_number || "-"
+            )}
+
+          </div>
+
+
+          <div class="payment-line">
+
+            <strong>
+              ชื่อบัญชี:
+            </strong>
+
+            ${escapeHtml(
+              settings.account_name || "-"
+            )}
+
+          </div>
+
+
+          <div class="payment-line">
+
+            <strong>
+              LINE ID:
+            </strong>
+
+            ${escapeHtml(
+              settings.line_id || "-"
+            )}
+
+          </div>
+
+
+          <div
+            class="payment-line"
+            style="margin-top:8px;"
+          >
+
+            ${escapeHtml(
+              settings.payment_note || ""
+            )}
+
+          </div>
+
+
+        </div>
+
+
+        <div
+          style="
+            text-align:center;
+            margin-top:18px;
+          "
+        >
+
+          ${
+            bill.paid
+
+              ? `
+
+                <span class="status status-paid">
+                  ชำระเงินแล้ว
+                </span>
+
+              `
+
+              : `
+
+                <span class="status status-unpaid">
+                  ยังไม่ได้ชำระเงิน
+                </span>
+
+              `
+          }
+
+        </div>
+
+
+      </div>
+
+
+      <div
+        class="button-row no-print"
+        style="margin-top:15px;"
+      >
+
+
+        <button
+          class="btn btn-primary"
+          onclick="window.print()"
+        >
+          🖨️ พิมพ์ / บันทึก PDF
+        </button>
+
+
+        <button
+          class="btn btn-secondary"
+          onclick="editBill('${bill.id}')"
+        >
+          ✏️ แก้ไขใบแจ้งหนี้
+        </button>
+
+
+      </div>
+
+
+    </div>
+
+  `;
+
+
+  document.getElementById(
+    "bill-view-container"
+  ).innerHTML =
+    html;
+
+
+  showPage(
+    "bill-view"
+  );
+
+}
+
+
+/* =====================================================
+   EDIT BILL
+===================================================== */
+
+async function editBill(id) {
+
+  const bill =
+    bills.find(
+      b => b.id === id
+    );
+
+
+  if (!bill) return;
+
+
+  const newDate =
+    prompt(
+      "วันที่จด (YYYY-MM-DD)",
+      bill.reading_date
+    );
+
+
+  if (newDate === null) return;
+
+
+  const newPrevious =
+    prompt(
+      "เลขมิเตอร์ครั้งก่อน",
+      bill.previous_meter
+    );
+
+
+  if (newPrevious === null) return;
+
+
+  const newCurrent =
+    prompt(
+      "เลขมิเตอร์ครั้งนี้",
+      bill.current_meter
+    );
+
+
+  if (newCurrent === null) return;
+
+
+  const previous =
+    Number(newPrevious);
+
+
+  const current =
+    Number(newCurrent);
+
+
+  if (
+    Number.isNaN(previous) ||
+    Number.isNaN(current) ||
+    previous < 0 ||
+    previous > 9999 ||
+    current < 0 ||
+    current > 9999
+  ) {
+
+    showToast(
+      "เลขมิเตอร์ไม่ถูกต้อง"
+    );
+
+    return;
+
+  }
+
+
+  const units =
+    calculateUnits(
+      previous,
+      current
+    );
+
+
+  const rate =
+    Number(
+      bill.water_rate ??
+      settings.water_rate ??
+      6
+    );
+
+
+  const maintenance =
+    Number(
+      bill.meter_maintenance ??
+      settings.meter_maintenance ??
+      5
+    );
+
+
+  const waterCharge =
+    units * rate;
+
+
+  const total =
+    waterCharge +
+    maintenance;
+
+
+  const {
+    error
+  } =
+    await supabaseClient
+      .from("bills")
+      .update({
+
+        billing_month:
+          newDate.substring(
+            0,
+            7
+          ),
+
+        reading_date:
+          newDate,
+
+        previous_meter:
+          previous,
+
+        current_meter:
+          current,
+
+        units:
+          units,
+
+        water_charge:
+          waterCharge,
+
+        total:
+          total,
+
+        updated_at:
+          new Date().toISOString()
+
+      })
+      .eq(
+        "id",
+        id
+      );
+
+
+  if (error) {
+
+    console.error(error);
+
+    showToast(
+      "แก้ไขใบแจ้งหนี้ไม่สำเร็จ"
+    );
+
+    return;
+
+  }
+
+
+  /* UPDATE RELATED READING */
+
+  if (bill.reading_id) {
+
+    const {
+      error: readingError
+    } =
       await supabaseClient
-        .from("bills")
+        .from("water_readings")
         .update({
 
-          paid:
-            newPaid,
+          reading_date:
+            newDate,
 
-          paid_date:
-            newPaid
-              ? new Date().toISOString()
-              : null,
+          previous_meter:
+            previous,
+
+          current_meter:
+            current,
+
+          units:
+            units,
 
           updated_at:
             new Date().toISOString()
 
         })
-        .eq("id", id);
+        .eq(
+          "id",
+          bill.reading_id
+        );
 
 
-    if (error) {
+    if (readingError) {
 
-      console.error(error);
-
-      showToast("เปลี่ยนสถานะไม่สำเร็จ");
-
-      return;
-    }
-
-
-    showToast(
-      newPaid
-        ? "บันทึกว่าชำระแล้ว"
-        : "ยกเลิกสถานะชำระแล้ว"
-    );
-
-
-    loadBills();
-
-  }
-
-
-  /* =====================================================
-     INITIALIZE
-  ====================================================== */
-
-  async function initialize() {
-
-    try {
-
-      await loadSettings();
-
-      await loadHouses();
-
-    } catch (error) {
-
-      console.error(error);
-
-      showToast(
-        "ไม่สามารถเชื่อมต่อฐานข้อมูลได้"
+      console.error(
+        readingError
       );
 
     }
@@ -2923,7 +4466,159 @@
   }
 
 
-  initialize();
+  /* UPDATE HOUSE */
+
+  const {
+    error: houseError
+  } =
+    await supabaseClient
+      .from("houses")
+      .update({
+
+        current_meter:
+          current,
+
+        updated_at:
+          new Date().toISOString()
+
+      })
+      .eq(
+        "id",
+        bill.house_id
+      );
+
+
+  if (houseError) {
+
+    console.error(
+      houseError
+    );
+
+  }
+
+
+  showToast(
+    "แก้ไขใบแจ้งหนี้แล้ว"
+  );
+
+
+  await loadBills();
+
+  await loadDashboard();
+
+}
+
+
+/* =====================================================
+   PAID / UNPAID
+===================================================== */
+
+async function togglePaid(id) {
+
+  const bill =
+    bills.find(
+      b => b.id === id
+    );
+
+
+  if (!bill) return;
+
+
+  const newPaid =
+    !bill.paid;
+
+
+  const {
+    error
+  } =
+    await supabaseClient
+      .from("bills")
+      .update({
+
+        paid:
+          newPaid,
+
+        paid_date:
+          newPaid
+            ? new Date().toISOString()
+            : null,
+
+        updated_at:
+          new Date().toISOString()
+
+      })
+      .eq(
+        "id",
+        id
+      );
+
+
+  if (error) {
+
+    console.error(error);
+
+    showToast(
+      "เปลี่ยนสถานะไม่สำเร็จ"
+    );
+
+    return;
+
+  }
+
+
+  showToast(
+
+    newPaid
+      ? "บันทึกว่าชำระแล้ว"
+      : "ยกเลิกสถานะชำระแล้ว"
+
+  );
+
+
+  await loadBills();
+
+  await loadDashboard();
+
+}
+
+
+/* =====================================================
+   INITIALIZE
+===================================================== */
+
+async function initialize() {
+
+  try {
+
+
+    await loadSettings();
+
+
+    await loadHouses();
+
+
+    await loadDashboard();
+
+
+  }
+  catch (error) {
+
+    console.error(
+      error
+    );
+
+
+    showToast(
+      "ไม่สามารถเชื่อมต่อฐานข้อมูลได้"
+    );
+
+  }
+
+}
+
+
+initialize();
+
 
 </script>
 
