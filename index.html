@@ -6103,221 +6103,131 @@ async function createJpgInvoice(
 
 async function saveBillAsJPG(id){
 
-  const bill =
-    bills.find(
-      b => b.id === id
-    );
-
+  const bill = bills.find(b => b.id === id);
 
   if(!bill){
-
-    toast(
-      "ไม่พบใบแจ้งหนี้"
-    );
-
+    toast("ไม่พบใบแจ้งหนี้");
     return;
-
   }
-
 
   let house = null;
 
-
-  if(bill.house_id){
-
-    const result =
-      await db
-        .from("houses")
-        .select(
-          "*"
-        )
-        .eq(
-          "id",
-          bill.house_id
-        )
-        .maybeSingle();
-
-
-    house =
-      result.data || null;
-
-  }
-
-
   try{
 
-    toast(
-      "กำลังสร้าง JPG..."
-    );
+    if(bill.house_id){
+      const result = await db
+        .from("houses")
+        .select("*")
+        .eq("id", bill.house_id)
+        .maybeSingle();
 
-
-    const dataUrl =
-      await createJpgInvoice(
-        bill,
-        house
-      );
-
-
-    const response =
-      await fetch(
-        dataUrl
-      );
-
-
-    const blob =
-      await response.blob();
-
-
-    const filename =
-      `ใบแจ้งหนี้_${
-        house?.house_number ||
-        "บ้าน"
-      }_${
-        String(
-          bill.reading_date ||
-          todayLocal()
-        )
-        .replaceAll("-","")
-      }.jpg`;
-
-
-    const file =
-      new File(
-        [blob],
-        filename,
-        {
-          type:
-            "image/jpeg"
-        }
-      );
-
-
-    /*
-      iPhone/iOS:
-      Web Share API จะเปิด Share Sheet
-      จากนั้นเลือก "บันทึกรูปภาพ"
-    */
-
-    if(
-      navigator.share &&
-      navigator.canShare &&
-      navigator.canShare({
-        files:[file]
-      })
-    ){
-
-      await navigator.share({
-
-        files:[
-          file
-        ],
-
-        title:
-          "ใบแจ้งหนี้ค่าน้ำ"
-
-      });
-
-
-      toast(
-        "เปิดหน้าบันทึกรูปภาพแล้ว"
-      );
-
-
-      return;
-
+      if(result.error) throw result.error;
+      house = result.data || null;
     }
 
+    toast("กำลังสร้าง JPG...");
+
+    const dataUrl = await createJpgInvoice(bill, house);
+
+    if(!dataUrl || !dataUrl.startsWith("data:image/jpeg")){
+      throw new Error("ไม่สามารถสร้างไฟล์ JPG ได้");
+    }
+
+    const response = await fetch(dataUrl);
+    const blob = await response.blob();
+
+    if(!blob || blob.size === 0){
+      throw new Error("ไฟล์ JPG ว่างเปล่า");
+    }
+
+    const houseNumber = String(house?.house_number || "บ้าน")
+      .replace(/[\\/:*?"<>|]/g, "-");
+
+    const readingDate = String(
+      bill.reading_date || todayLocal()
+    ).replace(/-/g, "");
+
+    const filename = `ใบแจ้งหนี้_${houseNumber}_${readingDate}.jpg`;
+
+    const file = new File(
+      [blob],
+      filename,
+      { type:"image/jpeg", lastModified:Date.now() }
+    );
 
     /*
-      Fallback:
-      เปิด JPG ให้ผู้ใช้กดแชร์/บันทึกเอง
+      iPhone / iPad:
+      ใช้ Web Share API พร้อมไฟล์ JPG
+      เพื่อเปิด Share Sheet ของ iOS
+      จากนั้นผู้ใช้แตะ "บันทึกรูปภาพ"
+      ไฟล์จะเข้าแอป รูปภาพ (Photos)
     */
+    if(
+      typeof navigator !== "undefined" &&
+      typeof navigator.share === "function"
+    ){
 
-    const url =
-      URL.createObjectURL(
-        blob
-      );
+      let canShareFile = true;
 
+      if(typeof navigator.canShare === "function"){
+        canShareFile = navigator.canShare({files:[file]});
+      }
 
-    const a =
-      document.createElement(
-        "a"
-      );
+      if(canShareFile){
+        try{
+          await navigator.share({
+            files:[file],
+            title:"ใบแจ้งหนี้ค่าน้ำ",
+            text:"ใบแจ้งหนี้ค่าน้ำ"
+          });
 
+          toast("บันทึก JPG เรียบร้อยแล้ว");
+          return;
 
-    a.href =
-      url;
+        }catch(error){
 
+          /* ผู้ใช้กดปิด Share Sheet = ไม่ใช่ข้อผิดพลาด */
+          if(error?.name === "AbortError") return;
 
-    a.download =
-      filename;
+          console.warn("Share Sheet error:", error);
+        }
+      }
+    }
 
+    /*
+      Fallback สำหรับ browser ที่ไม่รองรับการแชร์ไฟล์
+      เปิดไฟล์ JPG ในแท็บใหม่ให้ผู้ใช้กด Share
+      แล้วเลือก "บันทึกรูปภาพ"
+    */
+    const url = URL.createObjectURL(blob);
 
-    a.target =
-      "_blank";
+    const opened = window.open(url, "_blank");
 
+    if(!opened){
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    }
 
-    document.body.appendChild(
-      a
-    );
+    setTimeout(() => URL.revokeObjectURL(url), 60000);
 
-
-    a.click();
-
-
-    a.remove();
-
-
-    setTimeout(
-      () =>
-        URL.revokeObjectURL(
-          url
-        ),
-      10000
-    );
-
-
-    toast(
-      "สร้างไฟล์ JPG แล้ว"
-    );
-
+    toast("เปิด JPG แล้ว กดแชร์ → บันทึกรูปภาพ");
 
   }catch(error){
 
-    console.error(
-      "JPG ERROR:",
-      error
-    );
+    console.error("JPG ERROR:", error);
 
-
-    /*
-      ผู้ใช้กดยกเลิก Share Sheet
-      ไม่ถือว่าเป็น Error ของระบบ
-    */
-
-    if(
-      error &&
-      error.name ===
-      "AbortError"
-    ){
-
-      return;
-
-    }
-
+    if(error?.name === "AbortError") return;
 
     toast(
       "สร้าง JPG ไม่สำเร็จ: " +
-      (
-        error?.message ||
-        "ไม่ทราบสาเหตุ"
-      )
+      (error?.message || "ไม่ทราบสาเหตุ")
     );
-
   }
-
 }
-
 
 /* =====================================================
    DASHBOARD
