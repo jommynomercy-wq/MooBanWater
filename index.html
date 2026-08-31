@@ -3,283 +3,342 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+
 <meta name="theme-color" content="#1677ff">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="ค่าน้ำหมู่บ้าน">
+
 <link rel="manifest" href="./manifest.json">
 
 <title>ค่าน้ำหมู่บ้าน</title>
 
 <style>
 :root{
---blue:#1677ff;
---bg:#f4f7fb;
---card:#fff;
---text:#182230;
---muted:#667085;
---line:#e5e7eb;
---red:#d92d20;
---green:#16834b
+  --blue:#1677ff;
+  --bg:#f4f7fb;
+  --card:#fff;
+  --text:#182230;
+  --muted:#667085;
+  --line:#e5e7eb;
+  --red:#d92d20;
+  --green:#16834b;
 }
 
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box
+}
 
 html,body{
-margin:0;
-background:var(--bg);
-color:var(--text);
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans Thai",sans-serif
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,
+  "Segoe UI","Noto Sans Thai",sans-serif
 }
 
-button,input,select{font:inherit}
+body{
+  min-height:100vh;
+}
+
+button,input,select{
+  font:inherit
+}
 
 button{
-border:0;
-border-radius:12px;
-padding:12px 14px;
-font-weight:700;
-cursor:pointer
+  border:0;
+  border-radius:12px;
+  padding:12px 14px;
+  font-weight:700;
+  cursor:pointer
 }
 
-.primary{background:var(--blue);color:#fff}
-.soft{background:#eaf2ff;color:#145dcc}
-.danger{background:#fff0f0;color:var(--red)}
-.ghost{background:#fff;border:1px solid var(--line)}
+.primary{
+  background:var(--blue);
+  color:#fff
+}
+
+.soft{
+  background:#eaf2ff;
+  color:#145dcc
+}
+
+.danger{
+  background:#fff0f0;
+  color:var(--red)
+}
+
+.ghost{
+  background:#fff;
+  border:1px solid var(--line);
+  color:var(--text)
+}
 
 header{
-background:var(--blue);
-color:#fff;
-padding:20px 16px 18px;
-position:sticky;
-top:0;
-z-index:5
+  background:var(--blue);
+  color:#fff;
+  padding:20px 16px 18px;
+  position:sticky;
+  top:0;
+  z-index:5
 }
 
-header h1{margin:0;font-size:24px}
-header small{opacity:.86}
+header h1{
+  margin:0;
+  font-size:24px
+}
+
+header small{
+  opacity:.86
+}
 
 main{
-max-width:780px;
-margin:auto;
-padding:14px 14px 92px
+  max-width:780px;
+  margin:auto;
+  padding:14px 14px 100px
 }
 
 .grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px
 }
 
 .card{
-background:var(--card);
-border-radius:16px;
-padding:15px;
-box-shadow:0 4px 18px #1822300d
+  background:var(--card);
+  border-radius:16px;
+  padding:15px;
+  box-shadow:0 4px 18px #1822300d
 }
 
 .label{
-font-size:12px;
-color:var(--muted)
+  font-size:12px;
+  color:var(--muted)
 }
 
 .big{
-font-size:24px;
-font-weight:800;
-margin-top:4px
+  font-size:24px;
+  font-weight:800;
+  margin-top:4px
 }
 
-.section{margin-top:16px}
+.section{
+  margin-top:16px
+}
 
 .section h2{
-font-size:18px;
-margin:0 0 10px
+  font-size:18px;
+  margin:0 0 10px
 }
 
 .toolbar{
-display:flex;
-gap:8px;
-flex-wrap:wrap;
-margin:10px 0
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin:10px 0
 }
 
 input,select{
-width:100%;
-padding:12px;
-border:1px solid #d7dce5;
-border-radius:11px;
-background:#fff;
-outline:none
+  width:100%;
+  padding:12px;
+  border:1px solid #d7dce5;
+  border-radius:11px;
+  background:#fff;
+  outline:none
 }
 
 input:focus,select:focus{
-border-color:var(--blue)
+  border-color:var(--blue)
 }
 
 .row{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px
 }
 
 .muted{
-color:var(--muted);
-font-size:13px
+  color:var(--muted);
+  font-size:13px
 }
 
 .item{
-background:#fff;
-border:1px solid var(--line);
-border-radius:14px;
-padding:13px;
-margin:8px 0;
-display:flex;
-justify-content:space-between;
-gap:10px;
-align-items:center
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:13px;
+  margin:8px 0;
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  align-items:center
 }
 
 .pill{
-display:inline-block;
-font-size:12px;
-padding:5px 8px;
-border-radius:999px;
-background:#eaf7ef;
-color:var(--green);
-margin-top:5px
+  display:inline-block;
+  font-size:12px;
+  padding:5px 8px;
+  border-radius:999px;
+  background:#eaf7ef;
+  color:var(--green);
+  margin-top:5px
 }
 
 .pill.unpaid{
-background:#fff0f0;
-color:var(--red)
+  background:#fff0f0;
+  color:var(--red)
 }
 
-.right{text-align:right}
+.right{
+  text-align:right
+}
 
-.hidden{display:none!important}
+.hidden{
+  display:none!important
+}
 
 nav{
-position:fixed;
-left:0;
-right:0;
-bottom:0;
-background:#fff;
-border-top:1px solid var(--line);
-display:flex;
-justify-content:center;
-gap:3px;
-padding:7px 8px calc(7px + env(safe-area-inset-bottom));
-z-index:10
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  background:#fff;
+  border-top:1px solid var(--line);
+  display:flex;
+  justify-content:center;
+  gap:3px;
+  padding:7px 8px calc(7px + env(safe-area-inset-bottom));
+  z-index:10
 }
 
 nav button{
-background:#fff;
-color:var(--muted);
-padding:9px 10px;
-min-width:70px
+  background:#fff;
+  color:var(--muted);
+  padding:9px 10px;
+  min-width:70px
 }
 
 nav button.active{
-color:var(--blue);
-background:#eef5ff
+  color:var(--blue);
+  background:#eef5ff
 }
 
 .modal{
-position:fixed;
-inset:0;
-background:#0008;
-z-index:30;
-display:flex;
-align-items:flex-end
+  position:fixed;
+  inset:0;
+  background:#0008;
+  z-index:30;
+  display:flex;
+  align-items:flex-end
 }
 
 .sheet{
-background:#fff;
-width:100%;
-max-height:92vh;
-overflow:auto;
-border-radius:22px 22px 0 0;
-padding:20px;
-max-width:780px;
-margin:auto
-}
-
-.modalLogo{
-width:70px;
-height:70px;
-object-fit:contain;
-display:block;
-margin:0 auto 8px
-}
-
-.modalHeader{
-text-align:center;
-margin-bottom:14px
-}
-
-.modalHeader h2{
-margin:5px 0;
-font-size:21px
-}
-
-.modalHeader .muted{
-font-size:12px
+  background:#fff;
+  width:100%;
+  max-height:92vh;
+  overflow:auto;
+  border-radius:22px 22px 0 0;
+  padding:20px;
+  max-width:780px;
+  margin:auto
 }
 
 .actions{
-display:flex;
-gap:8px;
-flex-wrap:wrap
+  display:flex;
+  gap:8px
 }
 
 .actions>*{
-flex:1;
-min-width:120px
-}
-
-.backHome{
-background:#f2f4f7;
-color:#344054
+  flex:1
 }
 
 table{
-width:100%;
-border-collapse:collapse
+  width:100%;
+  border-collapse:collapse
 }
 
 td{
-padding:9px 0;
-border-bottom:1px solid #eee
+  padding:9px 0;
+  border-bottom:1px solid #eee
 }
 
 .logo{
-width:90px;
-max-height:70px;
-object-fit:contain;
-display:block;
-margin:0 auto 8px
+  width:110px;
+  max-height:90px;
+  object-fit:contain;
+  display:block;
+  margin:0 auto 10px
 }
 
-.center{text-align:center}
+.center{
+  text-align:center
+}
 
 .notice{
-padding:11px;
-border-radius:12px;
-background:#eef5ff;
-color:#145dcc;
-font-size:13px
+  padding:11px;
+  border-radius:12px;
+  background:#eef5ff;
+  color:#145dcc;
+  font-size:13px
 }
 
-.dateBox{
-background:#f8fafc;
-padding:12px;
-border-radius:12px;
-border:1px solid #e5e7eb
+.backbar{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom:12px
+}
+
+.backbar button{
+  padding:9px 12px
+}
+
+.form-note{
+  background:#f8fafc;
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:10px;
+  font-size:13px;
+  color:var(--muted);
+  margin-top:8px
+}
+
+.total-box{
+  background:#eef5ff;
+  border-radius:14px;
+  padding:15px;
+  margin-top:12px
+}
+
+.total-box .total{
+  font-size:24px;
+  font-weight:800;
+  color:var(--blue);
+  margin-top:5px
+}
+
+.bill-head{
+  text-align:center;
+  margin-bottom:18px
+}
+
+.bill-head h2{
+  margin:5px 0
+}
+
+.bill-head .title{
+  font-weight:800;
+  font-size:18px
 }
 
 @media(min-width:650px){
-.modal{align-items:center}
-.sheet{border-radius:20px}
+  .modal{
+    align-items:center
+  }
+
+  .sheet{
+    border-radius:20px
+  }
 }
 </style>
 </head>
@@ -287,10 +346,10 @@ border:1px solid #e5e7eb
 <body>
 
 <header>
-<h1>💧 ค่าน้ำหมู่บ้าน</h1>
-<small id="headerSub">
-6 บาท/หน่วย + ค่ารักษามาตร 5 บาท/เดือน
-</small>
+  <h1>💧 ค่าน้ำหมู่บ้าน</h1>
+  <small id="headerSub">
+    ปุณย์ศิริ • 6 บาท/หน่วย + 5 บาท/เดือน
+  </small>
 </header>
 
 <main>
@@ -298,60 +357,56 @@ border:1px solid #e5e7eb
 <!-- DASHBOARD -->
 <section id="tab-dashboard">
 
-<div class="grid">
+  <div class="grid">
 
-<div class="card">
-<div class="label">บ้านทั้งหมด</div>
-<div class="big" id="sHouses">0</div>
-</div>
+    <div class="card">
+      <div class="label">บ้านทั้งหมด</div>
+      <div class="big" id="sHouses">0</div>
+    </div>
 
-<div class="card">
-<div class="label">บันทึกเดือนนี้</div>
-<div class="big" id="sRecords">0</div>
-</div>
+    <div class="card">
+      <div class="label">บันทึกเดือนนี้</div>
+      <div class="big" id="sRecords">0</div>
+    </div>
 
-<div class="card">
-<div class="label">ยอดเดือนนี้</div>
-<div class="big" id="sMonth">0 บาท</div>
-</div>
+    <div class="card">
+      <div class="label">ยอดเดือนนี้</div>
+      <div class="big" id="sMonth">0 บาท</div>
+    </div>
 
-<div class="card">
-<div class="label">ยอดค้างชำระ</div>
-<div class="big" id="sUnpaid">0 บาท</div>
-</div>
+    <div class="card">
+      <div class="label">ยอดค้างชำระ</div>
+      <div class="big" id="sUnpaid">0 บาท</div>
+    </div>
 
-</div>
+  </div>
 
-<div class="toolbar">
-<button class="primary" onclick="openReading()">
-💧 บันทึกมิเตอร์
-</button>
+  <div class="toolbar">
+    <button class="primary" onclick="openReading()">
+      💧 บันทึกมิเตอร์
+    </button>
 
-<button class="soft" onclick="openHouse()">
-🏠 เพิ่มบ้าน
-</button>
-</div>
+    <button class="soft" onclick="openHouse()">
+      🏠 เพิ่มบ้าน
+    </button>
+  </div>
 
-<div class="card section">
+  <div class="card section">
+    <h2>อัตราค่าบริการ</h2>
 
-<h2>อัตราค่าบริการ</h2>
+    <div class="muted">
+      ค่าน้ำ = หน่วยที่ใช้ × 6 บาท<br>
+      ค่ารักษามาตร = 5 บาท/บ้าน/เดือน
+    </div>
+  </div>
 
-<div class="muted">
-ค่าน้ำ = หน่วยที่ใช้ × 6 บาท<br>
-ค่ารักษามาตร = 5 บาท/บ้าน/เดือน
-</div>
+  <div class="card section">
+    <h2>สถานะ Cloud</h2>
 
-</div>
-
-<div class="card section">
-
-<h2>สถานะ Cloud</h2>
-
-<div id="cloudStatus" class="notice">
-ยังไม่ได้ตั้งค่า Cloud — ระบบจะเก็บข้อมูลในเครื่องก่อน
-</div>
-
-</div>
+    <div id="cloudStatus" class="notice">
+      ระบบกำลังใช้ข้อมูลในเครื่อง
+    </div>
+  </div>
 
 </section>
 
@@ -359,21 +414,21 @@ border:1px solid #e5e7eb
 <!-- HOUSES -->
 <section id="tab-houses" class="hidden">
 
-<div class="toolbar">
+  <div class="toolbar">
 
-<input
-id="search"
-placeholder="ค้นหาเลขที่บ้าน / ชื่อ"
-oninput="renderHouses()"
->
+    <input
+      id="search"
+      placeholder="ค้นหาเลขที่บ้าน / ชื่อ"
+      oninput="renderHouses()"
+    >
 
-<button class="primary" onclick="openHouse()">
-+ เพิ่มบ้าน
-</button>
+    <button class="primary" onclick="openHouse()">
+      + เพิ่มบ้าน
+    </button>
 
-</div>
+  </div>
 
-<div id="housesList"></div>
+  <div id="housesList"></div>
 
 </section>
 
@@ -381,13 +436,13 @@ oninput="renderHouses()"
 <!-- BILLS -->
 <section id="tab-bills" class="hidden">
 
-<div class="toolbar">
+  <div class="toolbar">
 
-<select id="monthFilter" onchange="renderBills()"></select>
+    <select id="monthFilter" onchange="renderBills()"></select>
 
-</div>
+  </div>
 
-<div id="billsList"></div>
+  <div id="billsList"></div>
 
 </section>
 
@@ -395,57 +450,57 @@ oninput="renderHouses()"
 <!-- STATS -->
 <section id="tab-stats" class="hidden">
 
-<div class="grid">
+  <div class="grid">
 
-<div class="card">
-<div class="label">ยอดเรียกเก็บทั้งหมด</div>
-<div class="big" id="stTotal">0 บาท</div>
-</div>
+    <div class="card">
+      <div class="label">ยอดเรียกเก็บทั้งหมด</div>
+      <div class="big" id="stTotal">0 บาท</div>
+    </div>
 
-<div class="card">
-<div class="label">ชำระแล้ว</div>
-<div class="big" id="stPaid">0 บาท</div>
-</div>
+    <div class="card">
+      <div class="label">ชำระแล้ว</div>
+      <div class="big" id="stPaid">0 บาท</div>
+    </div>
 
-<div class="card">
-<div class="label">ค้างชำระ</div>
-<div class="big" id="stDue">0 บาท</div>
-</div>
+    <div class="card">
+      <div class="label">ค้างชำระ</div>
+      <div class="big" id="stDue">0 บาท</div>
+    </div>
 
-<div class="card">
-<div class="label">ใช้น้ำทั้งหมด</div>
-<div class="big" id="stUnits">0</div>
-</div>
+    <div class="card">
+      <div class="label">ใช้น้ำทั้งหมด</div>
+      <div class="big" id="stUnits">0</div>
+    </div>
 
-</div>
+  </div>
 
-<div class="card section">
+  <div class="card section">
 
-<h2>สรุปรายเดือน</h2>
+    <h2>สรุปรายเดือน</h2>
 
-<div id="monthly"></div>
+    <div id="monthly"></div>
 
-</div>
+  </div>
 
-<div class="toolbar">
+  <div class="toolbar">
 
-<button class="soft" onclick="backup()">
-⬇️ สำรองข้อมูล
-</button>
+    <button class="soft" onclick="backup()">
+      ⬇️ สำรองข้อมูล
+    </button>
 
-<button class="soft" onclick="document.getElementById('restore').click()">
-⬆️ นำเข้าข้อมูล
-</button>
+    <button class="soft" onclick="document.getElementById('restore').click()">
+      ⬆️ นำเข้าข้อมูล
+    </button>
 
-<input
-id="restore"
-class="hidden"
-type="file"
-accept=".json"
-onchange="restore(event)"
->
+    <input
+      id="restore"
+      class="hidden"
+      type="file"
+      accept=".json"
+      onchange="restore(event)"
+    >
 
-</div>
+  </div>
 
 </section>
 
@@ -453,87 +508,87 @@ onchange="restore(event)"
 <!-- SETTINGS -->
 <section id="tab-settings" class="hidden">
 
-<div class="card">
+  <div class="card">
 
-<h2>ตั้งค่าใบแจ้งหนี้</h2>
+    <h2>ตั้งค่าใบแจ้งหนี้</h2>
 
-<div class="section">
-<label>ชื่อหมู่บ้าน</label>
-<input id="setVillage">
-</div>
+    <div class="section">
+      <label>ชื่อหมู่บ้าน</label>
+      <input id="setVillage">
+    </div>
 
-<div class="section">
-<label>ที่อยู่</label>
-<input id="setAddress">
-</div>
+    <div class="section">
+      <label>ที่อยู่</label>
+      <input id="setAddress">
+    </div>
 
-<div class="row section">
+    <div class="row section">
 
-<div>
-<label>โทรศัพท์</label>
-<input id="setPhone">
-</div>
+      <div>
+        <label>โทรศัพท์</label>
+        <input id="setPhone">
+      </div>
 
-<div>
-<label>ธนาคาร</label>
-<input id="setBank">
-</div>
+      <div>
+        <label>ธนาคาร</label>
+        <input id="setBank">
+      </div>
 
-</div>
+    </div>
 
-<div class="row section">
+    <div class="row section">
 
-<div>
-<label>เลขบัญชี</label>
-<input id="setAccount">
-</div>
+      <div>
+        <label>เลขบัญชี</label>
+        <input id="setAccount">
+      </div>
 
-<div>
-<label>ชื่อบัญชี</label>
-<input id="setAccountName">
-</div>
+      <div>
+        <label>ชื่อบัญชี</label>
+        <input id="setAccountName">
+      </div>
 
-</div>
+    </div>
 
-<div class="section">
-<label>LINE ID</label>
-<input id="setLine">
-</div>
+    <div class="section">
+      <label>LINE ID</label>
+      <input id="setLine">
+    </div>
 
-<div class="section">
-<label>ข้อความช่องทางชำระเงิน</label>
-<input id="setPaymentNote">
-</div>
+    <div class="section">
+      <label>ข้อความช่องทางชำระเงิน</label>
+      <input id="setPaymentNote">
+    </div>
 
-<div class="toolbar">
+    <div class="toolbar">
 
-<button class="primary" onclick="saveSettings()">
-บันทึกตั้งค่า
-</button>
+      <button class="primary" onclick="saveSettings()">
+        บันทึกตั้งค่า
+      </button>
 
-</div>
+    </div>
 
-</div>
+  </div>
 
 
-<div class="card section">
+  <div class="card section">
 
-<h2>Cloud</h2>
+    <h2>Cloud</h2>
 
-<div class="muted">
-สำหรับเชื่อม Supabase ให้ตั้งค่า URL และ Anon Key
-ในไฟล์ config.js จากนั้นเปิดใหม่
-</div>
+    <div class="muted">
+      สำหรับเชื่อม Supabase ให้ตั้งค่า URL และ Anon Key
+      ในไฟล์ config.js
+    </div>
 
-<div class="toolbar">
+    <div class="toolbar">
 
-<button class="danger" onclick="resetLocal()">
-ล้างข้อมูลในเครื่อง
-</button>
+      <button class="danger" onclick="resetLocal()">
+        ล้างข้อมูลในเครื่อง
+      </button>
 
-</div>
+    </div>
 
-</div>
+  </div>
 
 </section>
 
@@ -541,1159 +596,1667 @@ onchange="restore(event)"
 
 
 <!-- NAVIGATION -->
-
 <nav>
 
-<button id="n-dashboard"
-onclick="showTab('dashboard')">
-🏠<br>หน้าหลัก
-</button>
+  <button id="n-dashboard" onclick="showTab('dashboard')">
+    🏠<br>หน้าหลัก
+  </button>
 
-<button id="n-houses"
-onclick="showTab('houses')">
-🏘️<br>บ้าน
-</button>
+  <button id="n-houses" onclick="showTab('houses')">
+    🏘️<br>บ้าน
+  </button>
 
-<button id="n-bills"
-onclick="showTab('bills')">
-🧾<br>ใบแจ้ง
-</button>
+  <button id="n-bills" onclick="showTab('bills')">
+    🧾<br>ใบแจ้ง
+  </button>
 
-<button id="n-stats"
-onclick="showTab('stats')">
-📊<br>สถิติ
-</button>
+  <button id="n-stats" onclick="showTab('stats')">
+    📊<br>สถิติ
+  </button>
 
-<button id="n-settings"
-onclick="showTab('settings')">
-⚙️<br>ตั้งค่า
-</button>
+  <button id="n-settings" onclick="showTab('settings')">
+    ⚙️<br>ตั้งค่า
+  </button>
 
 </nav>
 
 
 <!-- MODAL -->
-
 <div id="modal" class="modal hidden">
 
-<div class="sheet" id="sheet"></div>
+  <div class="sheet" id="sheet"></div>
 
 </div>
 
 
 <script>
 
-const KEY="moobanwater.cloudready.v3";
+/* =========================================================
+   CONFIG
+========================================================= */
 
-const RATE=6;
-const FEE=5;
+const KEY = "moobanwater.cloudready.v3";
+
+const RATE = 6;
+const FEE = 5;
 
 
-/* =========================
-   DATA
-========================= */
+/* =========================================================
+   DEFAULT DATA
+========================================================= */
 
-const defaultData={
-houses:[],
-bills:[],
-settings:{
-village:"ปุณย์ศิริ",
-address:"",
-phone:"",
-bank:"กรุงเทพ",
-account:"2635252501",
-accountName:"ศาศวัต ทาหมอก",
-line:"Sasawat_789",
-paymentNote:"โอนเงินแล้วกรุณาส่งหลักฐานมาทาง LINE"
-}
+const DEFAULT_DATA = {
+  houses: [],
+  bills: [],
+  settings: {
+    village: "ปุณย์ศิริ",
+    address: "",
+    phone: "",
+    bank: "กรุงเทพ",
+    account: "2635252501",
+    accountName: "ศาศวัต ทาหมอก",
+    line: "Sasawat_789",
+    paymentNote: "โอนเงินแล้วกรุณาส่งหลักฐานมาทาง LINE"
+  }
 };
 
+
+/* =========================================================
+   LOAD DATA
+========================================================= */
 
 let data;
 
-try{
+try {
 
-data=JSON.parse(
-localStorage.getItem(KEY)
-||localStorage.getItem("moobanwater.cloudready.v2")
-||JSON.stringify(defaultData)
-);
+  data = JSON.parse(
+    localStorage.getItem(KEY) ||
+    JSON.stringify(DEFAULT_DATA)
+  );
 
-}catch(e){
+} catch {
 
-data=defaultData;
+  data = structuredClone(DEFAULT_DATA);
 
 }
 
 
-/* ป้องกันข้อมูลเก่าที่ไม่มี settings */
-
-data.houses ||= [];
-data.bills ||= [];
-data.settings ||= {};
-
-data.settings={
-...defaultData.settings,
-...data.settings
-};
-
-
-/* =========================
+/* =========================================================
    HELPERS
-========================= */
-
-const month=()=>{
-
-let d=new Date();
-
-return d.getFullYear()
-+"-"
-+String(d.getMonth()+1).padStart(2,"0");
-
-};
-
-
-const today=()=>{
-
-let d=new Date();
-
-return d.getFullYear()
-+"-"
-+String(d.getMonth()+1).padStart(2,"0")
-+"-"
-+String(d.getDate()).padStart(2,"0");
-
-};
-
-
-const money=n=>
-
-new Intl.NumberFormat(
-"th-TH",
-{
-minimumFractionDigits:2,
-maximumFractionDigits:2
-}
-).format(Number(n)||0)
-+" บาท";
-
+========================================================= */
 
 function save(){
 
-localStorage.setItem(
-KEY,
-JSON.stringify(data)
-);
+  localStorage.setItem(KEY, JSON.stringify(data));
 
-render();
+  render();
 
 }
 
+
+function month(){
+
+  const d = new Date();
+
+  return (
+    d.getFullYear() +
+    "-" +
+    String(d.getMonth()+1).padStart(2,"0")
+  );
+
+}
+
+
+function today(){
+
+  const d = new Date();
+
+  return (
+    d.getFullYear() +
+    "-" +
+    String(d.getMonth()+1).padStart(2,"0") +
+    "-" +
+    String(d.getDate()).padStart(2,"0")
+  );
+
+}
+
+
+function money(n){
+
+  return new Intl.NumberFormat(
+    "th-TH",
+    {
+      minimumFractionDigits:2,
+      maximumFractionDigits:2
+    }
+  ).format(Number(n)||0) + " บาท";
+
+}
+
+
+function esc(v){
+
+  return String(v ?? "").replace(
+    /[&<>"']/g,
+    m => ({
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      "\"":"&quot;",
+      "'":"&#039;"
+    }[m])
+  );
+
+}
+
+
+function formatDate(v){
+
+  if(!v) return "-";
+
+  try{
+
+    return new Date(v + (String(v).length === 10 ? "T00:00:00" : ""))
+      .toLocaleDateString(
+        "th-TH",
+        {
+          day:"2-digit",
+          month:"2-digit",
+          year:"numeric"
+        }
+      );
+
+  }catch{
+
+    return "-";
+
+  }
+
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
 
 function showTab(t){
 
-[
-"dashboard",
-"houses",
-"bills",
-"stats",
-"settings"
-].forEach(x=>{
+  [
+    "dashboard",
+    "houses",
+    "bills",
+    "stats",
+    "settings"
+  ].forEach(x => {
 
-document
-.getElementById("tab-"+x)
-.classList.toggle(
-"hidden",
-x!==t
-);
+    document
+      .getElementById("tab-"+x)
+      .classList
+      .toggle("hidden", x !== t);
 
-});
+  });
 
-document
-.querySelectorAll("nav button")
-.forEach(x=>x.classList.remove("active"));
 
-document
-.getElementById("n-"+t)
-.classList.add("active");
+  document
+    .querySelectorAll("nav button")
+    .forEach(x => x.classList.remove("active"));
 
-render();
+
+  document
+    .getElementById("n-"+t)
+    .classList
+    .add("active");
+
+
+  render();
 
 }
 
 
-/* =========================
+/* =========================================================
    MODAL
-========================= */
+========================================================= */
 
 function openModal(){
 
-document
-.getElementById("modal")
-.classList.remove("hidden");
+  document
+    .getElementById("modal")
+    .classList
+    .remove("hidden");
 
 }
 
 
 function closeModal(){
 
-document
-.getElementById("modal")
-.classList.add("hidden");
+  document
+    .getElementById("modal")
+    .classList
+    .add("hidden");
 
 }
 
 
-function backHome(){
-
-closeModal();
-
-showTab("dashboard");
-
-}
-
-
-function modalHeader(title,subtitle=""){
-
-return `
-
-<div class="modalHeader">
-
-<img
-src="./assets/logo.png"
-class="modalLogo"
-onerror="this.style.display='none'"
->
-
-<h2>${esc(title)}</h2>
-
-${subtitle
-?`<div class="muted">${esc(subtitle)}</div>`
-:""}
-
-</div>
-
-`;
-
-}
-
-
-/* =========================
-   RENDER
-========================= */
-
-function render(){
-
-const cur=data.bills.filter(
-b=>b.month===month()
-);
-
-document.getElementById("sHouses")
-.textContent=data.houses.length;
-
-document.getElementById("sRecords")
-.textContent=cur.length;
-
-document.getElementById("sMonth")
-.textContent=money(
-cur.reduce((a,b)=>a+Number(b.total||0),0)
-);
-
-document.getElementById("sUnpaid")
-.textContent=money(
-data.bills
-.filter(b=>!b.paid)
-.reduce((a,b)=>a+Number(b.total||0),0)
-);
-
-document.getElementById("headerSub")
-.textContent=
-(data.settings.village||"ปุณย์ศิริ")
-+" • 6 บาท/หน่วย + 5 บาท/เดือน";
-
-renderHouses();
-renderBills();
-renderStats();
-fillSettings();
-
-}
-
-
-/* =========================
+/* =========================================================
    HOUSE
-========================= */
+========================================================= */
 
 function openHouse(id){
 
-let h=
-data.houses.find(x=>x.id===id)
-||
-{
-number:"",
-owner:"",
-address:"",
-phone:"",
-meter:0
-};
+  const h =
+    data.houses.find(x => x.id === id) ||
+    {
+      number:"",
+      owner:"",
+      address:"",
+      phone:"",
+      meter:0
+    };
 
 
-document.getElementById("sheet").innerHTML=
+  document.getElementById("sheet").innerHTML = `
 
-modalHeader(
-id?"แก้ไขบ้าน":"เพิ่มบ้าน",
-"ข้อมูลบ้านและมิเตอร์"
-)
+    <div class="backbar">
 
-+`
+      <button class="ghost" onclick="closeModal()">
+        ← กลับ
+      </button>
 
-<div class="section">
-<label>เลขที่บ้าน</label>
-<input id="hn" value="${esc(h.number)}">
-</div>
+      <h2 style="margin:0">
+        ${id ? "แก้ไขข้อมูลบ้าน" : "เพิ่มบ้าน"}
+      </h2>
 
-<div class="section">
-<label>ชื่อผู้ใช้น้ำ</label>
-<input id="ho" value="${esc(h.owner)}">
-</div>
+    </div>
 
-<div class="section">
-<label>ที่อยู่เพิ่มเติม</label>
-<input id="ha" value="${esc(h.address||"")}">
-</div>
 
-<div class="section">
-<label>โทรศัพท์</label>
-<input id="hp" value="${esc(h.phone||"")}">
-</div>
+    <div class="section">
+      <label>เลขที่บ้าน</label>
+      <input id="hn" value="${esc(h.number)}">
+    </div>
 
-<div class="section">
-<label>เลขมิเตอร์ล่าสุด</label>
-<input
-id="hm"
-type="number"
-inputmode="decimal"
-value="${h.meter||0}"
->
-</div>
 
-<div class="toolbar actions">
+    <div class="section">
+      <label>ชื่อผู้ใช้น้ำ</label>
+      <input id="ho" value="${esc(h.owner)}">
+    </div>
 
-<button
-class="backHome"
-onclick="backHome()">
-← หน้าแรก
-</button>
 
-<button
-class="ghost"
-onclick="closeModal()">
-ยกเลิก
-</button>
+    <div class="section">
+      <label>ที่อยู่เพิ่มเติม</label>
+      <input id="ha" value="${esc(h.address || "")}">
+    </div>
 
-<button
-class="primary"
-onclick="saveHouse('${id||""}')">
-บันทึก
-</button>
 
-</div>
+    <div class="section">
+      <label>โทรศัพท์</label>
+      <input id="hp" value="${esc(h.phone || "")}">
+    </div>
 
-`;
 
-openModal();
+    <div class="section">
+      <label>เลขมิเตอร์ล่าสุด</label>
+      <input
+        id="hm"
+        type="number"
+        inputmode="decimal"
+        value="${h.meter ?? 0}"
+      >
+    </div>
+
+
+    <div class="toolbar actions">
+
+      <button class="ghost" onclick="closeModal()">
+        ยกเลิก
+      </button>
+
+      <button
+        class="primary"
+        onclick="saveHouse('${id || ""}')"
+      >
+        บันทึก
+      </button>
+
+    </div>
+
+  `;
+
+
+  openModal();
 
 }
 
 
 function saveHouse(id){
 
-let number=document.getElementById("hn").value.trim();
-let owner=document.getElementById("ho").value.trim();
-let meter=Number(document.getElementById("hm").value);
+  const number =
+    document.getElementById("hn").value.trim();
 
-if(
-!number||
-!Number.isFinite(meter)||
-meter<0
-){
+  const owner =
+    document.getElementById("ho").value.trim();
 
-return alert(
-"กรอกข้อมูลบ้านและเลขมิเตอร์ให้ถูกต้อง"
-);
+  const meter =
+    Number(document.getElementById("hm").value);
+
+
+  if(
+    !number ||
+    !Number.isFinite(meter) ||
+    meter < 0
+  ){
+
+    alert("กรอกข้อมูลบ้านและเลขมิเตอร์ให้ถูกต้อง");
+
+    return;
+
+  }
+
+
+  let h;
+
+  if(id){
+
+    h = data.houses.find(x => x.id === id);
+
+  }else{
+
+    h = {
+      id: crypto.randomUUID(),
+      createdAt: new Date().toISOString()
+    };
+
+  }
+
+
+  Object.assign(
+    h,
+    {
+      number,
+      owner,
+      address:document.getElementById("ha").value.trim(),
+      phone:document.getElementById("hp").value.trim(),
+      meter,
+      updatedAt:new Date().toISOString()
+    }
+  );
+
+
+  if(!id){
+
+    data.houses.push(h);
+
+  }
+
+
+  closeModal();
+
+  save();
 
 }
 
 
-let h=id
-?data.houses.find(x=>x.id===id)
-:{
-id:crypto.randomUUID(),
-createdAt:new Date().toISOString()
-};
-
-
-Object.assign(h,{
-
-number,
-owner,
-address:document.getElementById("ha").value.trim(),
-phone:document.getElementById("hp").value.trim(),
-meter,
-updatedAt:new Date().toISOString()
-
-});
-
-
-if(!id)data.houses.push(h);
-
-closeModal();
-
-save();
-
-}
-
+/* =========================================================
+   HOUSES LIST
+========================================================= */
 
 function renderHouses(){
 
-let q=(
-document.getElementById("search")?.value||""
-).toLowerCase();
-
-let a=data.houses.filter(h=>
-(h.number+" "+h.owner)
-.toLowerCase()
-.includes(q)
-);
+  const q =
+    (
+      document.getElementById("search")?.value ||
+      ""
+    ).toLowerCase();
 
 
-document.getElementById("housesList").innerHTML=
+  const a =
+    data.houses.filter(h =>
+      (h.number + " " + h.owner)
+        .toLowerCase()
+        .includes(q)
+    );
 
-a.map(h=>`
 
-<div class="item">
+  document.getElementById("housesList").innerHTML =
 
-<div>
+    a.map(h => `
 
-<b>บ้าน ${esc(h.number)}</b>
+      <div class="item">
 
-<div class="muted">
-${esc(h.owner||"-")}
-•
-มิเตอร์ ${h.meter}
-</div>
+        <div>
 
-</div>
+          <b>บ้าน ${esc(h.number)}</b>
 
-<div class="right">
+          <div class="muted">
+            ${esc(h.owner || "-")}
+            • มิเตอร์ ${h.meter}
+          </div>
 
-<button
-class="primary"
-onclick="openReading('${h.id}')">
-บันทึก
-</button>
+        </div>
 
-<br>
 
-<button
-class="ghost"
-onclick="openHouse('${h.id}')">
-แก้ไข
-</button>
+        <div class="right">
 
-</div>
+          <button
+            class="primary"
+            onclick="openReading('${h.id}')"
+          >
+            บันทึก
+          </button>
 
-</div>
+          <br>
 
-`).join("")
+          <button
+            class="ghost"
+            onclick="openHouse('${h.id}')"
+          >
+            แก้ไข
+          </button>
 
-||
+        </div>
 
-'<div class="card">ยังไม่มีบ้าน</div>';
+      </div>
+
+    `).join("")
+
+    ||
+
+    '<div class="card">ยังไม่มีบ้าน</div>';
 
 }
 
 
-/* =========================
+/* =========================================================
+   FIND PREVIOUS BILL
+========================================================= */
+
+function getPreviousBill(houseId, currentBillId = null){
+
+  const bills =
+    data.bills
+      .filter(b =>
+        b.houseId === houseId &&
+        b.id !== currentBillId
+      )
+      .sort((a,b) =>
+        new Date(
+          b.readingDate || b.createdAt
+        ) -
+        new Date(
+          a.readingDate || a.createdAt
+        )
+      );
+
+
+  return bills[0] || null;
+
+}
+
+
+/* =========================================================
    READING
-========================= */
-
-function getPreviousBill(houseId){
-
-return data.bills
-.filter(b=>b.houseId===houseId)
-.sort((a,b)=>
-new Date(
-b.readingDate||b.updatedAt||b.createdAt
-)
--
-new Date(
-a.readingDate||a.updatedAt||a.createdAt
-)
-)[0];
-
-}
-
+========================================================= */
 
 function openReading(id){
 
-if(!data.houses.length){
+  if(!data.houses.length){
 
-return alert("กรุณาเพิ่มบ้านก่อน");
+    alert("กรุณาเพิ่มบ้านก่อน");
 
-}
+    return;
 
-
-let opts=data.houses.map(h=>`
-
-<option
-value="${h.id}"
-${h.id===id?"selected":""}
->
-บ้าน ${esc(h.number)}
-—
-${esc(h.owner||"-")}
-(มิเตอร์ ${h.meter})
-</option>
-
-`).join("");
+  }
 
 
-document.getElementById("sheet").innerHTML=
+  let h;
 
-modalHeader(
-"บันทึกมิเตอร์",
-"เลือกวันที่จดมิเตอร์ได้"
-)
+  if(id){
 
-+`
+    h = data.houses.find(x => x.id === id);
 
-<div class="section">
+  }else{
 
-<label>บ้าน</label>
+    h = data.houses[0];
 
-<select
-id="rh"
-onchange="readingChanged()"
->
-${opts}
-</select>
+  }
 
-</div>
 
-<div class="section">
+  const opts =
+    data.houses.map(x => `
 
-<label>วันที่จดมิเตอร์</label>
+      <option
+        value="${x.id}"
+        ${x.id === h?.id ? "selected" : ""}
+      >
+        บ้าน ${esc(x.number)}
+        — ${esc(x.owner || "-")}
+        (มิเตอร์ ${x.meter})
+      </option>
 
-<div class="dateBox">
+    `).join("");
 
-<input
-id="readingDate"
-type="date"
-value="${today()}"
-oninput="previewReading()"
->
 
-</div>
+  document.getElementById("sheet").innerHTML = `
 
-</div>
+    <div class="backbar">
 
-<div class="section">
+      <button class="ghost" onclick="closeModal()">
+        ← กลับ
+      </button>
 
-<label>เลขมิเตอร์เดิม</label>
+      <h2 style="margin:0">
+        บันทึกมิเตอร์
+      </h2>
 
-<input
-id="rp"
-disabled
->
+    </div>
 
-</div>
 
-<div class="section">
+    <div class="section">
 
-<label>เลขมิเตอร์ปัจจุบัน</label>
+      <label>บ้าน</label>
 
-<input
-id="rc"
-type="number"
-inputmode="decimal"
-oninput="previewReading()"
->
+      <select
+        id="rh"
+        onchange="readingChanged()"
+      >
+        ${opts}
+      </select>
 
-</div>
+    </div>
 
-<div
-id="readPreview"
-class="card section">
-</div>
 
-<div class="toolbar actions">
+    <div class="row section">
 
-<button
-class="backHome"
-onclick="backHome()">
-← หน้าแรก
-</button>
+      <div>
 
-<button
-class="ghost"
-onclick="closeModal()">
-ยกเลิก
-</button>
+        <label>วันที่จด</label>
 
-<button
-class="primary"
-onclick="saveReading()">
-บันทึก
-</button>
+        <input
+          id="rd"
+          type="date"
+          value="${today()}"
+          onchange="previewReading()"
+        >
 
-</div>
+      </div>
 
-`;
+      <div>
 
-openModal();
+        <label>เลขมิเตอร์เดิม</label>
 
-readingChanged();
+        <input
+          id="rp"
+          type="number"
+          disabled
+        >
+
+      </div>
+
+    </div>
+
+
+    <div class="section">
+
+      <label>เลขมิเตอร์ปัจจุบัน</label>
+
+      <input
+        id="rc"
+        type="number"
+        inputmode="decimal"
+        oninput="previewReading()"
+      >
+
+    </div>
+
+
+    <div id="readPreview" class="total-box">
+
+      กรอกเลขมิเตอร์ปัจจุบัน
+
+    </div>
+
+
+    <div class="toolbar actions">
+
+      <button class="ghost" onclick="closeModal()">
+        ยกเลิก
+      </button>
+
+      <button class="primary" onclick="saveReading()">
+        บันทึก
+      </button>
+
+    </div>
+
+  `;
+
+
+  openModal();
+
+  readingChanged();
 
 }
 
 
 function selectedHouse(){
 
-return data.houses.find(
-h=>h.id===document.getElementById("rh").value
-);
+  return data.houses.find(
+    h => h.id === document.getElementById("rh")?.value
+  );
 
 }
 
 
 function readingChanged(){
 
-let h=selectedHouse();
+  const h = selectedHouse();
 
-document.getElementById("rp").value=
-h?.meter??"";
+  document.getElementById("rp").value =
+    h?.meter ?? "";
 
-document.getElementById("rc").value="";
+  document.getElementById("rc").value =
+    "";
 
-document.getElementById("readingDate").value=today();
+  document.getElementById("rd").value =
+    today();
 
-previewReading();
+  previewReading();
 
 }
 
 
 function previewReading(){
 
-let h=selectedHouse();
+  const h = selectedHouse();
 
-let c=Number(
-document.getElementById("rc").value
-);
+  const c =
+    Number(document.getElementById("rc")?.value);
 
-let preview=
-document.getElementById("readPreview");
 
-if(
-!h||
-!Number.isFinite(c)||
-c<h.meter
-){
+  if(
+    !h ||
+    !Number.isFinite(c) ||
+    c < h.meter
+  ){
 
-preview.innerHTML=
-'<span class="muted">กรอกเลขมิเตอร์ปัจจุบันที่ไม่น้อยกว่ามิเตอร์เดิม</span>';
+    document.getElementById("readPreview").innerHTML =
+      '<span class="muted">กรอกเลขมิเตอร์ปัจจุบันที่ไม่น้อยกว่ามิเตอร์เดิม</span>';
 
-return;
+    return;
+
+  }
+
+
+  const u = c - h.meter;
+
+  const water = u * RATE;
+
+  const total = water + FEE;
+
+
+  document.getElementById("readPreview").innerHTML = `
+
+    ใช้น้ำ <b>${u}</b> หน่วย<br>
+
+    ค่าน้ำ ${money(water)}<br>
+
+    ค่ารักษามาตร ${money(FEE)}
+
+    <div class="total">
+      รวม ${money(total)}
+    </div>
+
+  `;
 
 }
 
 
-let u=c-h.meter;
-
-preview.innerHTML=`
-
-ใช้ <b>${u}</b> หน่วย<br>
-
-ค่าน้ำ ${money(u*RATE)}
-
-+
-
-ค่ารักษามาตร ${money(FEE)}
-
-<br>
-
-<b>รวม ${money(u*RATE+FEE)}</b>
-
-`;
-
-}
-
+/* =========================================================
+   SAVE NEW READING
+========================================================= */
 
 function saveReading(){
 
-let h=selectedHouse();
+  const h = selectedHouse();
 
-let c=Number(
-document.getElementById("rc").value
-);
+  const c =
+    Number(document.getElementById("rc").value);
 
-let readingDate=
-document.getElementById("readingDate").value;
+  const readingDate =
+    document.getElementById("rd").value;
 
 
-if(
-!h||
-!Number.isFinite(c)||
-c<h.meter
-){
+  if(
+    !h ||
+    !Number.isFinite(c) ||
+    c < h.meter
+  ){
 
-return alert("เลขมิเตอร์ไม่ถูกต้อง");
+    alert("เลขมิเตอร์ไม่ถูกต้อง");
+
+    return;
+
+  }
+
+
+  if(!readingDate){
+
+    alert("กรุณาเลือกวันที่จดมิเตอร์");
+
+    return;
+
+  }
+
+
+  const old =
+    data.bills.find(
+      b =>
+        b.houseId === h.id &&
+        b.month === month()
+    );
+
+
+  if(old){
+
+    if(
+      !confirm(
+        "บ้านนี้มีใบแจ้งเดือนนี้แล้ว ต้องการแก้ไขข้อมูลเดิมหรือไม่?"
+      )
+    ){
+
+      return;
+
+    }
+
+
+    closeModal();
+
+    openEditBill(old.id);
+
+    return;
+
+  }
+
+
+  const previousBill =
+    getPreviousBill(h.id);
+
+
+  const previous =
+    h.meter;
+
+
+  const units =
+    c - previous;
+
+
+  const waterCharge =
+    units * RATE;
+
+
+  const total =
+    waterCharge + FEE;
+
+
+  const b = {
+
+    id:crypto.randomUUID(),
+
+    houseId:h.id,
+
+    month:readingDate.slice(0,7),
+
+    readingDate,
+
+    previousDate:
+      previousBill?.readingDate || null,
+
+    previous,
+
+    current:c,
+
+    units,
+
+    waterCharge,
+
+    meterMaintenance:FEE,
+
+    total,
+
+    paid:false,
+
+    paidDate:null,
+
+    createdAt:new Date().toISOString(),
+
+    updatedAt:new Date().toISOString()
+
+  };
+
+
+  data.bills.push(b);
+
+
+  h.meter = c;
+
+  h.updatedAt =
+    new Date().toISOString();
+
+
+  closeModal();
+
+  save();
+
+  openBill(b.id);
 
 }
 
 
-if(!readingDate){
-
-return alert("กรุณาเลือกวันที่จดมิเตอร์");
-
-}
-
-
-let old=data.bills.find(
-b=>
-b.houseId===h.id&&
-b.month===month()
-);
-
-
-if(
-old&&
-!confirm(
-"บ้านนี้มีใบแจ้งเดือนนี้แล้ว ต้องการแทนที่ข้อมูลเดิมหรือไม่?"
-)
-){
-
-return;
-
-}
-
-
-/* หาใบแจ้งรอบก่อน */
-
-let previousBill=data.bills
-.filter(
-b=>
-b.houseId===h.id&&
-b.id!==old?.id
-)
-.sort(
-(a,b)=>
-new Date(
-b.readingDate||b.updatedAt||b.createdAt
-)
--
-new Date(
-a.readingDate||a.updatedAt||a.createdAt
-)
-)[0];
-
-
-let previousReadingDate=
-previousBill?.readingDate
-||
-previousBill?.updatedAt
-||
-h.createdAt
-||
-new Date().toISOString();
-
-
-let b={
-
-id:old?.id||crypto.randomUUID(),
-
-houseId:h.id,
-
-month:month(),
-
-previous:h.meter,
-
-current:c,
-
-units:c-h.meter,
-
-waterCharge:(c-h.meter)*RATE,
-
-meterMaintenance:FEE,
-
-total:(c-h.meter)*RATE+FEE,
-
-paid:old?.paid||false,
-
-paidDate:old?.paidDate||null,
-
-readingDate:readingDate,
-
-previousReadingDate:previousReadingDate,
-
-createdAt:
-old?.createdAt||
-new Date().toISOString(),
-
-updatedAt:new Date().toISOString()
-
-};
-
-
-data.bills=data.bills.filter(
-x=>x.id!==b.id
-);
-
-data.bills.push(b);
-
-h.meter=c;
-
-closeModal();
-
-save();
-
-openBill(b.id);
-
-}
-
-
-/* =========================
+/* =========================================================
    BILLS
-========================= */
+========================================================= */
 
 function renderBills(){
 
-let mf=document.getElementById("monthFilter");
-
-let months=[
-...new Set(
-data.bills.map(b=>b.month)
-)
-];
-
-if(!months.includes(month()))
-months.push(month());
-
-months.sort().reverse();
-
-mf.innerHTML=
-months.map(m=>`
-<option value="${m}">${m}</option>
-`).join("");
+  const mf =
+    document.getElementById("monthFilter");
 
 
-let m=mf.value||month();
-
-let a=data.bills.filter(
-b=>b.month===m
-);
+  if(!mf) return;
 
 
-document.getElementById("billsList").innerHTML=
+  let months =
+    [
+      ...new Set(
+        data.bills.map(b => b.month)
+      )
+    ];
 
-a.map(b=>{
 
-let h=data.houses.find(
-x=>x.id===b.houseId
-);
+  if(!months.includes(month())){
 
-return `
+    months.push(month());
 
-<div class="item">
+  }
 
-<div>
 
-<b>บ้าน ${esc(h?.number||"-")}</b>
+  months.sort().reverse();
 
-<div class="muted">
-${esc(h?.owner||"-")}
-•
-${b.units} หน่วย
-</div>
 
-<span class="pill ${b.paid?"":"unpaid"}">
-${b.paid?"ชำระแล้ว":"ค้างชำระ"}
-</span>
+  const oldValue = mf.value;
 
-</div>
 
-<div class="right">
+  mf.innerHTML =
+    months.map(m =>
+      `<option value="${m}">${m}</option>`
+    ).join("");
 
-<div>
-<b>${money(b.total)}</b>
-</div>
 
-<button
-class="soft"
-onclick="openBill('${b.id}')">
-ดูใบแจ้ง
-</button>
+  if(
+    oldValue &&
+    months.includes(oldValue)
+  ){
 
-</div>
+    mf.value = oldValue;
 
-</div>
+  }
 
-`;
 
-}).join("")
+  const m =
+    mf.value || month();
 
-||
 
-'<div class="card">ยังไม่มีใบแจ้ง</div>';
+  const a =
+    data.bills
+      .filter(b => b.month === m)
+      .sort(
+        (a,b) =>
+          String(a.readingDate || "")
+            .localeCompare(
+              String(b.readingDate || "")
+            )
+      );
+
+
+  document.getElementById("billsList").innerHTML =
+
+    a.map(b => {
+
+      const h =
+        data.houses.find(
+          x => x.id === b.houseId
+        );
+
+
+      return `
+
+        <div class="item">
+
+          <div>
+
+            <b>
+              บ้าน ${esc(h?.number || "-")}
+            </b>
+
+            <div class="muted">
+              ${esc(h?.owner || "-")}
+              • ${b.units} หน่วย
+            </div>
+
+            <div class="muted">
+              วันที่จด ${formatDate(b.readingDate)}
+            </div>
+
+            <span class="pill ${b.paid ? "" : "unpaid"}">
+              ${b.paid ? "ชำระแล้ว" : "ค้างชำระ"}
+            </span>
+
+          </div>
+
+
+          <div class="right">
+
+            <div>
+              <b>${money(b.total)}</b>
+            </div>
+
+            <button
+              class="soft"
+              onclick="openBill('${b.id}')"
+            >
+              ดูใบแจ้ง
+            </button>
+
+          </div>
+
+        </div>
+
+      `;
+
+    }).join("")
+
+    ||
+
+    '<div class="card">ยังไม่มีใบแจ้ง</div>';
 
 }
 
 
-/* =========================
-   BILL
-========================= */
-
-function formatThaiDate(v){
-
-if(!v)return "-";
-
-try{
-
-return new Date(v+"T00:00:00")
-.toLocaleDateString(
-"th-TH",
-{
-day:"2-digit",
-month:"2-digit",
-year:"numeric"
-}
-);
-
-}catch{
-
-return "-";
-
-}
-
-}
-
+/* =========================================================
+   VIEW BILL
+========================================================= */
 
 function openBill(id){
 
-let b=data.bills.find(
-x=>x.id===id
-);
-
-if(!b)return;
-
-let h=data.houses.find(
-x=>x.id===b.houseId
-);
-
-let s=data.settings;
+  const b =
+    data.bills.find(x => x.id === id);
 
 
-document.getElementById("sheet").innerHTML=
-
-modalHeader(
-"ใบแจ้งหนี้ค่าน้ำปุณย์ศิริ",
-`บ้าน ${h?.number||"-"} • รอบ ${b.month}`
-)
-
-+`
-
-<div class="center">
-
-<b>
-ใบแจ้งหนี้ค่าน้ำปุณย์ศิริ
-</b>
-
-</div>
-
-<p>
-
-เลขที่บ้าน ${esc(h?.number||"-")}<br>
-
-ผู้ใช้น้ำ: ${esc(h?.owner||"-")}<br>
-
-${esc(h?.address||s.address||"")}<br>
-
-โทรศัพท์: ${esc(h?.phone||s.phone||"")}
-
-</p>
+  if(!b) return;
 
 
-<table>
-
-<tr>
-<td>วันที่จดครั้งก่อน</td>
-<td class="right">
-${formatThaiDate(b.previousReadingDate)}
-</td>
-</tr>
-
-<tr>
-<td>มิเตอร์ครั้งก่อน</td>
-<td class="right">
-${b.previous}
-</td>
-</tr>
-
-<tr>
-<td>วันที่จดครั้งหลัง</td>
-<td class="right">
-${formatThaiDate(b.readingDate)}
-</td>
-</tr>
-
-<tr>
-<td>มิเตอร์ครั้งหลัง</td>
-<td class="right">
-${b.current}
-</td>
-</tr>
-
-<tr>
-<td>
-ค่าน้ำ 6 บาท/หน่วย
-(${b.units} หน่วย)
-</td>
-<td class="right">
-${money(b.waterCharge)}
-</td>
-</tr>
-
-<tr>
-<td>ค่ารักษามาตร 5 บาท</td>
-<td class="right">
-${money(b.meterMaintenance)}
-</td>
-</tr>
-
-<tr>
-<td><b>รวมเป็นเงิน</b></td>
-<td class="right">
-<b>${money(b.total)}</b>
-</td>
-</tr>
-
-</table>
+  const h =
+    data.houses.find(
+      x => x.id === b.houseId
+    );
 
 
-<div class="section">
-
-<b>ช่องทางการชำระเงิน</b>
-
-<div class="muted">
-
-ธนาคาร : ${esc(s.bank||"กรุงเทพ")}<br>
-
-เลขบัญชี : ${esc(s.account||"2635252501")}<br>
-
-ชื่อบัญชี : ${esc(s.accountName||"ศาศวัต ทาหมอก")}<br>
-
-Line ID : ${esc(s.line||"Sasawat_789")}<br>
-
-${esc(
-s.paymentNote||
-"โอนเงินแล้วกรุณาส่งหลักฐานมาทาง LINE"
-)}
-
-</div>
-
-</div>
+  const s =
+    data.settings;
 
 
-<div class="toolbar actions">
+  document.getElementById("sheet").innerHTML = `
 
-<button
-class="backHome"
-onclick="backHome()">
-← หน้าแรก
-</button>
+    <div class="backbar">
 
-<button
-class="soft"
-onclick="printBill('${id}')">
-📄 PDF
-</button>
+      <button class="ghost" onclick="closeModal()">
+        ← กลับ
+      </button>
 
-<button
-class="soft"
-onclick="pngBill('${id}')">
-🖼️ PNG
-</button>
+      <button
+        class="soft"
+        onclick="showTab('dashboard');closeModal()"
+      >
+        🏠 หน้าหลัก
+      </button>
 
-<button
-class="${b.paid?"soft":"primary"}"
-onclick="togglePaid('${id}')">
+    </div>
 
-${b.paid
-?"ชำระแล้ว"
-:"บันทึกชำระ"}
 
-</button>
+    <div class="bill-head">
 
-</div>
+      <img
+        class="logo"
+        src="./logo.png"
+        onerror="this.style.display='none'"
+      >
 
-`;
+      <h2>
+        ${esc(s.village || "ปุณย์ศิริ")}
+      </h2>
 
-openModal();
+      <div class="title">
+        ใบแจ้งหนี้ค่าน้ำปุณย์ศิริ
+      </div>
+
+      <div class="muted">
+        รอบเดือน ${esc(b.month)}
+      </div>
+
+    </div>
+
+
+    <div class="card">
+
+      <b>ข้อมูลผู้ใช้น้ำ</b>
+
+      <p>
+        เลขที่บ้าน: ${esc(h?.number || "-")}<br>
+        ชื่อผู้ใช้น้ำ: ${esc(h?.owner || "-")}<br>
+        ที่อยู่: ${esc(h?.address || s.address || "-")}<br>
+        โทรศัพท์: ${esc(h?.phone || s.phone || "-")}
+      </p>
+
+    </div>
+
+
+    <div class="card section">
+
+      <b>ข้อมูลมิเตอร์</b>
+
+      <table>
+
+        <tr>
+          <td>วันที่จดครั้งก่อน</td>
+          <td class="right">
+            ${formatDate(b.previousDate)}
+          </td>
+        </tr>
+
+        <tr>
+          <td>มิเตอร์ครั้งก่อน</td>
+          <td class="right">
+            ${b.previous}
+          </td>
+        </tr>
+
+        <tr>
+          <td>วันที่จดครั้งหลัง</td>
+          <td class="right">
+            ${formatDate(b.readingDate)}
+          </td>
+        </tr>
+
+        <tr>
+          <td>มิเตอร์ครั้งหลัง</td>
+          <td class="right">
+            ${b.current}
+          </td>
+        </tr>
+
+        <tr>
+          <td>จำนวนหน่วยที่ใช้</td>
+          <td class="right">
+            ${b.units} หน่วย
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            ค่าน้ำ ${RATE} บาท/หน่วย
+          </td>
+          <td class="right">
+            ${money(b.waterCharge)}
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            ค่ารักษามาตร
+          </td>
+          <td class="right">
+            ${money(b.meterMaintenance)}
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <b>รวมเป็นเงิน</b>
+          </td>
+
+          <td class="right">
+            <b>${money(b.total)}</b>
+          </td>
+        </tr>
+
+      </table>
+
+    </div>
+
+
+    <div class="card section">
+
+      <b>ช่องทางการชำระเงิน</b>
+
+      <p class="muted">
+
+        ${esc(
+          s.paymentNote ||
+          "โอนเงินแล้วกรุณาส่งหลักฐานมาทาง LINE"
+        )}
+
+        <br><br>
+
+        ธนาคาร : ${esc(s.bank || "กรุงเทพ")}
+        <br>
+
+        เลขบัญชี : ${esc(s.account || "2635252501")}
+        <br>
+
+        ชื่อบัญชี : ${esc(s.accountName || "ศาศวัต ทาหมอก")}
+        <br>
+
+        Line ID : ${esc(s.line || "Sasawat_789")}
+
+      </p>
+
+    </div>
+
+
+    <div class="toolbar">
+
+      <button
+        class="soft"
+        onclick="openEditBill('${id}')"
+      >
+        ✏️ แก้ไขใบแจ้ง
+      </button>
+
+    </div>
+
+
+    <div class="toolbar actions">
+
+      <button
+        class="soft"
+        onclick="printBill('${id}')"
+      >
+        📄 PDF
+      </button>
+
+      <button
+        class="soft"
+        onclick="pngBill('${id}')"
+      >
+        🖼️ PNG
+      </button>
+
+      <button
+        class="${b.paid ? "soft" : "primary"}"
+        onclick="togglePaid('${id}')"
+      >
+        ${b.paid ? "✓ ชำระแล้ว" : "บันทึกชำระ"}
+      </button>
+
+    </div>
+
+  `;
+
+
+  openModal();
 
 }
 
 
-/* =========================
-   PAID
-========================= */
+/* =========================================================
+   EDIT BILL
+========================================================= */
+
+function openEditBill(id){
+
+  const b =
+    data.bills.find(x => x.id === id);
+
+
+  if(!b) return;
+
+
+  const h =
+    data.houses.find(
+      x => x.id === b.houseId
+    );
+
+
+  document.getElementById("sheet").innerHTML = `
+
+    <div class="backbar">
+
+      <button
+        class="ghost"
+        onclick="openBill('${id}')"
+      >
+        ← กลับ
+      </button>
+
+      <h2 style="margin:0">
+        แก้ไขใบแจ้งหนี้
+      </h2>
+
+    </div>
+
+
+    <div class="notice">
+
+      แก้ไขข้อมูลการจดมิเตอร์ของ
+      <b>บ้าน ${esc(h?.number || "-")}</b>
+
+    </div>
+
+
+    <div class="section">
+
+      <label>วันที่จดมิเตอร์</label>
+
+      <input
+        id="ebDate"
+        type="date"
+        value="${esc(b.readingDate || today())}"
+      >
+
+    </div>
+
+
+    <div class="row section">
+
+      <div>
+
+        <label>วันที่จดครั้งก่อน</label>
+
+        <input
+          id="ebPreviousDate"
+          type="date"
+          value="${esc(b.previousDate || "")}"
+        >
+
+      </div>
+
+
+      <div>
+
+        <label>เลขมิเตอร์ครั้งก่อน</label>
+
+        <input
+          id="ebPrevious"
+          type="number"
+          inputmode="decimal"
+          value="${b.previous}"
+          oninput="previewEditBill()"
+        >
+
+      </div>
+
+    </div>
+
+
+    <div class="section">
+
+      <label>เลขมิเตอร์ครั้งหลัง</label>
+
+      <input
+        id="ebCurrent"
+        type="number"
+        inputmode="decimal"
+        value="${b.current}"
+        oninput="previewEditBill()"
+      >
+
+    </div>
+
+
+    <div id="editPreview" class="total-box"></div>
+
+
+    <div class="form-note">
+
+      ⚠️ ถ้าแก้ไขเลขมิเตอร์ครั้งหลัง
+      ระบบจะคำนวณจำนวนหน่วยและยอดเงินใหม่ให้อัตโนมัติ
+
+    </div>
+
+
+    <div class="toolbar actions">
+
+      <button
+        class="ghost"
+        onclick="openBill('${id}')"
+      >
+        ยกเลิก
+      </button>
+
+      <button
+        class="primary"
+        onclick="saveEditedBill('${id}')"
+      >
+        💾 บันทึกการแก้ไข
+      </button>
+
+    </div>
+
+  `;
+
+
+  openModal();
+
+  previewEditBill();
+
+}
+
+
+function previewEditBill(){
+
+  const previous =
+    Number(
+      document.getElementById("ebPrevious")?.value
+    );
+
+
+  const current =
+    Number(
+      document.getElementById("ebCurrent")?.value
+    );
+
+
+  if(
+    !Number.isFinite(previous) ||
+    !Number.isFinite(current) ||
+    current < previous
+  ){
+
+    document.getElementById("editPreview").innerHTML =
+      '<span class="muted">เลขมิเตอร์ครั้งหลังต้องไม่น้อยกว่าครั้งก่อน</span>';
+
+    return;
+
+  }
+
+
+  const units =
+    current - previous;
+
+
+  const water =
+    units * RATE;
+
+
+  const total =
+    water + FEE;
+
+
+  document.getElementById("editPreview").innerHTML = `
+
+    ใช้น้ำ <b>${units}</b> หน่วย<br>
+
+    ค่าน้ำ ${money(water)}<br>
+
+    ค่ารักษามาตร ${money(FEE)}
+
+    <div class="total">
+      รวม ${money(total)}
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   SAVE EDITED BILL
+========================================================= */
+
+function saveEditedBill(id){
+
+  const b =
+    data.bills.find(x => x.id === id);
+
+
+  if(!b) return;
+
+
+  const previous =
+    Number(
+      document.getElementById("ebPrevious").value
+    );
+
+
+  const current =
+    Number(
+      document.getElementById("ebCurrent").value
+    );
+
+
+  const readingDate =
+    document.getElementById("ebDate").value;
+
+
+  const previousDate =
+    document.getElementById("ebPreviousDate").value;
+
+
+  if(
+    !Number.isFinite(previous) ||
+    !Number.isFinite(current) ||
+    previous < 0 ||
+    current < previous
+  ){
+
+    alert("เลขมิเตอร์ไม่ถูกต้อง");
+
+    return;
+
+  }
+
+
+  if(!readingDate){
+
+    alert("กรุณาเลือกวันที่จดมิเตอร์");
+
+    return;
+
+  }
+
+
+  const oldReadingDate =
+    b.readingDate;
+
+
+  const laterBills =
+    data.bills.filter(x => {
+
+      if(x.id === b.id) return false;
+
+      if(x.houseId !== b.houseId) return false;
+
+      return new Date(
+        x.readingDate || x.createdAt
+      ) >
+      new Date(
+        oldReadingDate || b.createdAt
+      );
+
+    });
+
+
+  if(laterBills.length){
+
+    const ok =
+      confirm(
+        "ใบนี้มีใบแจ้งของเดือน/วันที่หลังจากนี้อยู่แล้ว\n\n" +
+        "การแก้ไขอาจทำให้ลำดับเลขมิเตอร์ของใบถัดไปไม่ตรงกัน\n\n" +
+        "ต้องการแก้ไขต่อหรือไม่?"
+      );
+
+
+    if(!ok) return;
+
+  }
+
+
+  const units =
+    current - previous;
+
+
+  const waterCharge =
+    units * RATE;
+
+
+  const total =
+    waterCharge + FEE;
+
+
+  b.previous =
+    previous;
+
+  b.current =
+    current;
+
+  b.previousDate =
+    previousDate || null;
+
+  b.readingDate =
+    readingDate;
+
+  b.month =
+    readingDate.slice(0,7);
+
+  b.units =
+    units;
+
+  b.waterCharge =
+    waterCharge;
+
+  b.meterMaintenance =
+    FEE;
+
+  b.total =
+    total;
+
+  b.updatedAt =
+    new Date().toISOString();
+
+
+  const h =
+    data.houses.find(
+      x => x.id === b.houseId
+    );
+
+
+  if(h){
+
+    const latest =
+      data.bills
+        .filter(x => x.houseId === h.id)
+        .sort(
+          (a,b) =>
+            new Date(
+              b.readingDate || b.createdAt
+            ) -
+            new Date(
+              a.readingDate || a.createdAt
+            )
+        )[0];
+
+
+    if(latest?.id === b.id){
+
+      h.meter =
+        current;
+
+      h.updatedAt =
+        new Date().toISOString();
+
+    }
+
+  }
+
+
+  save();
+
+  openBill(id);
+
+}
+
+
+/* =========================================================
+   PAYMENT
+========================================================= */
 
 function togglePaid(id){
 
-let b=data.bills.find(
-x=>x.id===id
-);
+  const b =
+    data.bills.find(x => x.id === id);
 
-if(!b)return;
 
-b.paid=!b.paid;
+  if(!b) return;
 
-b.paidDate=
-b.paid
-?new Date().toISOString()
-:null;
 
-b.updatedAt=
-new Date().toISOString();
+  b.paid =
+    !b.paid;
 
-save();
 
-openBill(id);
+  b.paidDate =
+    b.paid
+      ? new Date().toISOString()
+      : null;
+
+
+  b.updatedAt =
+    new Date().toISOString();
+
+
+  save();
+
+  openBill(id);
 
 }
 
 
-/* =========================
-   PDF
-========================= */
+/* =========================================================
+   PDF / PRINT
+========================================================= */
 
 function printBill(id){
 
-let b=data.bills.find(
-x=>x.id===id
-);
-
-let h=data.houses.find(
-x=>x.id===b.houseId
-);
-
-let s=data.settings;
-
-let w=window.open(
-"",
-"_blank"
-);
+  const b =
+    data.bills.find(x => x.id === id);
 
 
-w.document.write(`
+  if(!b) return;
+
+
+  const h =
+    data.houses.find(
+      x => x.id === b.houseId
+    );
+
+
+  const s =
+    data.settings;
+
+
+  const w =
+    window.open("", "_blank");
+
+
+  if(!w){
+
+    alert("กรุณาอนุญาตให้เปิดหน้าต่างใหม่");
+
+    return;
+
+  }
+
+
+  w.document.write(`
 
 <html lang="th">
 
@@ -1702,75 +2265,113 @@ w.document.write(`
 <meta charset="utf-8">
 
 <title>
-ใบแจ้งหนี้ค่าน้ำปุณย์ศิริ บ้าน ${h.number}
+ใบแจ้งหนี้ค่าน้ำปุณย์ศิริ
 </title>
 
 <style>
 
 body{
-font-family:Arial,"Noto Sans Thai",sans-serif;
-max-width:760px;
-margin:auto;
-padding:36px;
-color:#222
+  font-family:Arial,
+  "Noto Sans Thai",
+  sans-serif;
+  max-width:760px;
+  margin:auto;
+  padding:36px;
+  color:#222
 }
 
 .logo{
-width:110px;
-display:block;
-margin:auto
+  width:110px;
+  max-height:90px;
+  object-fit:contain;
+  display:block;
+  margin:auto
 }
 
 h1,h2{
-text-align:center
+  text-align:center
+}
+
+.subtitle{
+  text-align:center;
+  font-size:20px;
+  font-weight:bold
 }
 
 table{
-width:100%;
-border-collapse:collapse
+  width:100%;
+  border-collapse:collapse;
+  margin-top:20px
 }
 
 td{
-padding:10px;
-border-bottom:1px solid #ddd
+  padding:10px;
+  border-bottom:1px solid #ddd
 }
 
 .r{
-text-align:right
+  text-align:right
 }
 
 .pay{
-margin-top:22px
+  margin-top:28px
+}
+
+.note{
+  background:#f5f7fa;
+  padding:14px;
+  border-radius:10px;
 }
 
 </style>
 
 </head>
 
+
 <body>
 
+
 <img
-class="logo"
-src="./assets/logo.png"
+  class="logo"
+  src="./logo.png"
+  onerror="this.style.display='none'"
 >
 
+
 <h2>
-${esc(s.village||"ปุณย์ศิริ")}
+${esc(s.village || "ปุณย์ศิริ")}
 </h2>
 
-<h1>
+
+<div class="subtitle">
 ใบแจ้งหนี้ค่าน้ำปุณย์ศิริ
-</h1>
+</div>
+
+
+<p>
+รอบเดือน: ${esc(b.month)}
+</p>
+
 
 <p>
 
-เลขที่บ้าน ${esc(h.number)}<br>
+เลขที่บ้าน:
+${esc(h?.number || "-")}
 
-ผู้ใช้น้ำ: ${esc(h.owner||"-")}<br>
+<br>
 
-${esc(h.address||s.address||"")}<br>
+ชื่อผู้ใช้น้ำ:
+${esc(h?.owner || "-")}
 
-โทรศัพท์: ${esc(h.phone||s.phone||"")}
+<br>
+
+ที่อยู่:
+${esc(h?.address || s.address || "-")}
+
+<br>
+
+โทรศัพท์:
+${esc(h?.phone || s.phone || "-")}
 
 </p>
 
@@ -1780,9 +2381,10 @@ ${esc(h.address||s.address||"")}<br>
 <tr>
 <td>วันที่จดครั้งก่อน</td>
 <td class="r">
-${formatThaiDate(b.previousReadingDate)}
+${formatDate(b.previousDate)}
 </td>
 </tr>
+
 
 <tr>
 <td>มิเตอร์ครั้งก่อน</td>
@@ -1791,12 +2393,14 @@ ${b.previous}
 </td>
 </tr>
 
+
 <tr>
 <td>วันที่จดครั้งหลัง</td>
 <td class="r">
-${formatThaiDate(b.readingDate)}
+${formatDate(b.readingDate)}
 </td>
 </tr>
+
 
 <tr>
 <td>มิเตอร์ครั้งหลัง</td>
@@ -1805,6 +2409,7 @@ ${b.current}
 </td>
 </tr>
 
+
 <tr>
 <td>จำนวนหน่วยที่ใช้</td>
 <td class="r">
@@ -1812,12 +2417,14 @@ ${b.units}
 </td>
 </tr>
 
+
 <tr>
-<td>ค่าน้ำ 6 บาท/หน่วย</td>
+<td>ค่าน้ำ ${RATE} บาท/หน่วย</td>
 <td class="r">
 ${Number(b.waterCharge).toFixed(2)} บาท
 </td>
 </tr>
+
 
 <tr>
 <td>ค่ารักษามาตร</td>
@@ -1825,6 +2432,7 @@ ${Number(b.waterCharge).toFixed(2)} บาท
 ${Number(b.meterMaintenance).toFixed(2)} บาท
 </td>
 </tr>
+
 
 <tr>
 <td>
@@ -1844,514 +2452,651 @@ ${Number(b.total).toFixed(2)} บาท
 
 <div class="pay">
 
-<b>ช่องทางการชำระเงิน</b>
+<b>
+ช่องทางการชำระเงิน
+</b>
 
-<p>
 
-ธนาคาร : ${esc(s.bank||"กรุงเทพ")}<br>
+<div class="note">
 
-เลขบัญชี : ${esc(s.account||"2635252501")}<br>
-
-ชื่อบัญชี : ${esc(s.accountName||"ศาศวัต ทาหมอก")}<br>
-
-Line ID : ${esc(s.line||"Sasawat_789")}
-
-</p>
-
-<p>
 ${esc(
-s.paymentNote||
-"โอนเงินแล้วกรุณาส่งหลักฐานมาทาง LINE"
+  s.paymentNote ||
+  "โอนเงินแล้วกรุณาส่งหลักฐานมาทาง LINE"
 )}
-</p>
+
+<br><br>
+
+ธนาคาร : ${esc(s.bank || "กรุงเทพ")}
+
+<br>
+
+เลขบัญชี : ${esc(s.account || "2635252501")}
+
+<br>
+
+ชื่อบัญชี : ${esc(s.accountName || "ศาศวัต ทาหมอก")}
+
+<br>
+
+Line ID : ${esc(s.line || "Sasawat_789")}
+
+</div>
 
 </div>
 
 
 <script>
 
-window.onload=()=>window.print()
+window.onload = function(){
+
+  window.print();
+
+};
 
 <\/script>
+
 
 </body>
 
 </html>
 
-`);
+  `);
 
-w.document.close();
+
+  w.document.close();
 
 }
 
 
-/* =========================
+/* =========================================================
    PNG
-========================= */
+========================================================= */
 
 function pngBill(id){
 
-let b=data.bills.find(
-x=>x.id===id
-);
-
-let h=data.houses.find(
-x=>x.id===b.houseId
-);
-
-let s=data.settings;
-
-let c=document.createElement("canvas");
-
-c.width=1400;
-c.height=2000;
-
-let x=c.getContext("2d");
-
-x.fillStyle="#fff";
-x.fillRect(
-0,0,c.width,c.height
-);
-
-x.fillStyle="#172033";
-
-x.textAlign="center";
-
-x.font="bold 54px Arial";
-
-x.fillText(
-s.village||"ปุณย์ศิริ",
-700,
-120
-);
-
-x.font="bold 46px Arial";
-
-x.fillText(
-"ใบแจ้งหนี้ค่าน้ำปุณย์ศิริ",
-700,
-200
-);
-
-x.textAlign="left";
-
-x.font="30px Arial";
-
-let y=310;
+  const b =
+    data.bills.find(x => x.id === id);
 
 
-let rows=[
-
-["บ้าน",h.number],
-
-["ผู้ใช้น้ำ",h.owner||"-"],
-
-["รอบเดือน",b.month],
-
-["วันที่จดครั้งก่อน",
-formatThaiDate(b.previousReadingDate)],
-
-["มิเตอร์ครั้งก่อน",b.previous],
-
-["วันที่จดครั้งหลัง",
-formatThaiDate(b.readingDate)],
-
-["มิเตอร์ครั้งหลัง",b.current],
-
-["หน่วยที่ใช้",b.units+" หน่วย"],
-
-["ค่าน้ำ",
-Number(b.waterCharge).toFixed(2)+" บาท"],
-
-["ค่ารักษามาตร",
-Number(b.meterMaintenance).toFixed(2)+" บาท"],
-
-["รวมเป็นเงิน",
-Number(b.total).toFixed(2)+" บาท"]
-
-];
+  if(!b) return;
 
 
-rows.forEach(r=>{
-
-x.fillText(
-r[0],
-120,
-y
-);
-
-x.fillText(
-String(r[1]),
-700,
-y
-);
-
-y+=105;
-
-});
+  const h =
+    data.houses.find(
+      x => x.id === b.houseId
+    );
 
 
-x.font="bold 34px Arial";
-
-x.fillText(
-"ช่องทางการชำระเงิน",
-120,
-y+30
-);
-
-x.font="28px Arial";
-
-y+=90;
+  const s =
+    data.settings;
 
 
-let pay=[
-
-"ธนาคาร : "+(s.bank||"กรุงเทพ"),
-
-"เลขบัญชี : "+(s.account||"2635252501"),
-
-"ชื่อบัญชี : "+(s.accountName||"ศาศวัต ทาหมอก"),
-
-"Line ID : "+(s.line||"Sasawat_789")
-
-];
+  const c =
+    document.createElement("canvas");
 
 
-pay.forEach(t=>{
-
-x.fillText(
-t,
-120,
-y
-);
-
-y+=55;
-
-});
+  c.width = 1400;
+  c.height = 1900;
 
 
-let a=document.createElement("a");
+  const x =
+    c.getContext("2d");
 
-a.download=
-`ใบแจ้งหนี้ค่าน้ำ_บ้าน${h.number}_${b.month}.png`;
 
-a.href=
-c.toDataURL("image/png");
+  x.fillStyle = "#fff";
+  x.fillRect(0,0,c.width,c.height);
 
-a.click();
+
+  x.fillStyle = "#172033";
+
+
+  x.textAlign = "center";
+
+
+  x.font =
+    "bold 52px Arial";
+
+
+  x.fillText(
+    s.village || "ปุณย์ศิริ",
+    700,
+    130
+  );
+
+
+  x.font =
+    "bold 42px Arial";
+
+
+  x.fillText(
+    "ใบแจ้งหนี้ค่าน้ำปุณย์ศิริ",
+    700,
+    200
+  );
+
+
+  x.textAlign = "left";
+
+
+  x.font =
+    "30px Arial";
+
+
+  let y = 320;
+
+
+  const rows = [
+
+    ["บ้าน",h?.number || "-"],
+
+    ["ผู้ใช้น้ำ",h?.owner || "-"],
+
+    ["รอบเดือน",b.month],
+
+    ["วันที่จดครั้งก่อน",formatDate(b.previousDate)],
+
+    ["มิเตอร์ครั้งก่อน",b.previous],
+
+    ["วันที่จดครั้งหลัง",formatDate(b.readingDate)],
+
+    ["มิเตอร์ครั้งหลัง",b.current],
+
+    ["หน่วยที่ใช้",b.units + " หน่วย"],
+
+    ["ค่าน้ำ",Number(b.waterCharge).toFixed(2) + " บาท"],
+
+    ["ค่ารักษามาตร",Number(b.meterMaintenance).toFixed(2) + " บาท"],
+
+    ["รวมเป็นเงิน",Number(b.total).toFixed(2) + " บาท"]
+
+  ];
+
+
+  rows.forEach(r => {
+
+    x.fillText(
+      String(r[0]),
+      120,
+      y
+    );
+
+    x.fillText(
+      String(r[1]),
+      700,
+      y
+    );
+
+    y += 105;
+
+  });
+
+
+  x.font =
+    "bold 32px Arial";
+
+
+  x.fillText(
+    "ช่องทางการชำระเงิน",
+    120,
+    y + 30
+  );
+
+
+  y += 100;
+
+
+  x.font =
+    "28px Arial";
+
+
+  const payment = [
+
+    "ธนาคาร : " +
+      (s.bank || "กรุงเทพ"),
+
+    "เลขบัญชี : " +
+      (s.account || "2635252501"),
+
+    "ชื่อบัญชี : " +
+      (s.accountName || "ศาศวัต ทาหมอก"),
+
+    "Line ID : " +
+      (s.line || "Sasawat_789")
+
+  ];
+
+
+  payment.forEach(t => {
+
+    x.fillText(
+      t,
+      120,
+      y
+    );
+
+    y += 60;
+
+  });
+
+
+  const a =
+    document.createElement("a");
+
+
+  a.download =
+    `ใบแจ้งหนี้ค่าน้ำ_บ้าน${h?.number || ""}_${b.month}.png`;
+
+
+  a.href =
+    c.toDataURL("image/png");
+
+
+  a.click();
 
 }
 
 
-/* =========================
-   STATS
-========================= */
+/* =========================================================
+   STATISTICS
+========================================================= */
 
 function renderStats(){
 
-let total=
-data.bills.reduce(
-(a,b)=>a+Number(b.total||0),
-0
-);
-
-let paid=
-data.bills
-.filter(b=>b.paid)
-.reduce(
-(a,b)=>a+Number(b.total||0),
-0
-);
-
-let units=
-data.bills.reduce(
-(a,b)=>a+Number(b.units||0),
-0
-);
-
-document.getElementById("stTotal")
-.textContent=money(total);
-
-document.getElementById("stPaid")
-.textContent=money(paid);
-
-document.getElementById("stDue")
-.textContent=money(total-paid);
-
-document.getElementById("stUnits")
-.textContent=units;
+  const total =
+    data.bills.reduce(
+      (a,b) => a + Number(b.total || 0),
+      0
+    );
 
 
-let ms={};
+  const paid =
+    data.bills
+      .filter(b => b.paid)
+      .reduce(
+        (a,b) => a + Number(b.total || 0),
+        0
+      );
 
-data.bills.forEach(b=>{
 
-ms[b.month]??={
-total:0,
-units:0,
-paid:0
-};
+  const units =
+    data.bills.reduce(
+      (a,b) => a + Number(b.units || 0),
+      0
+    );
 
-ms[b.month].total+=
-Number(b.total||0);
 
-ms[b.month].units+=
-Number(b.units||0);
+  document.getElementById("stTotal")
+    .textContent = money(total);
 
-if(b.paid){
 
-ms[b.month].paid+=
-Number(b.total||0);
+  document.getElementById("stPaid")
+    .textContent = money(paid);
+
+
+  document.getElementById("stDue")
+    .textContent = money(total-paid);
+
+
+  document.getElementById("stUnits")
+    .textContent = units;
+
+
+  const ms = {};
+
+
+  data.bills.forEach(b => {
+
+    ms[b.month] ??= {
+      total:0,
+      units:0,
+      paid:0
+    };
+
+
+    ms[b.month].total +=
+      Number(b.total || 0);
+
+
+    ms[b.month].units +=
+      Number(b.units || 0);
+
+
+    if(b.paid){
+
+      ms[b.month].paid +=
+        Number(b.total || 0);
+
+    }
+
+  });
+
+
+  document.getElementById("monthly").innerHTML =
+
+    Object.keys(ms)
+      .sort()
+      .reverse()
+      .map(m => `
+
+        <div class="item">
+
+          <div>
+
+            <b>${m}</b>
+
+            <div class="muted">
+
+              ${ms[m].units} หน่วย
+
+              • ชำระ
+              ${money(ms[m].paid)}
+
+            </div>
+
+          </div>
+
+          <b>
+            ${money(ms[m].total)}
+          </b>
+
+        </div>
+
+      `)
+      .join("")
+
+    ||
+
+    '<div class="muted">ยังไม่มีข้อมูล</div>';
 
 }
 
-});
 
-
-document.getElementById("monthly").innerHTML=
-
-Object.keys(ms)
-.sort()
-.reverse()
-.map(m=>`
-
-<div class="item">
-
-<div>
-
-<b>${m}</b>
-
-<div class="muted">
-${ms[m].units} หน่วย
-•
-ชำระ ${money(ms[m].paid)}
-</div>
-
-</div>
-
-<b>
-${money(ms[m].total)}
-</b>
-
-</div>
-
-`).join("")
-
-||
-
-'<div class="muted">ยังไม่มีข้อมูล</div>';
-
-}
-
-
-/* =========================
+/* =========================================================
    SETTINGS
-========================= */
+========================================================= */
 
 function fillSettings(){
 
-let s=data.settings;
+  const s =
+    data.settings;
 
-document.getElementById("setVillage").value=
-s.village||"";
 
-document.getElementById("setAddress").value=
-s.address||"";
+  document.getElementById("setVillage").value =
+    s.village || "";
 
-document.getElementById("setPhone").value=
-s.phone||"";
 
-document.getElementById("setBank").value=
-s.bank||"กรุงเทพ";
+  document.getElementById("setAddress").value =
+    s.address || "";
 
-document.getElementById("setAccount").value=
-s.account||"2635252501";
 
-document.getElementById("setAccountName").value=
-s.accountName||"ศาศวัต ทาหมอก";
+  document.getElementById("setPhone").value =
+    s.phone || "";
 
-document.getElementById("setLine").value=
-s.line||"Sasawat_789";
 
-document.getElementById("setPaymentNote").value=
-s.paymentNote||
-"โอนเงินแล้วกรุณาส่งหลักฐานมาทาง LINE";
+  document.getElementById("setBank").value =
+    s.bank || "";
+
+
+  document.getElementById("setAccount").value =
+    s.account || "";
+
+
+  document.getElementById("setAccountName").value =
+    s.accountName || "";
+
+
+  document.getElementById("setLine").value =
+    s.line || "";
+
+
+  document.getElementById("setPaymentNote").value =
+    s.paymentNote || "";
 
 }
 
 
 function saveSettings(){
 
-Object.assign(
-data.settings,
-{
+  Object.assign(
+    data.settings,
+    {
 
-village:
-document.getElementById("setVillage").value.trim(),
+      village:
+        document.getElementById("setVillage").value.trim(),
 
-address:
-document.getElementById("setAddress").value.trim(),
+      address:
+        document.getElementById("setAddress").value.trim(),
 
-phone:
-document.getElementById("setPhone").value.trim(),
+      phone:
+        document.getElementById("setPhone").value.trim(),
 
-bank:
-document.getElementById("setBank").value.trim(),
+      bank:
+        document.getElementById("setBank").value.trim(),
 
-account:
-document.getElementById("setAccount").value.trim(),
+      account:
+        document.getElementById("setAccount").value.trim(),
 
-accountName:
-document.getElementById("setAccountName").value.trim(),
+      accountName:
+        document.getElementById("setAccountName").value.trim(),
 
-line:
-document.getElementById("setLine").value.trim(),
+      line:
+        document.getElementById("setLine").value.trim(),
 
-paymentNote:
-document.getElementById("setPaymentNote").value.trim()
+      paymentNote:
+        document.getElementById("setPaymentNote").value.trim()
+
+    }
+  );
+
+
+  save();
+
+
+  alert("บันทึกตั้งค่าแล้ว");
 
 }
-);
-
-save();
-
-alert("บันทึกตั้งค่าแล้ว");
-
-}
 
 
-/* =========================
-   BACKUP / RESTORE
-========================= */
+/* =========================================================
+   BACKUP
+========================================================= */
 
 function backup(){
 
-let a=document.createElement("a");
+  const a =
+    document.createElement("a");
 
-a.download=
-"moobanwater-backup.json";
 
-a.href=
-URL.createObjectURL(
-new Blob(
-[
-JSON.stringify(data,null,2)
-],
-{
-type:"application/json"
+  a.download =
+    "moobanwater-backup.json";
+
+
+  a.href =
+    URL.createObjectURL(
+      new Blob(
+        [
+          JSON.stringify(
+            data,
+            null,
+            2
+          )
+        ],
+        {
+          type:"application/json"
+        }
+      )
+    );
+
+
+  a.click();
+
 }
-)
-);
 
-a.click();
 
-}
-
+/* =========================================================
+   RESTORE
+========================================================= */
 
 function restore(e){
 
-let f=e.target.files[0];
+  const f =
+    e.target.files[0];
 
-if(!f)return;
 
-let r=new FileReader();
+  if(!f) return;
 
-r.onload=()=>{
 
-try{
+  const r =
+    new FileReader();
 
-data=JSON.parse(r.result);
 
-data.houses ||= [];
-data.bills ||= [];
-data.settings={
-...defaultData.settings,
-...(data.settings||{})
-};
+  r.onload = () => {
 
-save();
+    try{
 
-alert("นำเข้าข้อมูลแล้ว");
+      const imported =
+        JSON.parse(r.result);
 
-}catch{
 
-alert("ไฟล์ไม่ถูกต้อง");
+      if(
+        !imported ||
+        !Array.isArray(imported.houses) ||
+        !Array.isArray(imported.bills)
+      ){
+
+        throw new Error();
+
+      }
+
+
+      data =
+        imported;
+
+
+      save();
+
+
+      alert("นำเข้าข้อมูลแล้ว");
+
+
+    }catch{
+
+      alert("ไฟล์ไม่ถูกต้อง");
+
+    }
+
+  };
+
+
+  r.readAsText(f);
 
 }
 
-};
 
-r.readAsText(f);
-
-}
-
-
-/* =========================
+/* =========================================================
    RESET
-========================= */
+========================================================= */
 
 function resetLocal(){
 
-if(
-confirm(
-"ล้างข้อมูลทั้งหมดในเครื่อง? ไม่สามารถย้อนกลับได้"
-)
-){
+  if(
+    confirm(
+      "ล้างข้อมูลทั้งหมดในเครื่อง?\n\nไม่สามารถย้อนกลับได้"
+    )
+  ){
 
-localStorage.removeItem(KEY);
+    localStorage.removeItem(KEY);
 
-localStorage.removeItem(
-"moobanwater.cloudready.v2"
-);
+    location.reload();
 
-location.reload();
-
-}
+  }
 
 }
 
 
-/* =========================
-   ESCAPE
-========================= */
+/* =========================================================
+   RENDER
+========================================================= */
 
-function esc(v){
+function render(){
 
-return String(v??"")
-.replace(
-/[&<>"']/g,
-m=>({
+  const cur =
+    data.bills.filter(
+      b => b.month === month()
+    );
 
-"&":"&amp;",
-"<":"&lt;",
-">":"&gt;",
-"\"":"&quot;",
-"'":"&#039;"
 
-}[m])
-);
+  document.getElementById("sHouses")
+    .textContent =
+      data.houses.length;
+
+
+  document.getElementById("sRecords")
+    .textContent =
+      cur.length;
+
+
+  document.getElementById("sMonth")
+    .textContent =
+      money(
+        cur.reduce(
+          (a,b) =>
+            a + Number(b.total || 0),
+          0
+        )
+      );
+
+
+  document.getElementById("sUnpaid")
+    .textContent =
+      money(
+        data.bills
+          .filter(b => !b.paid)
+          .reduce(
+            (a,b) =>
+              a + Number(b.total || 0),
+            0
+          )
+      );
+
+
+  const village =
+    data.settings.village ||
+    "ปุณย์ศิริ";
+
+
+  document.getElementById("headerSub")
+    .textContent =
+      village +
+      " • 6 บาท/หน่วย + 5 บาท/เดือน";
+
+
+  renderHouses();
+  renderBills();
+  renderStats();
+  fillSettings();
 
 }
 
 
-/* =========================
+/* =========================================================
    SERVICE WORKER
-========================= */
+========================================================= */
 
 if(
-"serviceWorker" in navigator
+  "serviceWorker" in navigator
 ){
 
-navigator.serviceWorker.register(
-"./sw.js"
-);
+  navigator.serviceWorker
+    .register("./sw.js")
+    .catch(() => {});
 
 }
 
 
-/* =========================
+/* =========================================================
    START
-========================= */
+========================================================= */
 
 showTab("dashboard");
 
