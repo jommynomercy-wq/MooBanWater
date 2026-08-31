@@ -305,7 +305,7 @@ async function saveReading(){
 
 async function loadHistory(){
  const c=document.getElementById("history-list");c.innerHTML='<div class="loading">กำลังโหลด...</div>';
- const {data,error}=await supabaseClient.from("water_readings").select(`*,houses(house_number,owner_name)`).order("reading_date",{ascending:false}).order("created_at",{ascending:false});
+ const {data,error}=await supabaseClient.from("water_readings").select(`*,houses(house_number,owner_name)`).order("reading_date",{ascending:false});
  if(error){console.error(error);c.innerHTML='<div class="empty">โหลดข้อมูลไม่สำเร็จ</div>';return}
  readings=data||[];if(!readings.length){c.innerHTML='<div class="empty">ยังไม่มีประวัติการจด</div>';return}
  c.innerHTML=`<div class="table-wrap"><table><thead><tr><th>วันที่</th><th>บ้าน</th><th>ก่อน</th><th>ปัจจุบัน</th><th>หน่วย</th><th>แก้ไข</th></tr></thead><tbody>${readings.map(r=>`<tr><td>${escapeHtml(r.reading_date)}</td><td>${escapeHtml(r.houses?.house_number||"-")}</td><td>${r.previous_meter}</td><td>${r.current_meter}</td><td>${r.units}</td><td><button class="small-btn btn-primary" onclick="editReading('${r.id}')">แก้ไข</button></td></tr>`).join("")}</tbody></table></div>`;
@@ -325,7 +325,7 @@ async function editReading(id){
 
 async function loadBills(){
  const c=document.getElementById("bill-list");c.innerHTML='<div class="loading">กำลังโหลด...</div>';
- const {data,error}=await supabaseClient.from("bills").select(`*,houses(house_number,owner_name)`).order("reading_date",{ascending:false}).order("created_at",{ascending:false});
+ const {data,error}=await supabaseClient.from("bills").select(`*,houses(house_number,owner_name)`).order("reading_date",{ascending:false});
  if(error){console.error(error);c.innerHTML='<div class="empty">โหลดใบแจ้งหนี้ไม่สำเร็จ</div>';return}
  bills=data||[];if(!bills.length){c.innerHTML='<div class="empty">ยังไม่มีใบแจ้งหนี้</div>';return}
  c.innerHTML=bills.map(b=>`<div class="house-item"><div class="house-top"><div><div class="house-number">ใบแจ้งหนี้ค่าน้ำปุณย์ศิริ</div><div class="house-owner">บ้าน ${escapeHtml(b.houses?.house_number||"-")} — ${escapeHtml(b.houses?.owner_name||"-")}</div></div><div>${b.paid?'<span class="status status-paid">ชำระแล้ว</span>':'<span class="status status-unpaid">ยังไม่ชำระ</span>'}</div></div><div class="house-meter">วันที่: <strong>${escapeHtml(b.reading_date)}</strong><br>ใช้: <strong>${b.units}</strong> หน่วย<br>รวม: <strong>${money(b.total)}</strong> บาท</div><div class="house-actions"><button class="small-btn btn-primary" onclick="viewBill('${b.id}')">ดูใบแจ้งหนี้</button><button class="small-btn btn-secondary" onclick="editBill('${b.id}')">แก้ไข</button><button class="small-btn ${b.paid?"btn-secondary":"btn-success"}" onclick="togglePaid('${b.id}')">${b.paid?"ยกเลิกชำระ":"ทำเครื่องหมายว่าชำระแล้ว"}</button></div></div>`).join("");
@@ -371,7 +371,7 @@ async function loadDashboard(){
  try{
   const {count:hc}=await supabaseClient.from("houses").select("*",{count:"exact",head:true});
   const {count:rc}=await supabaseClient.from("water_readings").select("*",{count:"exact",head:true});
-  const {data:bd,error}=await supabaseClient.from("bills").select(`*,houses(house_number,owner_name)`).order("reading_date",{ascending:false}).order("created_at",{ascending:false});
+  const {data:bd,error}=await supabaseClient.from("bills").select(`*,houses(house_number,owner_name)`).order("reading_date",{ascending:false});
   if(error)throw error;
   const all=bd||[],paid=all.filter(b=>b.paid),unpaid=all.filter(b=>!b.paid),unpaidTotal=unpaid.reduce((s,b)=>s+Number(b.total||0),0);
   document.getElementById("dash-houses").textContent=hc||0;document.getElementById("dash-readings").textContent=rc||0;document.getElementById("dash-bills").textContent=all.length;document.getElementById("dash-paid").textContent=paid.length;document.getElementById("dash-unpaid").textContent=unpaid.length;document.getElementById("dash-unpaid-total").textContent=money(unpaidTotal);
@@ -380,7 +380,7 @@ async function loadDashboard(){
 }
 async function loadDashboardRecentReadings(){
  const c=document.getElementById("dash-recent-readings");
- const {data,error}=await supabaseClient.from("water_readings").select(`*,houses(house_number,owner_name)`).order("reading_date",{ascending:false}).order("created_at",{ascending:false}).limit(5);
+ const {data,error}=await supabaseClient.from("water_readings").select(`*,houses(house_number,owner_name)`).order("reading_date",{ascending:false}).limit(5);
  if(error){console.error(error);c.innerHTML='<div class="empty">โหลดข้อมูลไม่สำเร็จ</div>';return}
  if(!data?.length){c.innerHTML='<div class="empty">ยังไม่มีการจดมิเตอร์</div>';return}
  c.innerHTML=data.map(r=>`<div class="recent-item"><div class="recent-top"><div class="recent-title">บ้าน ${escapeHtml(r.houses?.house_number||"-")}</div><div class="recent-date">${escapeHtml(r.reading_date||"-")}</div></div><div class="recent-detail">${escapeHtml(r.houses?.owner_name||"-")}<br>มิเตอร์: <strong>${r.previous_meter}</strong> → <strong>${r.current_meter}</strong> | ใช้ <strong>${r.units}</strong> หน่วย</div></div>`).join("");
